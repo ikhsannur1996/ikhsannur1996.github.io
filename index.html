@@ -134,11 +134,13 @@
             border: 1px solid rgba(255,255,255,0.16);
         }
         .profile-card img {
-            width: 100%;
-            max-width: 260px;
+            width: min(100%, 260px);
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
             border-radius: 16px;
             margin: 0 auto 0.9rem;
             border: 1px solid rgba(255,255,255,0.18);
+            display: block;
         }
         .profile-card h2 { margin: 0.2rem 0 0.25rem; font-size: 1.15rem; color: white; }
         .profile-card p { margin: 0; color: rgba(255,255,255,0.82); }
@@ -333,6 +335,10 @@
             .profile-card { max-width: 320px; margin: 0 auto; }
         }
         @media (max-width: 760px) {
+            .hero-grid { display: grid; grid-template-columns: 1fr; gap: 0.7rem; }
+            .profile-card { order: 1; max-width: 220px; margin: 0 auto 0.8rem; }
+            .hero-grid > div:first-child { order: 2; }
+            .profile-card img { width: 100%; max-width: 220px; }
             .grid { grid-template-columns: 1fr; }
             nav { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
             .nav-links { width: 100%; gap: 0.6rem; }
@@ -348,9 +354,7 @@
         @media (max-width: 560px) {
             .container { width: min(100%, calc(100% - 1.2rem)); }
             .hero { padding: 1.4rem 0 1.2rem; }
-            .hero-grid { display: flex; flex-direction: column; }
             .hero-card { padding: 1.2rem; }
-            .profile-card { order: -1; max-width: 220px; margin: 0 auto 0.8rem; }
             .profile-card img { max-width: 220px; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .btn { width: 100%; }
