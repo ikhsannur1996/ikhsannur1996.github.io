@@ -3,286 +3,842 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamad Ikhsan Nurulloh</title>
+    <title>Mohamad Ikhsan Nurulloh | Portfolio</title>
+    <meta name="description" content="Professional portfolio for Mohamad Ikhsan Nurulloh, featuring cloud engineering, data analysis, and business intelligence work.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --primary: #0f6fff;
+            --primary-soft: #eaf3ff;
+            --text: #0f172a;
+            --muted: #5f6b7a;
+            --border: #e8eef6;
+            --shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
         }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            line-height: 1.42;
+            color: var(--text);
+            background: radial-gradient(circle at top left, #ffffff 0%, #f7faff 45%, var(--bg) 100%);
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container { width: min(1140px, calc(100% - 2rem)); margin: 0 auto; }
         header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 2rem;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 20;
         }
         nav {
-            background-color: #444;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 1rem 0;
         }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .brand {
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            font-size: 1rem;
         }
-        nav ul li {
-            display: inline;
-            margin-right: 1rem;
+        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .nav-links a { color: var(--muted); font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+        .hero {
+            padding: 3.2rem 0 2.2rem;
         }
-        nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
+        .hero-card {
+            background: linear-gradient(135deg, #081426 0%, #13325c 100%);
+            color: white;
+            border-radius: 30px;
+            padding: 2.3rem;
+            box-shadow: 0 24px 60px rgba(10, 22, 41, 0.18);
         }
-        nav ul li a:hover {
-            color: #007bff;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 1.5rem;
+            align-items: center;
         }
-        .section {
-            padding: 2rem;
-            margin: 2rem;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #b8d6ff;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 0.9rem;
         }
+        h1 {
+            font-size: clamp(1.9rem, 3.1vw, 2.8rem);
+            line-height: 1.15;
+            margin: 0 0 0.8rem;
+        }
+        .hero p { color: rgba(255,255,255,0.82); margin: 0 0 1rem; }
+        .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.2rem; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary { background: white; color: #0f172a; }
+        .social-links {
+            display: flex;
+            gap: 0.7rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.16);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .social-links a:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.2);
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 1.2rem 1.25rem;
+            box-shadow: var(--shadow);
+        }
+        p, li {
+            margin: 0 0 0.55rem;
+        }
+        .profile-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.16);
+        }
+        .profile-card img {
+            width: 100%;
+            max-width: 260px;
+            border-radius: 16px;
+            margin: 0 auto 0.9rem;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .profile-card h2 { margin: 0.2rem 0 0.25rem; font-size: 1.15rem; color: white; }
+        .profile-card p { margin: 0; color: rgba(255,255,255,0.82); }
+        section { padding: 1.6rem 0; }
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin: 0 0 0.8rem;
+            letter-spacing: -0.01em;
         }
-        .experience {
-            margin-bottom: 1.5rem;
+        .lead { color: var(--muted); margin: 0 0 0.75rem; }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        .grid ul { margin: 0; padding-left: 1rem; color: var(--muted); }
+        .timeline { display: grid; gap: 0.8rem; }
+        .timeline-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
         }
-        .social-media {
+        .timeline-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+        .timeline-body { flex: 1; }
+        .timeline-item .date { color: var(--primary); font-weight: 700; margin-bottom: 0.25rem; display: block; }
+        .timeline-item ul { margin: 0.3rem 0 0; padding-left: 1rem; color: var(--muted); }
+        .portfolio-scroll {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            overflow-x: auto;
+            padding: 0.2rem 0.1rem 0.8rem;
+            scroll-snap-type: x proximity;
+            scrollbar-width: thin;
         }
-        .social-media a {
-            text-decoration: none;
-            color: #333;
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 0 0 1rem;
         }
-        .social-media a:hover {
-            color: #007bff;
+        .filter-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--muted);
+            padding: 0.5rem 0.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .portfolio-scroll::-webkit-scrollbar { height: 8px; }
+        .portfolio-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        .portfolio-card {
+            padding: 0;
+            overflow: hidden;
+            flex: 0 0 min(290px, 82vw);
+            min-width: min(290px, 82vw);
+            scroll-snap-align: start;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
+        }
+        .portfolio-card.is-hidden { display: none; }
+        .portfolio-card img { height: 160px; width: 100%; object-fit: cover; }
+        .portfolio-card .content { padding: 1rem 1rem 1.1rem; }
+        .portfolio-card p { color: var(--muted); margin: 0.35rem 0 0.75rem; font-size: 0.95rem; }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.4rem 0 0.7rem;
+        }
+        .tag-pill {
+            display: inline-block;
+            padding: 0.35rem 0.6rem;
+            border-radius: 999px;
+            background: #f8fafc;
+            color: #334155;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: 1px solid #dbe4f0;
+        }
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 0.95rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary), #2257d5);
+            color: white;
+            font-weight: 700;
+            font-size: 0.92rem;
+            margin-top: 0.3rem;
+            box-shadow: 0 8px 18px rgba(15, 111, 255, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .view-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(15, 111, 255, 0.26);
+        }
+        .thumb {
+            height: 140px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+        .thumb-trainer { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+        .thumb-cert { background: linear-gradient(135deg, #0f766e, #2563eb); }
+        .card-body { padding: 1rem 1rem 1.1rem; }
+        .cert-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.2rem 0.1rem 0.8rem;
+            scroll-snap-type: x proximity;
+            scrollbar-width: thin;
+        }
+        .cert-scroll::-webkit-scrollbar { height: 8px; }
+        .cert-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        .cert-card {
+            flex: 0 0 min(280px, 82vw);
+            min-width: min(280px, 82vw);
+            scroll-snap-align: start;
+        }
+        .trainer-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.2rem 0.1rem 0.8rem;
+            scroll-snap-type: x proximity;
+            scrollbar-width: thin;
+        }
+        .trainer-scroll::-webkit-scrollbar { height: 8px; }
+        .trainer-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        .trainer-card {
+            flex: 0 0 min(300px, 82vw);
+            min-width: min(300px, 82vw);
+            scroll-snap-align: start;
+        }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-pill {
+            padding: 0.55rem 0.8rem;
+            border-radius: 999px;
+            background: #f8fafc;
+            color: var(--text);
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
         }
         footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: #fff;
+            padding: 1.2rem 0 2rem;
+            color: var(--muted);
+            font-size: 0.95rem;
         }
-        .profile-picture {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        .profile-picture img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%; /* This makes the image circular */
-            object-fit: cover;
-            border: 2px solid #333;
-        }
-        .portfolio-slider img {
-            max-width: 100%;
-            height: auto;
-        }
-        .header-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .header-icons a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-        }
-        .header-icons a:hover {
-            color: #007bff;
-        }
-        .header-icons i {
-            font-size: 1.5rem;
-        }
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .skills-list li {
-            margin-bottom: 0.5rem;
-        }
-        .skills-list li strong {
-            display: inline-block;
-            width: 100px;
-        }
-        .portfolio-item {
-            margin-bottom: 2rem;
-        }
-        .portfolio-item img {
-            max-width: 100%;
-            height: auto;
-        }
-        .portfolio-description {
-            margin-top: 0.5rem;
-            color: #555;
-        }
-        .header-icons {
-            display: flex;
-            justify-content: center; /* Center the icons horizontally */
-            align-items: center; /* Center the icons vertically */
-            margin-top: 1rem;
-        }
-        .header-icons a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #fff;
-            margin-right: 1rem; /* Add space between icons */
-        }
-        .header-icons a:last-child {
-            margin-right: 0; /* Remove margin from the last icon */
-        }
-        .header-icons a:hover {
-            color: #007bff;
-        }
-        .header-icons i {
-            font-size: 3rem; /* Make the icons larger */
+        @media (max-width: 760px) {
+            .hero-grid, .grid, .portfolio-grid { grid-template-columns: 1fr; }
+            nav { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+            .hero { padding-top: 2.4rem; }
+            .hero-card { padding: 1.4rem; }
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Mohamad Ikhsan Nurulloh</h1>
-        <p>Cloud Engineer | Data Analyst | Business Intelligence | Tableau | Python | Power BI</p>
-        <div class="header-icons">
-            <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://github.com/ikhsannur1996" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.youtube.com/@mohamadikhsannurulloh/videos" target="_blank">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="mailto:ikhsannur1996@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://wa.me/+6281281489343" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+        <div class="container">
+            <nav>
+                <a class="brand" href="#home">Mohamad Ikhsan Nurulloh</a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#certifications">Certifications</a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certification">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section id="about" class="section">
-        <h2 class="section-title">About Me</h2>
-        <div class="profile-picture">
-            <img src="profile.jpeg" alt="Your Profile Picture">
-        </div>
-        <p><strong>Mohamad Ikhsan Nurulloh</strong> is a highly accomplished individual with a diverse background in Cloud Engineering, Data Analysis, and Business Intelligence. As a Business Intelligence Developer, he excels in both front-end and back-end tasks, creating engaging dashboards using Tableau and Power BI while leveraging his expertise in SQL and ETL for high data quality and seamless integration. His strong business acumen allows him to align BI with strategic goals, providing actionable insights for data-driven decision-making and improved business efficiency. In recognition of his skills and knowledge, Mohamad holds several notable certifications, including Microsoft Certified: Azure Fundamentals, Associate Cloud Engineer, Tableau Desktop Specialist, and [PCAP-31-03] PCAP – Certified Associate in Python Programming.</p>
-    </section>
-
-    <section id="portfolio" class="section">
-        <h2 class="section-title">Portfolio</h2>
-        <div class="portfolio-slider">
-            <div class="portfolio-item">
-                <a href="/portfolio/sample.html" target="_blank">
-                    <img src="project1.jpg" alt="Sample Project 1">
-                </a>
-                <div class="portfolio-description">
-                    Project 1 description goes here.
+    <main id="home">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-card hero-grid">
+                    <div>
+                        <div class="eyebrow">Data Professional • BI • Analytics • Cloud Engineering</div>
+                        <h1>Building reliable data solutions with a clear business impact.</h1>
+                        <p>I bring six years of experience across business intelligence, data science, analytics, machine learning, and cloud engineering to create practical and scalable solutions.</p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/ikhsannur1996" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="mailto:ikhsannur1996@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="card profile-card">
+                        <img src="profile.jpeg" alt="Mohamad Ikhsan Nurulloh">
+                        <h2>Mohamad Ikhsan Nurulloh</h2>
+                        <p>Cloud Engineer | Data Analyst | Business Intelligence Developer</p>
+                    </div>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <a href="https://project2-link.com" target="_blank">
-                    <img src="project2.jpg" alt="Project 2">
-                </a>
-                <div class="portfolio-description">
-                    Project 2 description goes here.
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About</h2>
+                <p class="lead">Mohamad Ikhsan Nurulloh is a data professional with six years of experience across Business Intelligence, Data Science, Analytics, Machine Learning, and Cloud Engineering. He builds scalable data solutions, develops user-friendly dashboards, and ensures data quality through strong expertise in SQL, ETL processes, and data warehousing. With a solid understanding of business strategy, he delivers actionable insights and predictive solutions to support informed decision-making.</p>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Core Competencies</h3>
+                        <ul>
+                            <li>Data Visualization</li>
+                            <li>Data Engineering</li>
+                            <li>Data Analytics</li>
+                            <li>Business Intelligence</li>
+                            <li>Business Analytics</li>
+                            <li>Solution Architecture</li>
+                            <li>Leadership</li>
+                            <li>Cloud Computing</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Professional Focus</h3>
+                        <ul>
+                            <li>Designing scalable data platforms and ETL pipelines.</li>
+                            <li>Delivering BI dashboards and predictive analytics solutions.</li>
+                            <li>Implementing cloud-based data platforms on GCP, AWS, and Azure.</li>
+                            <li>Supporting business strategy with actionable insights and data quality.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- Add more portfolio items as needed -->
-        </div>
-    </section>
+        </section>
 
-    <section id="education" class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="experience">
-            <h3>University Name</h3>
-            <p>Bachelor's Degree in Computer Science</p>
-            <p>Graduated in 20XX</p>
-        </div>
-        <!-- Add more education experiences as needed -->
-    </section>
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title">Selected Projects</h2>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="data-visualization">Data Visualization</button>
+                    <button class="filter-btn" data-filter="data-analyst">Data Analyst</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud</button>
+                    <button class="filter-btn" data-filter="it-infrastructure">IT Infrastructure</button>
+                    <button class="filter-btn" data-filter="data-science">Data Science</button>
+                    <button class="filter-btn" data-filter="data-engineer">Data Engineer</button>
+                </div>
+                <div class="portfolio-scroll">
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="portfolio/analytics-dashboard.svg" alt="Executive dashboard illustration">
+                        <div class="content">
+                            <h3>Executive Dashboard</h3>
+                            <p>Designed a reporting experience for leaders with clear KPI visibility and business insight.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="portfolio/cloud-automation.svg" alt="Cloud automation illustration">
+                        <div class="content">
+                            <h3>Cloud Automation</h3>
+                            <p>Improved operational consistency through a simple and reliable workflow.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer data-visualization">
+                        <img src="portfolio/data-pipeline.svg" alt="Data pipeline illustration">
+                        <div class="content">
+                            <h3>Data Pipeline</h3>
+                            <p>Supported smoother data movement and reporting readiness across systems.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Data Visualization</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-science data-analyst">
+                        <img src="portfolio/analytics-dashboard.svg" alt="Analytics platform illustration">
+                        <div class="content">
+                            <h3>Analytics Platform</h3>
+                            <p>Built a unified analytics environment for faster reporting and insight delivery.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Science</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="portfolio/cloud-automation.svg" alt="Workflow automation illustration">
+                        <div class="content">
+                            <h3>Workflow Automation</h3>
+                            <p>Automated repetitive tasks to increase reliability and reduce manual effort.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer cloud">
+                        <img src="portfolio/data-pipeline.svg" alt="Data orchestration illustration">
+                        <div class="content">
+                            <h3>Data Orchestration</h3>
+                            <p>Created dependable data flows that supported operations and reporting.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-science">
+                        <img src="portfolio/analytics-dashboard.svg" alt="Forecasting dashboard illustration">
+                        <div class="content">
+                            <h3>Forecasting Dashboard</h3>
+                            <p>Delivered predictive insights with a clear and intuitive business view.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Science</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="portfolio/cloud-automation.svg" alt="Cloud migration illustration">
+                        <div class="content">
+                            <h3>Cloud Migration</h3>
+                            <p>Supported a smooth transition to cloud infrastructure with better scalability.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer data-visualization">
+                        <img src="portfolio/data-pipeline.svg" alt="Reporting pipeline illustration">
+                        <div class="content">
+                            <h3>Reporting Pipeline</h3>
+                            <p>Improved data freshness and consistency to support business reporting needs.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Data Visualization</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-analyst data-science">
+                        <img src="portfolio/analytics-dashboard.svg" alt="Decision support illustration">
+                        <div class="content">
+                            <h3>Decision Support</h3>
+                            <p>Enabled stakeholders to make faster and better-informed decisions with data.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Analyst</span>
+                                <span class="tag-pill">Data Science</span>
+                            </div>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <section id="experience" class="section">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience">
-            <h3>Software Developer</h3>
-            <p>Company Name | City, Country</p>
-            <p>Month Year - Present</p>
-            <p>Responsible for developing web applications...</p>
-        </div>
-        <!-- Add more job experiences as needed -->
-    </section>
+        <section id="trainer-experience">
+            <div class="container">
+                <h2 class="section-title">Trainer Experience</h2>
+                <div class="trainer-scroll">
+                    <div class="card trainer-card">
+                        <div class="thumb thumb-trainer">BI</div>
+                        <div class="card-body">
+                            <h3>BI & Product Mentor</h3>
+                            <p><strong>dibimbing.id</strong> • 2020 – 2021</p>
+                            <p>Guided aspiring analysts and product-minded learners in business intelligence, data reasoning, and practical project execution.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <div class="thumb thumb-trainer">WS</div>
+                        <div class="card-body">
+                            <h3>Workshop Facilitator</h3>
+                            <p><strong>Data & Analytics Community</strong> • 2021 – 2023</p>
+                            <p>Delivered hands-on sessions on dashboard design, SQL, and analytics workflows for growing professional communities.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <div class="thumb thumb-trainer">CC</div>
+                        <div class="card-body">
+                            <h3>Career Coach</h3>
+                            <p><strong>Mentorship Programs</strong> • 2022 – Present</p>
+                            <p>Supported early-career professionals in building portfolios, improving analytical thinking, and preparing for data roles.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <div class="thumb thumb-trainer">SP</div>
+                        <div class="card-body">
+                            <h3>Public Speaker</h3>
+                            <p><strong>Tech & Education Events</strong> • 2023 – Present</p>
+                            <p>Shared insights on data analytics, cloud solutions, and practical approaches to problem-solving in modern teams.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="skills" class="section">
-        <h2 class="section-title">Skills</h2>
-        <ul class="skills-list">
-            <li><strong>Programming:</strong> JavaScript, Python, HTML/CSS</li>
-            <li><strong>Frameworks:</strong> React, Flask</li>
-            <li><strong>Version Control:</strong> Git, GitHub</li>
-            <!-- Add more skills as needed -->
-        </ul>
-    </section>
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-building"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Nov 2023 – Present</span>
+                            <h3>Senior Business Intelligence</h3>
+                            <p>Accord Innovations | IT Consultant</p>
+                            <ul>
+                                <li>Led end-to-end BI, Data Science, Analytics, and Machine Learning initiatives by architecting scalable data platforms, developing ETL pipelines, and delivering cloud-based analytics, predictive modeling, and visualization solutions aligned with business objectives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Jul 2023 – Nov 2023</span>
+                            <h3>Business Intelligence Mentor</h3>
+                            <p>dibimbing.id | ed-tech startup</p>
+                            <ul>
+                                <li>Introduced students to BI concepts for making data-driven decisions.</li>
+                                <li>Guided practical experience with BI tools, data warehousing, and ETL processes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-database"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Mar 2022 – Nov 2023</span>
+                            <h3>Business Intelligence Developer</h3>
+                            <p>PT. Cybertrend Intrabuana | IT Consultant</p>
+                            <ul>
+                                <li>Built dashboards using Tableau and Power BI while ensuring high data quality through SQL and ETL workflows.</li>
+                                <li>Designed scalable BI infrastructure and aligned reporting solutions with strategic business goals.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Aug 2019 – Aug 2021</span>
+                            <h3>Data Analyst</h3>
+                            <p>Schoters | ed-tech startup</p>
+                            <ul>
+                                <li>Used analytics tools to improve business processes, reduce waste, and strengthen data quality.</li>
+                                <li>Created visualizations and insights that supported strategic decision-making for a growing learning platform.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-flask"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Oct 2017 – Feb 2019</span>
+                            <h3>Bioinformatics Data Analyst</h3>
+                            <p>Eijkman Institute for Molecular Biology</p>
+                            <ul>
+                                <li>Performed statistical and bioinformatics analysis for genetic research using Python and R.</li>
+                                <li>Applied data-driven methods to extract insights from malaria and SNP research projects.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="certification" class="section">
-        <h2 class="section-title">Certifications</h2>
-        <div class="certification">
-            <h3>Web Development Certificate</h3>
-            <p>Issued by: Online Learning Platform</p>
-            <p><a href="https://certificate-link.com" target="_blank">View Certificate</a></p>
-        </div>
-        <!-- Add more certification entries as needed -->
-    </section>
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline">
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-university"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Aug 2020 – Mar 2022</span>
+                            <h3>M.Han Defense Industry (Equivalent to Industrial Engineering)</h3>
+                            <p>The Republic of Indonesia Defense University</p>
+                            <p>Honors: Cum Laude (GPA: 3.87/4.0)</p>
+                        </div>
+                    </div>
+                    <div class="card timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="timeline-body">
+                            <span class="date">Aug 2014 – May 2019</span>
+                            <h3>BSc. Biology</h3>
+                            <p>State University of Semarang</p>
+                            <p>Honors: Cum Laude (GPA: 3.60/4.0)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact" class="section">
-        <h2 class="section-title">Contact Me</h2>
-        <p>You can reach me at <a href="mailto:ikhsannur1996.com">ikhsannur1996@gmail.com</a>.</p>
-    </section>
+        <section>
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skill-list">
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">R</span>
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">Tableau</span>
+                    <span class="skill-pill">Tableau Prep</span>
+                    <span class="skill-pill">Tableau Server</span>
+                    <span class="skill-pill">Power BI</span>
+                    <span class="skill-pill">Looker Studio</span>
+                    <span class="skill-pill">MetaBase</span>
+                    <span class="skill-pill">QlikView</span>
+                    <span class="skill-pill">Microsoft Azure</span>
+                    <span class="skill-pill">AWS</span>
+                    <span class="skill-pill">GCP</span>
+                    <span class="skill-pill">Google BigQuery</span>
+                    <span class="skill-pill">Amazon QuickSight</span>
+                    <span class="skill-pill">Talend</span>
+                    <span class="skill-pill">Pentaho</span>
+                    <span class="skill-pill">Apache Airflow</span>
+                    <span class="skill-pill">ETL</span>
+                    <span class="skill-pill">Dataiku</span>
+                    <span class="skill-pill">Alibaba Cloud</span>
+                    <span class="skill-pill">Figma</span>
+                    <span class="skill-pill">Git & GitHub</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="container">
+                <h2 class="section-title">Certifications</h2>
+                <div class="cert-scroll">
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">GCP</div>
+                        <div class="card-body">
+                            <h3>Professional Cloud Architect</h3>
+                            <p>Google Cloud certification for designing and managing scalable cloud solutions.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">GCP</div>
+                        <div class="card-body">
+                            <h3>Professional Cloud Data Engineer</h3>
+                            <p>Google Cloud certification focused on data engineering and data processing solutions.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">GCP</div>
+                        <div class="card-body">
+                            <h3>Associate Cloud Engineer</h3>
+                            <p>Google Cloud certification covering core infrastructure and deployment fundamentals.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">GCP</div>
+                        <div class="card-body">
+                            <h3>Cloud Digital Leader</h3>
+                            <p>Google Cloud certification for understanding digital transformation and cloud strategy.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">TB</div>
+                        <div class="card-body">
+                            <h3>Tableau Desktop Specialist</h3>
+                            <p>Validated skill in creating and publishing visual analytics with Tableau.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AZ</div>
+                        <div class="card-body">
+                            <h3>Microsoft Certified: Azure Fundamentals</h3>
+                            <p>Foundational knowledge of cloud services, security, and Azure concepts.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AWS</div>
+                        <div class="card-body">
+                            <h3>AWS Certified Solutions Architect – Associate</h3>
+                            <p>Certification for building secure, scalable, and cost-effective AWS solutions.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AWS</div>
+                        <div class="card-body">
+                            <h3>AWS Certified Data Engineer – Associate</h3>
+                            <p>Certification for designing and maintaining data pipelines on AWS.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AWS</div>
+                        <div class="card-body">
+                            <h3>AWS Certified Machine Learning Engineer – Associate</h3>
+                            <p>Certification for developing machine learning solutions on AWS.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">PY</div>
+                        <div class="card-body">
+                            <h3>[PCAP-31-03] PCAP – Certified Associate in Python Programming</h3>
+                            <p>Python programming certification covering core programming concepts and practices.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AF</div>
+                        <div class="card-body">
+                            <h3>DAG Authoring for Apache Airflow</h3>
+                            <p>Specialized training for workflow orchestration with Apache Airflow.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="thumb thumb-cert">AF</div>
+                        <div class="card-body">
+                            <h3>Apache Airflow Fundamentals</h3>
+                            <p>Foundational knowledge of Airflow concepts, pipelines, and orchestration.</p>
+                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
-        <p>&copy; 2023 Mohamad Ikhsan Nurulloh. All rights reserved.</p>
+        <div class="container">
+            <p>© 2026 Mohamad Ikhsan Nurulloh</p>
+        </div>
     </footer>
 
     <script>
-        $(document).ready(function(){
-            $('.portfolio-slider').slick({
-                autoplay: true,
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                adaptiveHeight: true
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.portfolio-card');
+
+            filterButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const selectedTag = button.dataset.filter;
+
+                    filterButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
+
+                    projectCards.forEach((card) => {
+                        const tags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
+                        const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
+                        card.classList.toggle('is-hidden', !shouldShow);
+                    });
+                });
             });
         });
     </script>

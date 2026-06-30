@@ -3,116 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Item | Your Name</title>
+    <title>Executive Dashboard | Mohamad Ikhsan Nurulloh</title>
+    <meta name="description" content="Case study of a business intelligence dashboard project by Mohamad Ikhsan Nurulloh.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
-        /* Reset default margin and padding */
-        body, h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --primary: #2563eb;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #dbeafe;
         }
-
+        * { box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        /* Header styles */
-        .portfolio-header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Main content styles */
-        .portfolio-content {
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            margin: 2rem;
-            padding: 2rem;
-        }
-
-        /* Back button styles */
-        .back-button {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .back-button a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .back-button a:hover {
-            color: #007bff;
-        }
-
-        /* Navigation bar styles */
-        .navbar {
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        .navbar ul {
-            list-style: none;
             margin: 0;
-            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
         }
-
-        .navbar li {
-            display: inline-block;
-            margin: 0 1rem;
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; }
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem 0 3rem;
         }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
         }
-
-        .navbar a:hover {
-            color: #007bff;
+        .nav a { color: rgba(255,255,255,0.9); font-weight: 600; }
+        .hero h1 { font-size: clamp(2rem, 3vw, 2.7rem); margin: 0 0 0.7rem; }
+        .hero p { color: rgba(255,255,255,0.87); margin: 0; max-width: 760px; }
+        .content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: -1.2rem auto 2rem;
+            box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
         }
+        .content img { width: 100%; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 1.4rem; }
+        .section-title { font-size: 1.25rem; margin: 1.3rem 0 0.4rem; }
+        .pill-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1rem 0; }
+        .pill { padding: 0.55rem 0.8rem; border-radius: 999px; background: #eff6ff; color: var(--primary); font-weight: 600; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        footer { text-align: center; padding: 1rem 0 2rem; color: var(--muted); }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <nav>
+    <header class="hero">
+        <div class="container">
+            <div class="nav">
+                <a href="../index.html">← Back to Home</a>
+                <a href="https://github.com/ikhsannur1996" target="_blank">GitHub</a>
+            </div>
+            <h1>Executive Dashboard & Reporting</h1>
+            <p>Designed a clear, executive-ready analytics experience that transformed operational data into actionable business insights.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <img src="analytics-dashboard.svg" alt="Executive dashboard illustration">
+            <div class="pill-row">
+                <span class="pill">Tableau</span>
+                <span class="pill">Power BI</span>
+                <span class="pill">SQL</span>
+                <span class="pill">ETL</span>
+            </div>
+            <h2 class="section-title">Project Overview</h2>
+            <p>This project focused on presenting performance metrics in a format that was easy to understand for executives and managers. The result was a streamlined reporting experience with better visibility into key KPIs and trends.</p>
+
+            <h2 class="section-title">What Was Delivered</h2>
             <ul>
-                <li><a href="https://ikhsannur1996.github.io/#about">About</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#portfolio">Portfolio</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#education">Education</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#experience">Experience</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#skills">Skills</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#certification">Certifications</a></li>
-                <li><a href="https://ikhsannur1996.github.io/#contact">Contact</a></li>
+                <li>Interactive dashboards for business monitoring.</li>
+                <li>Clear KPI layouts aligned with strategic goals.</li>
+                <li>Improved data consistency and presentation quality.</li>
             </ul>
-        </nav>
-    </div>
 
-    <div class="portfolio-header">
-        <h1>Project Title</h1>
-        <p>Project Description</p>
-    </div>
+            <h2 class="section-title">Impact</h2>
+            <p>The solution helped stakeholders make faster, more informed decisions by providing a concise view of performance and business health.</p>
 
-    <div class="portfolio-content">
-        <img src="project-image.jpg" alt="Project Image">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac justo vitae urna pharetra bibendum. Vestibulum vel feugiat arcu. Sed nec varius justo.</p>
-        <!-- Additional content about the project goes here -->
-    </div>
+            <a class="back-link" href="../index.html"><i class="fas fa-arrow-left"></i> Return to portfolio home</a>
+        </section>
+    </main>
 
-    <div class="back-button">
-        <a href="https://ikhsannur1996.github.io/">Back to Home</a>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <footer>
+        <div class="container">© 2026 Mohamad Ikhsan Nurulloh</div>
+    </footer>
 </body>
 </html>
