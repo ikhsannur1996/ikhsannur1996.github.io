@@ -49,7 +49,7 @@
             letter-spacing: 0.02em;
             font-size: 1rem;
         }
-        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .nav-links a { color: var(--muted); font-size: 0.95rem; }
         .nav-links a:hover { color: var(--primary); }
         .hero {
@@ -301,7 +301,7 @@
             transform: translateY(-3px);
             box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
         }
-        .portfolio-card.is-hidden { display: none; }
+        .portfolio-card.is-hidden, .cert-card.is-hidden { display: none; }
         .portfolio-card img { height: 160px; width: 100%; object-fit: cover; }
         .portfolio-card .content { padding: 1rem 1rem 1.1rem; }
         .portfolio-card p { color: var(--muted); margin: 0.35rem 0 0.75rem; font-size: 0.95rem; }
@@ -414,6 +414,22 @@
             min-width: min(300px, 82vw);
             scroll-snap-align: start;
         }
+        .trainer-thumb {
+            display: block;
+            height: 170px;
+            overflow: hidden;
+            background: #f8fafc;
+            border-radius: 16px 16px 0 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .trainer-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.25s ease;
+        }
+        .trainer-card:hover .trainer-thumb img { transform: scale(1.04); }
         .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
         .skill-pill {
             padding: 0.55rem 0.8rem;
@@ -478,6 +494,7 @@
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
                     <a href="#skills">Skills</a>
+                    <a href="#awards">Awards</a>
                     <a href="#certifications">Certifications</a>
                 </div>
             </nav>
@@ -494,6 +511,7 @@
                         <p>I design dashboards, data pipelines, and cloud analytics workflows that help teams move faster with trusted insights.</p>
                         <div class="hero-actions">
                             <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+                            <a class="btn btn-secondary" href="assets/documents/resume/Resume - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Resume</a>
                             <a class="btn btn-secondary" href="#experience">See Experience</a>
                         </div>
                         <div class="hero-highlights">
@@ -509,7 +527,7 @@
                     </div>
                     <div class="profile-card">
                         <a class="profile-photo-link" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" aria-label="View Mohamad Ikhsan Nurulloh on LinkedIn">
-                            <img src="profile.jpeg" alt="Mohamad Ikhsan Nurulloh" loading="eager" decoding="async">
+                            <img src="assets/images/profile/1727083885420.jpeg" alt="Mohamad Ikhsan Nurulloh" loading="eager" decoding="async">
                         </a>
                         <h2>Mohamad Ikhsan Nurulloh</h2>
                         <p>Cloud Engineer | Data Analyst | Business Intelligence Developer</p>
@@ -563,123 +581,315 @@
                 </div>
                 <div class="portfolio-scroll">
                     <article class="card portfolio-card" data-tags="data-visualization data-analyst">
-                        <img src="portfolio/analytics-dashboard.svg" alt="Executive dashboard illustration">
+                        <img src="assets/images/portfolio-thumbnails/Power BI - Mohamad Ikhsan Nurulloh.pdf.png" alt="Power BI dashboard portfolio thumbnail">
                         <div class="content">
-                            <h3>Executive Dashboard</h3>
-                            <p>Designed a reporting experience for leaders with clear KPI visibility and business insight.</p>
+                            <h3>Power BI Dashboard</h3>
+                            <p>Interactive sales reporting portfolio using Power BI for KPI monitoring and business analysis.</p>
                             <div class="project-tags">
                                 <span class="tag-pill">Data Visualization</span>
                                 <span class="tag-pill">Data Analyst</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
-                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
-                        <img src="portfolio/cloud-automation.svg" alt="Cloud automation illustration">
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Tableau - Summary (Operation).pdf.png" alt="Tableau operations dashboard thumbnail">
                         <div class="content">
-                            <h3>Cloud Automation</h3>
-                            <p>Improved operational consistency through a simple and reliable workflow.</p>
+                            <h3>Tableau Operations Dashboard</h3>
+                            <p>Operational dashboard work focused on summary views, performance tracking, and stakeholder reporting.</p>
                             <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Tableau - Summary (Operation).pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Looker Studio - Mohamad Ikhsan Nurulloh.pdf.png" alt="Looker Studio dashboard portfolio thumbnail">
+                        <div class="content">
+                            <h3>Looker Studio Dashboard</h3>
+                            <p>Dashboard design and reporting portfolio built around clear metrics and accessible business insight.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Looker Studio - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst cloud">
+                        <img src="assets/images/portfolio-thumbnails/Amazon QuickSight Dashboard.pdf.png" alt="Amazon QuickSight dashboard portfolio thumbnail">
+                        <div class="content">
+                            <h3>Amazon QuickSight Dashboard</h3>
+                            <p>AWS-native BI dashboard work using QuickSight for analytical reporting and data presentation.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
                                 <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Amazon QuickSight Dashboard.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Metabase-Mohamad Ikhsan Nurulloh.pdf.png" alt="Metabase dashboard portfolio thumbnail">
+                        <div class="content">
+                            <h3>Metabase Analytics</h3>
+                            <p>Self-service analytics and dashboarding portfolio using Metabase for business reporting workflows.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Metabase-Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Redash - Mohamad Ikhsan Nurulloh.pdf.png" alt="Redash analytics portfolio thumbnail">
+                        <div class="content">
+                            <h3>Redash Analytics</h3>
+                            <p>SQL-backed dashboarding and data exploration portfolio using Redash for fast business visibility.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Redash - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Grafana - Mohamad Ikhsan Nurulloh.pdf.png" alt="Grafana dashboard portfolio thumbnail">
+                        <div class="content">
+                            <h3>Grafana Monitoring Dashboard</h3>
+                            <p>Visualization and monitoring portfolio using Grafana for metric tracking and operational awareness.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
                                 <span class="tag-pill">IT Infrastructure</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Grafana - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
-                    <article class="card portfolio-card" data-tags="data-engineer data-visualization">
-                        <img src="portfolio/data-pipeline.svg" alt="Data pipeline illustration">
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Apache Superset - Mohamad Ikhsan Nurulloh.pdf.png" alt="Apache Superset dashboard portfolio thumbnail">
                         <div class="content">
-                            <h3>Data Pipeline</h3>
-                            <p>Supported smoother data movement and reporting readiness across systems.</p>
+                            <h3>Apache Superset Dashboard</h3>
+                            <p>Open-source BI dashboarding work using Apache Superset for analysis and reporting delivery.</p>
                             <div class="project-tags">
-                                <span class="tag-pill">Data Engineer</span>
                                 <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Apache Superset - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-visualization data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/QlikView - Mohamad Ikhsan Nurulloh.pdf.png" alt="QlikView portfolio thumbnail">
+                        <div class="content">
+                            <h3>QlikView BI Dashboard</h3>
+                            <p>Business intelligence portfolio using QlikView for interactive reporting and data discovery.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/QlikView - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
                     <article class="card portfolio-card" data-tags="data-science data-analyst">
-                        <img src="portfolio/analytics-dashboard.svg" alt="Analytics platform illustration">
+                        <img src="assets/images/portfolio-thumbnails/Boosting Bank Credit Card Marketing with Uplift Modeling.pdf.png" alt="Uplift modeling portfolio thumbnail">
                         <div class="content">
-                            <h3>Analytics Platform</h3>
-                            <p>Built a unified analytics environment for faster reporting and insight delivery.</p>
+                            <h3>Credit Card Uplift Modeling</h3>
+                            <p>Marketing analytics project using uplift modeling to improve campaign targeting and decision support.</p>
                             <div class="project-tags">
                                 <span class="tag-pill">Data Science</span>
                                 <span class="tag-pill">Data Analyst</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Boosting Bank Credit Card Marketing with Uplift Modeling.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
-                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
-                        <img src="portfolio/cloud-automation.svg" alt="Workflow automation illustration">
+                    <article class="card portfolio-card" data-tags="data-science data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Uplift Modeling Using Dataiku.pdf.png" alt="Dataiku uplift modeling portfolio thumbnail">
                         <div class="content">
-                            <h3>Workflow Automation</h3>
-                            <p>Automated repetitive tasks to increase reliability and reduce manual effort.</p>
+                            <h3>Uplift Modeling with Dataiku</h3>
+                            <p>Applied machine learning workflow using Dataiku for campaign optimization and model interpretation.</p>
                             <div class="project-tags">
-                                <span class="tag-pill">Cloud</span>
-                                <span class="tag-pill">IT Infrastructure</span>
+                                <span class="tag-pill">Data Science</span>
+                                <span class="tag-pill">Data Analyst</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Uplift Modeling Using Dataiku.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-science cloud">
+                        <img src="assets/images/portfolio-thumbnails/Dataiku x Azure - Mohamad Ikhsan.pdf.png" alt="Dataiku and Azure portfolio thumbnail">
+                        <div class="content">
+                            <h3>Dataiku on Azure</h3>
+                            <p>Analytics and machine learning platform work combining Dataiku workflows with Azure cloud services.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Science</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Dataiku x Azure - Mohamad Ikhsan.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-science data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Dataiku - Mohamad Ikhsan Nurulloh.pdf.png" alt="Dataiku portfolio thumbnail">
+                        <div class="content">
+                            <h3>Dataiku Analytics Workflow</h3>
+                            <p>End-to-end analytics and data science workflow portfolio built around Dataiku project execution.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Science</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Dataiku - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/Data Cleaning - Mohamad Ikhsan Nurulloh.pdf.png" alt="Data cleaning portfolio thumbnail">
+                        <div class="content">
+                            <h3>Data Cleaning Workflow</h3>
+                            <p>Data preparation project focused on cleaning, transformation, and analysis-ready dataset delivery.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Data Analyst</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Data Cleaning - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
                     <article class="card portfolio-card" data-tags="data-engineer cloud">
-                        <img src="portfolio/data-pipeline.svg" alt="Data orchestration illustration">
+                        <img src="assets/images/portfolio-thumbnails/BI GCP - Mohamad Ikhsan Nurulloh.pdf.png" alt="BI on GCP portfolio thumbnail">
                         <div class="content">
-                            <h3>Data Orchestration</h3>
-                            <p>Created dependable data flows that supported operations and reporting.</p>
+                            <h3>Business Intelligence on GCP</h3>
+                            <p>Cloud BI portfolio using Google Cloud components for analytics, reporting, and data platform delivery.</p>
                             <div class="project-tags">
                                 <span class="tag-pill">Data Engineer</span>
                                 <span class="tag-pill">Cloud</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
-                        </div>
-                    </article>
-                    <article class="card portfolio-card" data-tags="data-visualization data-science">
-                        <img src="portfolio/analytics-dashboard.svg" alt="Forecasting dashboard illustration">
-                        <div class="content">
-                            <h3>Forecasting Dashboard</h3>
-                            <p>Delivered predictive insights with a clear and intuitive business view.</p>
-                            <div class="project-tags">
-                                <span class="tag-pill">Data Visualization</span>
-                                <span class="tag-pill">Data Science</span>
-                            </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/BI GCP - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
                     <article class="card portfolio-card" data-tags="cloud it-infrastructure">
-                        <img src="portfolio/cloud-automation.svg" alt="Cloud migration illustration">
+                        <img src="assets/images/portfolio-thumbnails/Deploying Metabase on AWS.pdf.png" alt="Deploying Metabase on AWS thumbnail">
                         <div class="content">
-                            <h3>Cloud Migration</h3>
-                            <p>Supported a smooth transition to cloud infrastructure with better scalability.</p>
+                            <h3>Deploying Metabase on AWS</h3>
+                            <p>Cloud deployment project for hosting Metabase on AWS with practical infrastructure setup.</p>
                             <div class="project-tags">
                                 <span class="tag-pill">Cloud</span>
                                 <span class="tag-pill">IT Infrastructure</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Deploying Metabase on AWS.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
-                    <article class="card portfolio-card" data-tags="data-engineer data-visualization">
-                        <img src="portfolio/data-pipeline.svg" alt="Reporting pipeline illustration">
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Metabase x AWS.pdf.png" alt="Metabase AWS portfolio thumbnail">
                         <div class="content">
-                            <h3>Reporting Pipeline</h3>
-                            <p>Improved data freshness and consistency to support business reporting needs.</p>
+                            <h3>Metabase on AWS</h3>
+                            <p>BI platform deployment and configuration work connecting analytics tooling with AWS infrastructure.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Metabase x AWS.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Metabase x AWS ECS (Fargate).pdf.png" alt="Metabase AWS ECS Fargate portfolio thumbnail">
+                        <div class="content">
+                            <h3>Metabase on AWS ECS</h3>
+                            <p>Containerized Metabase deployment using AWS ECS Fargate for scalable BI application hosting.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Metabase x AWS ECS (Fargate).pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Grafana x AWS ECS (Fargate).pdf.png" alt="Grafana AWS ECS Fargate portfolio thumbnail">
+                        <div class="content">
+                            <h3>Grafana on AWS ECS</h3>
+                            <p>Infrastructure project deploying Grafana with AWS ECS Fargate for monitoring and visualization.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Grafana x AWS ECS (Fargate).pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/AWS CloudFormation.pdf.png" alt="AWS CloudFormation portfolio thumbnail">
+                        <div class="content">
+                            <h3>AWS CloudFormation</h3>
+                            <p>Infrastructure as code portfolio covering AWS resource provisioning and repeatable cloud setup.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/AWS CloudFormation.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Introduction to Serverless Computing with AWS Lambda.pdf.png" alt="AWS Lambda serverless computing thumbnail">
+                        <div class="content">
+                            <h3>AWS Lambda Serverless</h3>
+                            <p>Serverless computing project and documentation centered on AWS Lambda concepts and implementation.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Introduction to Serverless Computing with AWS Lambda.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Tableau Server Install.pdf.png" alt="Tableau Server installation portfolio thumbnail">
+                        <div class="content">
+                            <h3>Tableau Server Install</h3>
+                            <p>Infrastructure documentation for installing and configuring Tableau Server in a production context.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Tableau Server Install.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="cloud it-infrastructure">
+                        <img src="assets/images/portfolio-thumbnails/Tableau Server Maintenance.pdf.png" alt="Tableau Server maintenance portfolio thumbnail">
+                        <div class="content">
+                            <h3>Tableau Server Maintenance</h3>
+                            <p>Operational maintenance work for Tableau Server covering administration and platform reliability.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">IT Infrastructure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Tableau Server Maintenance.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer data-analyst">
+                        <img src="assets/images/portfolio-thumbnails/SQL - Mohamad Ikhsan Nurulloh.pdf.png" alt="SQL portfolio thumbnail">
+                        <div class="content">
+                            <h3>SQL Portfolio</h3>
+                            <p>Database querying and analysis portfolio demonstrating SQL foundations for analytics workflows.</p>
                             <div class="project-tags">
                                 <span class="tag-pill">Data Engineer</span>
-                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">Data Analyst</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/SQL - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
-                    <article class="card portfolio-card" data-tags="data-analyst data-science">
-                        <img src="portfolio/analytics-dashboard.svg" alt="Decision support illustration">
+                    <article class="card portfolio-card" data-tags="data-engineer cloud">
+                        <img src="assets/images/portfolio-thumbnails/Tableau x GCP.pdf.png" alt="Tableau and GCP portfolio thumbnail">
                         <div class="content">
-                            <h3>Decision Support</h3>
-                            <p>Enabled stakeholders to make faster and better-informed decisions with data.</p>
+                            <h3>Tableau x GCP</h3>
+                            <p>Integration-focused portfolio connecting Tableau workflows with Google Cloud Platform services.</p>
                             <div class="project-tags">
-                                <span class="tag-pill">Data Analyst</span>
-                                <span class="tag-pill">Data Science</span>
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Cloud</span>
                             </div>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <a class="view-btn" href="assets/documents/portfolio/Tableau x GCP.pdf" target="_blank">View Project</a>
+                        </div>
+                    </article>
+                    <article class="card portfolio-card" data-tags="data-engineer data-analyst cloud">
+                        <img src="assets/images/portfolio-thumbnails/Business Intelligence with Alibaba Cloud.pdf.png" alt="Business Intelligence with Alibaba Cloud thumbnail">
+                        <div class="content">
+                            <h3>BI with Alibaba Cloud</h3>
+                            <p>Cloud analytics portfolio exploring BI delivery and data services in the Alibaba Cloud ecosystem.</p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/portfolio/Business Intelligence with Alibaba Cloud.pdf" target="_blank">View Project</a>
                         </div>
                     </article>
                 </div>
@@ -691,39 +901,80 @@
                 <h2 class="section-title">Trainer Experience</h2>
                 <div class="trainer-scroll">
                     <div class="card trainer-card">
-                        <div class="thumb thumb-trainer">BI</div>
+                        <a class="trainer-thumb" href="assets/images/training/Pembicara_Mohamad Ikhsan Nurulloh.png" target="_blank">
+                            <img src="assets/images/training/Pembicara_Mohamad Ikhsan Nurulloh.png" alt="Training Software Statistika speaker certificate">
+                        </a>
                         <div class="card-body">
-                            <h3>BI & Product Mentor</h3>
-                            <p><strong>dibimbing.id</strong> • 2020 – 2021</p>
-                            <p>Guided aspiring analysts and product-minded learners in business intelligence, data reasoning, and practical project execution.</p>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <h3>Power BI Training Speaker</h3>
+                            <p><strong>Universitas Diponegoro</strong> • 2025</p>
+                            <p>Delivered a public Power BI session on data visualization and career readiness for analytics learners.</p>
+                            <a class="view-btn" href="assets/images/training/Pembicara_Mohamad Ikhsan Nurulloh.png" target="_blank">View Experience</a>
                         </div>
                     </div>
                     <div class="card trainer-card">
-                        <div class="thumb thumb-trainer">WS</div>
+                        <a class="trainer-thumb" href="assets/images/training/1665565626064.jpeg" target="_blank">
+                            <img src="assets/images/training/1665565626064.jpeg" alt="BNN data analytics training group photo">
+                        </a>
                         <div class="card-body">
-                            <h3>Workshop Facilitator</h3>
-                            <p><strong>Data & Analytics Community</strong> • 2021 – 2023</p>
-                            <p>Delivered hands-on sessions on dashboard design, SQL, and analytics workflows for growing professional communities.</p>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <h3>Data Analytics Trainer</h3>
+                            <p><strong>Puslitdatin BNN</strong> • Training Session</p>
+                            <p>Shared practical Tableau, MySQL, and PostgreSQL material with data and informatics participants.</p>
+                            <a class="view-btn" href="assets/images/training/1665565626064.jpeg" target="_blank">View Experience</a>
                         </div>
                     </div>
                     <div class="card trainer-card">
-                        <div class="thumb thumb-trainer">CC</div>
+                        <a class="trainer-thumb" href="assets/images/training/Screenshot (51).png" target="_blank">
+                            <img src="assets/images/training/Screenshot (51).png" alt="AWS Lambda serverless workshop session screenshot">
+                        </a>
                         <div class="card-body">
-                            <h3>Career Coach</h3>
-                            <p><strong>Mentorship Programs</strong> • 2022 – Present</p>
-                            <p>Supported early-career professionals in building portfolios, improving analytical thinking, and preparing for data roles.</p>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <h3>AWS Lambda Workshop</h3>
+                            <p><strong>AWS Incubation</strong> • Online Workshop</p>
+                            <p>Facilitated an online introduction to serverless computing with AWS Lambda for a live participant group.</p>
+                            <a class="view-btn" href="assets/images/training/Screenshot (51).png" target="_blank">View Experience</a>
                         </div>
                     </div>
                     <div class="card trainer-card">
-                        <div class="thumb thumb-trainer">SP</div>
+                        <a class="trainer-thumb" href="assets/images/training/1669805565976.jpeg" target="_blank">
+                            <img src="assets/images/training/1669805565976.jpeg" alt="Turnamen Sains Data Nasional panelist Zoom session">
+                        </a>
                         <div class="card-body">
-                            <h3>Public Speaker</h3>
-                            <p><strong>Tech & Education Events</strong> • 2023 – Present</p>
-                            <p>Shared insights on data analytics, cloud solutions, and practical approaches to problem-solving in modern teams.</p>
-                            <a class="view-btn" href="portfolio/sample.html">View</a>
+                            <h3>National Data Science Panelist</h3>
+                            <p><strong>Turnamen Sains Data Nasional</strong> • Cybertrend Data Academy</p>
+                            <p>Served as a panelist for a national data science tournament, sharing practical analytics experience with participants.</p>
+                            <a class="view-btn" href="assets/images/training/1669805565976.jpeg" target="_blank">View Experience</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <a class="trainer-thumb" href="assets/documents/training/SERTIF TRAINING INTERNAL (2).pdf" target="_blank">
+                            <img src="assets/images/training-thumbnails/SERTIF TRAINING INTERNAL (2).pdf.png" alt="Internal training certificate thumbnail">
+                        </a>
+                        <div class="card-body">
+                            <h3>Internal Training Facilitator</h3>
+                            <p><strong>Training Documentation</strong> • Certificate</p>
+                            <p>Certificate evidence for internal training contribution and knowledge-sharing activities.</p>
+                            <a class="view-btn" href="assets/documents/training/SERTIF TRAINING INTERNAL (2).pdf" target="_blank">View Experience</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <a class="trainer-thumb" href="assets/documents/training/Trainer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">
+                            <img src="assets/images/training-thumbnails/Trainer - Mohamad Ikhsan Nurulloh.pdf.png" alt="Trainer certificate thumbnail" loading="lazy">
+                        </a>
+                        <div class="card-body">
+                            <h3>Trainer Certificate</h3>
+                            <p><strong>Training & Mentoring</strong> • 2024</p>
+                            <p>Recognition for trainer delivery, mentoring contribution, and learning facilitation.</p>
+                            <a class="view-btn" href="assets/documents/training/Trainer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Experience</a>
+                        </div>
+                    </div>
+                    <div class="card trainer-card">
+                        <a class="trainer-thumb" href="assets/documents/training/MNTR05080165.pdf" target="_blank">
+                            <img src="assets/images/training-thumbnails/MNTR05080165.pdf.png" alt="Mentor certificate thumbnail">
+                        </a>
+                        <div class="card-body">
+                            <h3>Mentor Certificate</h3>
+                            <p><strong>Trainer Documentation</strong> • Certificate</p>
+                            <p>Supporting documentation for mentoring and training contribution in analytics learning programs.</p>
+                            <a class="view-btn" href="assets/documents/training/MNTR05080165.pdf" target="_blank">View Experience</a>
                         </div>
                     </div>
                 </div>
@@ -735,7 +986,7 @@
                 <h2 class="section-title">Experience</h2>
                 <div class="timeline">
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/experience/accord-logo.png" alt="Accord Innovations logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/accord-logo.png" alt="Accord Innovations logo"></div>
                         <div class="timeline-body">
                             <span class="date">Nov 2023 – Present</span>
                             <h3>Senior Business Intelligence</h3>
@@ -746,7 +997,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/experience/dibimbing-logo.jpg" alt="dibimbing.id logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/dibimbing-logo.jpg" alt="dibimbing.id logo"></div>
                         <div class="timeline-body">
                             <span class="date">Jul 2023 – Nov 2023</span>
                             <h3>Business Intelligence Mentor</h3>
@@ -758,7 +1009,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/experience/cybertrend-logo.png" alt="PT. Cybertrend Intrabuana logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/company-logos/cybertrend-logo.png" alt="PT. Cybertrend Intrabuana logo"></div>
                         <div class="timeline-body">
                             <span class="date">Mar 2022 – Nov 2023</span>
                             <h3>Business Intelligence Developer</h3>
@@ -770,7 +1021,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/experience/schoters-logo.png" alt="Schoters logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/schoters-logo.png" alt="Schoters logo"></div>
                         <div class="timeline-body">
                             <span class="date">Aug 2019 – Aug 2021</span>
                             <h3>Data Analyst</h3>
@@ -782,7 +1033,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/experience/eijkman-logo.png" alt="Eijkman Institute for Molecular Biology logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/company-logos/eijkman-logo.png" alt="Eijkman Institute for Molecular Biology logo"></div>
                         <div class="timeline-body">
                             <span class="date">Oct 2017 – Feb 2019</span>
                             <h3>Bioinformatics Data Analyst</h3>
@@ -802,21 +1053,19 @@
                 <h2 class="section-title">Education</h2>
                 <div class="timeline">
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/institutions/idu-logo.png" alt="The Republic of Indonesia Defense University logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/education-logos/idu-logo.png" alt="The Republic of Indonesia Defense University logo"></div>
                         <div class="timeline-body">
                             <span class="date">Aug 2020 – Mar 2022</span>
                             <h3>M.Han Defense Industry (Equivalent to Industrial Engineering)</h3>
                             <p>The Republic of Indonesia Defense University</p>
-                            <p>Honors: Cum Laude (GPA: 3.87/4.0)</p>
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/institutions/unnes-logo.jpg" alt="State University of Semarang logo"></div>
+                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/education-logos/unnes-logo.jpg" alt="State University of Semarang logo"></div>
                         <div class="timeline-body">
                             <span class="date">Aug 2014 – May 2019</span>
                             <h3>BSc. Biology</h3>
                             <p>State University of Semarang</p>
-                            <p>Honors: Cum Laude (GPA: 3.60/4.0)</p>
                         </div>
                     </div>
                 </div>
@@ -854,250 +1103,348 @@
             </div>
         </section>
 
+        <section id="awards">
+            <div class="container">
+                <h2 class="section-title">Awards</h2>
+                <div class="cert-scroll">
+                    <div class="card cert-card">
+                        <a class="cert-thumb" href="assets/documents/awards/Employee Award - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Employee Award">
+                            <img src="assets/images/award-thumbnails/Employee Award - Mohamad Ikhsan Nurulloh.pdf.png" alt="Employee Award thumbnail" loading="lazy">
+                        </a>
+                        <div class="card-body">
+                            <h3>Employee Award</h3>
+                            <span class="date">2024</span>
+                            <p>Professional recognition for performance, contribution, and workplace impact.</p>
+                            <a class="view-btn" href="assets/documents/awards/Employee Award - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Award</a>
+                        </div>
+                    </div>
+                    <div class="card cert-card">
+                        <a class="cert-thumb" href="assets/documents/awards/1766043729791.pdf" target="_blank" aria-label="View AWS Trainer Incubation Best Participant award">
+                            <img src="assets/images/award-thumbnails/1766043729791.pdf.png" alt="AWS Trainer Incubation Best Participant award thumbnail" loading="lazy">
+                        </a>
+                        <div class="card-body">
+                            <h3>AWS Trainer Incubation Best Participant</h3>
+                            <span class="date">2025</span>
+                            <p>Recognized as best participant in the 12-week AWS Trainer Incubation program by MariBelajar.</p>
+                            <a class="view-btn" href="assets/documents/awards/1766043729791.pdf" target="_blank">View Award</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="certifications">
             <div class="container">
                 <h2 class="section-title">Certifications</h2>
+                <div class="filter-bar cert-filter-bar" aria-label="Certification category filter">
+                    <button class="filter-btn cert-filter-btn active" data-cert-filter="all">All</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="cloud">Cloud</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-analytics">Data Analytics</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-engineer">Data Engineer</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-visualization">Data Visualization</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="ai-ml">AI/ML</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="programming">Programming</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="architecture">Architecture</button>
+                </div>
                 <div class="cert-scroll">
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Certified AI Practitioner certificate.pdf" target="_blank" aria-label="View AWS Certified AI Practitioner certificate">
-                            <img src="assets/certificate-thumbnails/AWS Certified AI Practitioner certificate.pdf.png" alt="AWS Certified AI Practitioner certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="ai-ml cloud">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Certified AI Practitioner certificate.pdf" target="_blank" aria-label="View AWS Certified AI Practitioner certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Certified AI Practitioner certificate.pdf.png" alt="AWS Certified AI Practitioner certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Certified AI Practitioner</h3>
                             <span class="date">2026</span>
                             <p>Foundational AWS AI and machine learning certification.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Certified AI Practitioner certificate.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">AI/ML</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Certified AI Practitioner certificate.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Certified Solutions Architect - Associate.pdf" target="_blank" aria-label="View AWS Certified Solutions Architect Associate certificate">
-                            <img src="assets/certificate-thumbnails/AWS Certified Solutions Architect - Associate.pdf.png" alt="AWS Certified Solutions Architect Associate certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud architecture aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Certified Solutions Architect - Associate.pdf" target="_blank" aria-label="View AWS Certified Solutions Architect Associate certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Certified Solutions Architect - Associate.pdf.png" alt="AWS Certified Solutions Architect Associate certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Certified Solutions Architect - Associate</h3>
                             <span class="date">2025</span>
                             <p>Designing secure, scalable, and cost-efficient AWS architectures.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Certified Solutions Architect - Associate.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Architecture</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Certified Solutions Architect - Associate.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Alibaba Database certificate">
-                            <img src="assets/certificate-thumbnails/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf.png" alt="Alibaba Database certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud database">
+                        <a class="cert-thumb" href="assets/documents/certifications/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Alibaba Database certificate">
+                            <img src="assets/images/certificate-thumbnails/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf.png" alt="Alibaba Database certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Alibaba Cloud Database</h3>
                             <span class="date">2025</span>
                             <p>Database fundamentals and cloud data services on Alibaba Cloud.</p>
-                            <a class="view-btn" href="assets/certificates/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Database</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Machine Learning Engineer certificate">
-                            <img src="assets/certificate-thumbnails/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Machine Learning Engineer certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="ai-ml cloud aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Machine Learning Engineer certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Machine Learning Engineer certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Machine Learning Engineer</h3>
                             <span class="date">2025</span>
                             <p>Machine learning workflows and applied AI solutions on AWS.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">AI/ML</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Data Engineer certificate">
-                            <img src="assets/certificate-thumbnails/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Data Engineer certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-engineer cloud aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Data Engineer certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Data Engineer certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Data Engineer</h3>
                             <span class="date">2025</span>
                             <p>Building and maintaining data pipelines and analytics systems on AWS.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Trainer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Trainer certificate">
-                            <img src="assets/certificate-thumbnails/Trainer - Mohamad Ikhsan Nurulloh.pdf.png" alt="Trainer certificate thumbnail" loading="lazy">
-                        </a>
-                        <div class="card-body">
-                            <h3>Trainer Certificate</h3>
-                            <span class="date">2024</span>
-                            <p>Recognition for training and mentoring delivery.</p>
-                            <a class="view-btn" href="assets/certificates/Trainer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
-                        </div>
-                    </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Tableau Desktop Specialist certificate">
-                            <img src="assets/certificate-thumbnails/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf.png" alt="Tableau Desktop Specialist certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-visualization bi">
+                        <a class="cert-thumb" href="assets/documents/certifications/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Tableau Desktop Specialist certificate">
+                            <img src="assets/images/certificate-thumbnails/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf.png" alt="Tableau Desktop Specialist certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Tableau Desktop Specialist</h3>
                             <span class="date">2024</span>
                             <p>Validated skill in building and publishing Tableau visual analytics.</p>
-                            <a class="view-btn" href="assets/certificates/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">BI</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Python certificate">
-                            <img src="assets/certificate-thumbnails/Python - Mohamad Ikhsan Nurulloh.pdf.png" alt="Python certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="programming python">
+                        <a class="cert-thumb" href="assets/documents/certifications/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Python certificate">
+                            <img src="assets/images/certificate-thumbnails/Python - Mohamad Ikhsan Nurulloh.pdf.png" alt="Python certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Python Programming</h3>
                             <span class="date">2024</span>
                             <p>Core Python programming concepts and applied coding practice.</p>
-                            <a class="view-btn" href="assets/certificates/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Programming</span>
+                                <span class="tag-pill">Python</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Power BI certificate">
-                            <img src="assets/certificate-thumbnails/Power BI - Mohamad Ikhsan Nurulloh.pdf.png" alt="Power BI certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-visualization bi">
+                        <a class="cert-thumb" href="assets/documents/certifications/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Power BI certificate">
+                            <img src="assets/images/certificate-thumbnails/Power BI - Mohamad Ikhsan Nurulloh.pdf.png" alt="Power BI certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Power BI</h3>
                             <span class="date">2024</span>
                             <p>Business intelligence reporting and dashboard development with Power BI.</p>
-                            <a class="view-btn" href="assets/certificates/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Visualization</span>
+                                <span class="tag-pill">BI</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Data Engineer certificate">
-                            <img src="assets/certificate-thumbnails/PDA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Data Engineer certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-engineer cloud">
+                        <a class="cert-thumb" href="assets/documents/certifications/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Data Engineer certificate">
+                            <img src="assets/images/certificate-thumbnails/PDA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Data Engineer certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Professional Data Engineer</h3>
                             <span class="date">2024</span>
                             <p>Google Cloud data engineering and data processing solutions.</p>
-                            <a class="view-btn" href="assets/certificates/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Engineer</span>
+                                <span class="tag-pill">Cloud</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/PCAP - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View PCAP Python certificate">
-                            <img src="assets/certificate-thumbnails/PCAP - Mohamad Ikhsan Nurulloh.pdf.png" alt="PCAP Python certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="programming python">
+                        <a class="cert-thumb" href="assets/documents/certifications/PCAP - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View PCAP Python certificate">
+                            <img src="assets/images/certificate-thumbnails/PCAP - Mohamad Ikhsan Nurulloh.pdf.png" alt="PCAP Python certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>PCAP - Certified Associate in Python Programming</h3>
                             <span class="date">2024</span>
                             <p>Python certification covering programming fundamentals and best practices.</p>
-                            <a class="view-btn" href="assets/certificates/PCAP - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Programming</span>
+                                <span class="tag-pill">Python</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/PCAP - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Cloud Architect certificate">
-                            <img src="assets/certificate-thumbnails/PCA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Cloud Architect certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud architecture">
+                        <a class="cert-thumb" href="assets/documents/certifications/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Cloud Architect certificate">
+                            <img src="assets/images/certificate-thumbnails/PCA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Cloud Architect certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Professional Cloud Architect</h3>
                             <span class="date">2024</span>
                             <p>Google Cloud architecture for scalable and reliable cloud solutions.</p>
-                            <a class="view-btn" href="assets/certificates/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Architecture</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Google Data Analytics certificate">
-                            <img src="assets/certificate-thumbnails/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf.png" alt="Google Data Analytics certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-analytics data-visualization">
+                        <a class="cert-thumb" href="assets/documents/certifications/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Google Data Analytics certificate">
+                            <img src="assets/images/certificate-thumbnails/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf.png" alt="Google Data Analytics certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Google Data Analytics</h3>
                             <span class="date">2024</span>
                             <p>Data analysis, visualization, and insight communication fundamentals.</p>
-                            <a class="view-btn" href="assets/certificates/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Analytics</span>
+                                <span class="tag-pill">Data Visualization</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Employee Award - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Employee Award certificate">
-                            <img src="assets/certificate-thumbnails/Employee Award - Mohamad Ikhsan Nurulloh.pdf.png" alt="Employee Award certificate thumbnail" loading="lazy">
-                        </a>
-                        <div class="card-body">
-                            <h3>Employee Award</h3>
-                            <span class="date">2024</span>
-                            <p>Professional recognition for performance and contribution.</p>
-                            <a class="view-btn" href="assets/certificates/Employee Award - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
-                        </div>
-                    </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Data Analyst certificate">
-                            <img src="assets/certificate-thumbnails/Data Analyst - Mohamad Ikhsan Nurulloh.pdf.png" alt="Data Analyst certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="data-analytics bi">
+                        <a class="cert-thumb" href="assets/documents/certifications/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Data Analyst certificate">
+                            <img src="assets/images/certificate-thumbnails/Data Analyst - Mohamad Ikhsan Nurulloh.pdf.png" alt="Data Analyst certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Data Analyst</h3>
                             <span class="date">2024</span>
                             <p>Applied data analysis, reporting, and business insight development.</p>
-                            <a class="view-btn" href="assets/certificates/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Data Analytics</span>
+                                <span class="tag-pill">BI</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Practitioner certificate">
-                            <img src="assets/certificate-thumbnails/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Practitioner certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Practitioner certificate">
+                            <img src="assets/images/certificate-thumbnails/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Practitioner certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Cloud Practitioner</h3>
                             <span class="date">2024</span>
                             <p>Foundational AWS cloud concepts, services, and architecture principles.</p>
-                            <a class="view-btn" href="assets/certificates/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">AWS</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Certified Associate in Python Programming certificate">
-                            <img src="assets/certificate-thumbnails/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf.png" alt="Certified Associate in Python Programming certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="programming python">
+                        <a class="cert-thumb" href="assets/documents/certifications/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Certified Associate in Python Programming certificate">
+                            <img src="assets/images/certificate-thumbnails/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf.png" alt="Certified Associate in Python Programming certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Certified Associate in Python Programming</h3>
                             <span class="date">2024</span>
                             <p>Python programming fundamentals, syntax, and applied problem solving.</p>
-                            <a class="view-btn" href="assets/certificates/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Programming</span>
+                                <span class="tag-pill">Python</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Cloud Digital Leader certificate">
-                            <img src="assets/certificate-thumbnails/CDL - Mohamad Ikhsan Nurulloh.pdf.png" alt="Cloud Digital Leader certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud strategy">
+                        <a class="cert-thumb" href="assets/documents/certifications/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Cloud Digital Leader certificate">
+                            <img src="assets/images/certificate-thumbnails/CDL - Mohamad Ikhsan Nurulloh.pdf.png" alt="Cloud Digital Leader certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Cloud Digital Leader</h3>
                             <span class="date">2024</span>
                             <p>Google Cloud digital transformation and cloud strategy fundamentals.</p>
-                            <a class="view-btn" href="assets/certificates/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Strategy</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Azure Fundamentals certificate">
-                            <img src="assets/certificate-thumbnails/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf.png" alt="Azure Fundamentals certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud azure">
+                        <a class="cert-thumb" href="assets/documents/certifications/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Azure Fundamentals certificate">
+                            <img src="assets/images/certificate-thumbnails/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf.png" alt="Azure Fundamentals certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Microsoft Azure Fundamentals</h3>
                             <span class="date">2024</span>
                             <p>Foundational Azure cloud services, security, and platform concepts.</p>
-                            <a class="view-btn" href="assets/certificates/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Azure</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Foundations certificate">
-                            <img src="assets/certificate-thumbnails/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Foundations certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Foundations certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Foundations certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Cloud Foundations</h3>
                             <span class="date">2024</span>
                             <p>AWS cloud fundamentals, core services, and basic architecture concepts.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">AWS</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Academy Graduate certificate">
-                            <img src="assets/certificate-thumbnails/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Academy Graduate certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud aws">
+                        <a class="cert-thumb" href="assets/documents/certifications/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Academy Graduate certificate">
+                            <img src="assets/images/certificate-thumbnails/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Academy Graduate certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>AWS Academy Graduate</h3>
                             <span class="date">2024</span>
                             <p>AWS Academy cloud training and technical learning completion.</p>
-                            <a class="view-btn" href="assets/certificates/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">AWS</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card">
-                        <a class="cert-thumb" href="assets/certificates/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Associate Cloud Engineer certificate">
-                            <img src="assets/certificate-thumbnails/ACE - Mohamad Ikhsan Nurulloh.pdf.png" alt="Associate Cloud Engineer certificate thumbnail" loading="lazy">
+                    <div class="card cert-card" data-tags="cloud operations">
+                        <a class="cert-thumb" href="assets/documents/certifications/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Associate Cloud Engineer certificate">
+                            <img src="assets/images/certificate-thumbnails/ACE - Mohamad Ikhsan Nurulloh.pdf.png" alt="Associate Cloud Engineer certificate thumbnail" loading="lazy">
                         </a>
                         <div class="card-body">
                             <h3>Associate Cloud Engineer</h3>
                             <span class="date">2024</span>
                             <p>Google Cloud infrastructure deployment, operations, and management.</p>
-                            <a class="view-btn" href="assets/certificates/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
+                            <div class="project-tags">
+                                <span class="tag-pill">Cloud</span>
+                                <span class="tag-pill">Operations</span>
+                            </div>
+                            <a class="view-btn" href="assets/documents/certifications/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
                 </div>
@@ -1114,22 +1461,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.portfolio-card');
+            const setupFilter = (buttonSelector, cardSelector, dataKey) => {
+                const buttons = document.querySelectorAll(buttonSelector);
+                const cards = document.querySelectorAll(cardSelector);
 
-            filterButtons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    const selectedTag = button.dataset.filter;
+                buttons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        const selectedTag = button.dataset[dataKey];
 
-                    filterButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
+                        buttons.forEach((btn) => btn.classList.toggle('active', btn === button));
 
-                    projectCards.forEach((card) => {
-                        const tags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
-                        const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
-                        card.classList.toggle('is-hidden', !shouldShow);
+                        cards.forEach((card) => {
+                            const tags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
+                            const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
+                            card.classList.toggle('is-hidden', !shouldShow);
+                        });
                     });
                 });
-            });
+            };
+
+            setupFilter('#portfolio .filter-btn', '.portfolio-card', 'filter');
+            setupFilter('#certifications .cert-filter-btn', '#certifications .cert-card', 'certFilter');
         });
     </script>
 </body>
