@@ -3,9 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamad Ikhsan Nurulloh | Portfolio</title>
-    <meta name="description" content="Professional portfolio for Mohamad Ikhsan Nurulloh, featuring cloud engineering, data analysis, and business intelligence work.">
+    <title>Mohamad Ikhsan Nurulloh | Business Intelligence, Data Analyst & Cloud Engineer Portfolio</title>
+    <meta name="description" content="Portfolio of Mohamad Ikhsan Nurulloh, a Business Intelligence, Data Analyst, and Cloud Engineer specializing in Power BI, Tableau, AWS, GCP, Azure, SQL, ETL, dashboards, and cloud analytics.">
+    <meta name="author" content="Mohamad Ikhsan Nurulloh">
+    <meta name="keywords" content="Mohamad Ikhsan Nurulloh, Business Intelligence, Data Analyst, Cloud Engineer, Power BI, Tableau, AWS, GCP, Azure, SQL, ETL, Data Engineering, Cloud Analytics">
+    <link rel="canonical" href="https://ikhsannur1996.github.io/">
+    <meta property="og:title" content="Mohamad Ikhsan Nurulloh | BI, Data Analyst & Cloud Engineer">
+    <meta property="og:description" content="Portfolio featuring BI dashboards, cloud analytics, data engineering, certifications, and training experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ikhsannur1996.github.io/">
+    <meta property="og:image" content="https://ikhsannur1996.github.io/assets/images/profile/1727083885420.jpeg">
+    <meta property="og:site_name" content="Mohamad Ikhsan Nurulloh Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mohamad Ikhsan Nurulloh | BI, Data Analyst & Cloud Engineer">
+    <meta name="twitter:description" content="Portfolio featuring BI dashboards, cloud analytics, data engineering, certifications, and training experience.">
+    <meta name="twitter:image" content="https://ikhsannur1996.github.io/assets/images/profile/1727083885420.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Mohamad Ikhsan Nurulloh",
+            "url": "https://ikhsannur1996.github.io/",
+            "image": "https://ikhsannur1996.github.io/assets/images/profile/1727083885420.jpeg",
+            "jobTitle": [
+                "Business Intelligence Developer",
+                "Data Analyst",
+                "Cloud Engineer"
+            ],
+            "email": "mailto:ikhsannur1996@gmail.com",
+            "sameAs": [
+                "https://linkedin.com/in/mohamad-ikhsan-nurulloh/",
+                "https://github.com/ikhsannur1996"
+            ],
+            "knowsAbout": [
+                "Business Intelligence",
+                "Data Analytics",
+                "Cloud Engineering",
+                "Data Engineering",
+                "Power BI",
+                "Tableau",
+                "AWS",
+                "Google Cloud Platform",
+                "Microsoft Azure",
+                "SQL",
+                "ETL",
+                "Machine Learning"
+            ],
+            "alumniOf": [
+                {
+                    "@type": "CollegeOrUniversity",
+                    "name": "The Republic of Indonesia Defense University"
+                },
+                {
+                    "@type": "CollegeOrUniversity",
+                    "name": "State University of Semarang"
+                }
+            ]
+        }
+    </script>
     <script>
         (() => {
             const savedTheme = localStorage.getItem('theme');
@@ -30,6 +86,7 @@
             --tag-text: #334155;
             --scrollbar: #cbd5e1;
             --hero-bg: linear-gradient(135deg, #071426 0%, #133866 58%, #165f7a 100%);
+            --focus-ring: rgba(15, 111, 255, 0.22);
         }
         [data-theme="dark"] {
             color-scheme: dark;
@@ -48,6 +105,7 @@
             --tag-text: #d5e2f4;
             --scrollbar: #42536f;
             --hero-bg: linear-gradient(135deg, #030712 0%, #102846 58%, #134e5f 100%);
+            --focus-ring: rgba(110, 168, 255, 0.24);
         }
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -83,8 +141,18 @@
             font-size: 1rem;
         }
         .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: var(--muted); font-size: 0.95rem; }
+        .nav-links a {
+            color: var(--muted);
+            font-size: 0.95rem;
+            padding: 0.35rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
         .nav-links a:hover { color: var(--primary); }
+        .nav-links a:focus-visible, .theme-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 3px;
+        }
         .nav-actions {
             display: flex;
             align-items: center;
@@ -123,7 +191,7 @@
             background: var(--hero-bg);
             color: white;
             border-radius: 28px;
-            padding: 2.2rem;
+            padding: 2.4rem;
             box-shadow: 0 24px 60px rgba(10, 22, 41, 0.18);
         }
         .hero-card::before {
@@ -147,7 +215,9 @@
             align-items: center;
         }
         .eyebrow {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             font-size: 0.86rem;
             font-weight: 700;
             color: #b8d6ff;
@@ -168,6 +238,9 @@
             margin: 0 0 1rem;
             max-width: 690px;
             font-size: 1.05rem;
+        }
+        .hero-lede {
+            font-size: 1.12rem;
         }
         .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.1rem; }
         .btn {
@@ -207,6 +280,10 @@
             color: white;
             font-size: 1rem;
         }
+        .hero-highlight i {
+            color: #b8d6ff;
+            font-size: 0.92rem;
+        }
         .social-links {
             display: flex;
             gap: 0.7rem;
@@ -235,6 +312,12 @@
             border-radius: 22px;
             padding: 1.2rem 1.25rem;
             box-shadow: var(--shadow);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(15, 111, 255, 0.24);
+            box-shadow: 0 20px 44px rgba(15, 23, 42, 0.09);
         }
         p, li {
             margin: 0 0 0.55rem;
@@ -272,6 +355,24 @@
         .profile-card:hover img { transform: scale(1.035); }
         .profile-card h2 { margin: 0.15rem 0 0.35rem; font-size: 1.15rem; color: white; }
         .profile-card p { margin: 0; color: rgba(255,255,255,0.82); font-size: 0.92rem; }
+        .profile-meta {
+            display: grid;
+            gap: 0.45rem;
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.16);
+        }
+        .profile-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: rgba(255,255,255,0.86);
+            font-size: 0.86rem;
+        }
+        .profile-meta i {
+            color: #b8d6ff;
+            width: 16px;
+        }
         section { padding: 1.6rem 0; }
         .section-title {
             font-size: 1.2rem;
@@ -281,6 +382,30 @@
         .lead { color: var(--muted); margin: 0 0 0.75rem; }
         .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
         .grid ul { margin: 0; padding-left: 1rem; color: var(--muted); }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        .impact-item {
+            padding: 1rem;
+            border-radius: 18px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .impact-item strong {
+            display: block;
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .impact-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
         .timeline { display: grid; gap: 0.8rem; }
         .timeline-item {
             display: flex;
@@ -316,6 +441,7 @@
             display: flex;
             gap: 1rem;
             overflow-x: auto;
+            overflow-y: hidden;
             padding: 0.2rem 0.1rem 0.8rem;
             scroll-snap-type: x proximity;
             scrollbar-width: thin;
@@ -387,6 +513,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.45rem;
             padding: 0.6rem 0.95rem;
             border-radius: 999px;
             background: linear-gradient(135deg, var(--primary), var(--primary-strong));
@@ -442,6 +569,7 @@
             display: flex;
             gap: 1rem;
             overflow-x: auto;
+            overflow-y: hidden;
             padding: 0.2rem 0.1rem 0.8rem;
             scroll-snap-type: x proximity;
             scrollbar-width: thin;
@@ -461,6 +589,7 @@
             display: flex;
             gap: 1rem;
             overflow-x: auto;
+            overflow-y: hidden;
             padding: 0.2rem 0.1rem 0.8rem;
             scroll-snap-type: x proximity;
             scrollbar-width: thin;
@@ -492,6 +621,15 @@
             transition: transform 0.25s ease;
         }
         .trainer-card:hover .trainer-thumb img { transform: scale(1.04); }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .skill-category h3 {
+            margin: 0 0 0.7rem;
+            font-size: 1rem;
+        }
         .skill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
         .skill-pill {
             padding: 0.55rem 0.8rem;
@@ -500,6 +638,40 @@
             color: var(--text);
             font-size: 0.95rem;
             border: 1px solid var(--border);
+        }
+        .cert-group-title {
+            margin: 1rem 0 0.7rem;
+            font-size: 1rem;
+        }
+        .contact-cta {
+            padding: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+        .contact-cta h2 {
+            margin: 0 0 0.35rem;
+            font-size: 1.25rem;
+        }
+        .contact-cta p {
+            color: var(--muted);
+            margin: 0;
+        }
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            justify-content: flex-end;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         footer {
             padding: 1.2rem 0 2rem;
@@ -510,6 +682,9 @@
             .hero-grid { grid-template-columns: 1fr; }
             .hero-card { padding: 1.6rem; }
             .profile-card { justify-self: start; width: min(100%, 280px); }
+            .impact-grid, .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .contact-cta { align-items: flex-start; flex-direction: column; }
+            .cta-actions { justify-content: flex-start; }
         }
         @media (max-width: 760px) {
             .hero-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
@@ -537,12 +712,25 @@
             .hero-actions { flex-direction: column; align-items: stretch; }
             .btn { width: 100%; }
             .hero-highlights { display: grid; grid-template-columns: 1fr; }
+            .impact-grid, .skill-grid { grid-template-columns: 1fr; }
             .profile-card { width: 100%; }
             .social-links { gap: 0.6rem; }
             .social-links a { width: 38px; height: 38px; }
             section { padding: 1.3rem 0; }
             .card { padding: 1rem; border-radius: 18px; }
             .portfolio-card .content, .card-body { padding: 0.9rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -560,6 +748,7 @@
                         <a href="#skills">Skills</a>
                         <a href="#awards">Awards</a>
                         <a href="#certifications">Certifications</a>
+                        <a href="#contact">Contact</a>
                     </div>
                     <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
@@ -575,31 +764,36 @@
             <div class="container">
                 <div class="hero-card hero-grid">
                     <div>
-                        <div class="eyebrow">Data Professional • BI • Analytics • Cloud Engineering</div>
-                        <h1>Turning data into business-ready decisions.</h1>
-                        <p>I design dashboards, data pipelines, and cloud analytics workflows that help teams move faster with trusted insights.</p>
+                        <div class="eyebrow"><i class="fas fa-chart-line" aria-hidden="true"></i> Data Professional | BI | Analytics | Cloud Engineering</div>
+                        <h1>Business intelligence and cloud analytics portfolio.</h1>
+                        <p class="hero-lede">I design dashboards, data pipelines, and cloud analytics workflows that help teams move faster with trusted insights.</p>
                         <div class="hero-actions">
                             <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
                             <a class="btn btn-secondary" href="assets/documents/resume/resume.pdf" target="_blank">View Resume</a>
                             <a class="btn btn-secondary" href="#experience">See Experience</a>
                         </div>
                         <div class="hero-highlights">
-                            <span class="hero-highlight"><strong>6+</strong> Years Experience</span>
-                            <span class="hero-highlight"> BI Dashboards & Reporting</span>
-                            <span class="hero-highlight"> Cloud Data Solutions</span>
+                            <span class="hero-highlight"><i class="fas fa-briefcase" aria-hidden="true"></i><strong>6+</strong> Years Experience</span>
+                            <span class="hero-highlight"><i class="fas fa-chart-pie" aria-hidden="true"></i>BI Dashboards & Reporting</span>
+                            <span class="hero-highlight"><i class="fas fa-cloud" aria-hidden="true"></i>Cloud Data Solutions</span>
                         </div>
                         <div class="social-links">
-                            <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/ikhsannur1996" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/ikhsannur1996" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                             <a href="mailto:ikhsannur1996@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                     <div class="profile-card">
-                        <a class="profile-photo-link" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" aria-label="View Mohamad Ikhsan Nurulloh on LinkedIn">
+                        <a class="profile-photo-link" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" aria-label="View Mohamad Ikhsan Nurulloh on LinkedIn">
                             <img src="assets/images/profile/1727083885420.jpeg" alt="Mohamad Ikhsan Nurulloh" loading="eager" decoding="async">
                         </a>
                         <h2>Mohamad Ikhsan Nurulloh</h2>
                         <p>Cloud Engineer | Data Analyst | Business Intelligence Developer</p>
+                        <div class="profile-meta">
+                            <span><i class="fas fa-location-dot" aria-hidden="true"></i>Indonesia based</span>
+                            <span><i class="fas fa-layer-group" aria-hidden="true"></i>BI, data, and cloud delivery</span>
+                            <span><i class="fas fa-certificate" aria-hidden="true"></i>AWS, GCP, Azure certified</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -609,6 +803,24 @@
             <div class="container">
                 <h2 class="section-title">About</h2>
                 <p class="lead">Mohamad Ikhsan Nurulloh is a data professional with six years of experience across Business Intelligence, Data Science, Analytics, Machine Learning, and Cloud Engineering. He builds scalable data solutions, develops user-friendly dashboards, and ensures data quality through strong expertise in SQL, ETL processes, and data warehousing. With a solid understanding of business strategy, he delivers actionable insights and predictive solutions to support informed decision-making.</p>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <strong>6+</strong>
+                        <span>years across BI, analytics, cloud, and data engineering work.</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>20+</strong>
+                        <span>portfolio assets covering dashboards, cloud deployments, and ML workflows.</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>Multi-cloud</strong>
+                        <span>delivery experience across AWS, GCP, Azure, and Alibaba Cloud.</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>Trainer</strong>
+                        <span>experience helping teams learn BI, analytics, and cloud concepts.</span>
+                    </div>
+                </div>
                 <div class="grid">
                     <div class="card">
                         <h3>Core Competencies</h3>
@@ -1144,30 +1356,51 @@
         <section id="skills">
             <div class="container">
                 <h2 class="section-title">Skills</h2>
-                <div class="skill-list">
-                    <span class="skill-pill">Python</span>
-                    <span class="skill-pill">R</span>
-                    <span class="skill-pill">SQL</span>
-                    <span class="skill-pill">Tableau</span>
-                    <span class="skill-pill">Tableau Prep</span>
-                    <span class="skill-pill">Tableau Server</span>
-                    <span class="skill-pill">Power BI</span>
-                    <span class="skill-pill">Looker Studio</span>
-                    <span class="skill-pill">MetaBase</span>
-                    <span class="skill-pill">QlikView</span>
-                    <span class="skill-pill">Microsoft Azure</span>
-                    <span class="skill-pill">AWS</span>
-                    <span class="skill-pill">GCP</span>
-                    <span class="skill-pill">Google BigQuery</span>
-                    <span class="skill-pill">Amazon QuickSight</span>
-                    <span class="skill-pill">Talend</span>
-                    <span class="skill-pill">Pentaho</span>
-                    <span class="skill-pill">Apache Airflow</span>
-                    <span class="skill-pill">ETL</span>
-                    <span class="skill-pill">Dataiku</span>
-                    <span class="skill-pill">Alibaba Cloud</span>
-                    <span class="skill-pill">Figma</span>
-                    <span class="skill-pill">Git & GitHub</span>
+                <div class="skill-grid">
+                    <div class="card skill-category">
+                        <h3>BI & Visualization</h3>
+                        <div class="skill-list">
+                            <span class="skill-pill">Power BI</span>
+                            <span class="skill-pill">Tableau</span>
+                            <span class="skill-pill">Tableau Server</span>
+                            <span class="skill-pill">Looker Studio</span>
+                            <span class="skill-pill">Metabase</span>
+                            <span class="skill-pill">QlikView</span>
+                            <span class="skill-pill">Amazon QuickSight</span>
+                        </div>
+                    </div>
+                    <div class="card skill-category">
+                        <h3>Cloud Platforms</h3>
+                        <div class="skill-list">
+                            <span class="skill-pill">AWS</span>
+                            <span class="skill-pill">GCP</span>
+                            <span class="skill-pill">Microsoft Azure</span>
+                            <span class="skill-pill">Alibaba Cloud</span>
+                            <span class="skill-pill">Google BigQuery</span>
+                        </div>
+                    </div>
+                    <div class="card skill-category">
+                        <h3>Data Engineering</h3>
+                        <div class="skill-list">
+                            <span class="skill-pill">SQL</span>
+                            <span class="skill-pill">ETL</span>
+                            <span class="skill-pill">Talend</span>
+                            <span class="skill-pill">Pentaho</span>
+                            <span class="skill-pill">Apache Airflow</span>
+                            <span class="skill-pill">Git & GitHub</span>
+                        </div>
+                    </div>
+                    <div class="card skill-category">
+                        <h3>Analytics & ML</h3>
+                        <div class="skill-list">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">R</span>
+                            <span class="skill-pill">Dataiku</span>
+                            <span class="skill-pill">Machine Learning</span>
+                            <span class="skill-pill">Business Analytics</span>
+                            <span class="skill-pill">Figma</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1207,6 +1440,8 @@
                 <h2 class="section-title">Certifications</h2>
                 <div class="filter-bar cert-filter-bar" aria-label="Certification category filter">
                     <button class="filter-btn cert-filter-btn active" data-cert-filter="all">All</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="professional">Professional Certifications</button>
+                    <button class="filter-btn cert-filter-btn" data-cert-filter="course">Course Certificates</button>
                     <button class="filter-btn cert-filter-btn" data-cert-filter="cloud">Cloud</button>
                     <button class="filter-btn cert-filter-btn" data-cert-filter="data-analytics">Data Analytics</button>
                     <button class="filter-btn cert-filter-btn" data-cert-filter="data-engineer">Data Engineer</button>
@@ -1215,8 +1450,9 @@
                     <button class="filter-btn cert-filter-btn" data-cert-filter="programming">Programming</button>
                     <button class="filter-btn cert-filter-btn" data-cert-filter="architecture">Architecture</button>
                 </div>
+                <h3 class="cert-group-title">Professional Certifications & Course Certificates</h3>
                 <div class="cert-scroll">
-                    <div class="card cert-card" data-tags="ai-ml cloud">
+                    <div class="card cert-card" data-date="2026-01" data-tags="professional ai-ml cloud">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Certified AI Practitioner certificate.pdf" target="_blank" aria-label="View AWS Certified AI Practitioner certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Certified AI Practitioner certificate.pdf.png" alt="AWS Certified AI Practitioner certificate thumbnail" loading="lazy">
                         </a>
@@ -1231,7 +1467,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Certified AI Practitioner certificate.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud architecture aws">
+                    <div class="card cert-card" data-date="2025-12" data-tags="professional cloud architecture aws">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Certified Solutions Architect - Associate.pdf" target="_blank" aria-label="View AWS Certified Solutions Architect Associate certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Certified Solutions Architect - Associate.pdf.png" alt="AWS Certified Solutions Architect Associate certificate thumbnail" loading="lazy">
                         </a>
@@ -1246,7 +1482,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Certified Solutions Architect - Associate.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud database">
+                    <div class="card cert-card" data-date="2025-10" data-tags="course cloud database">
                         <a class="cert-thumb" href="assets/documents/certifications/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Alibaba Database certificate">
                             <img src="assets/images/certificate-thumbnails/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf.png" alt="Alibaba Database certificate thumbnail" loading="lazy">
                         </a>
@@ -1261,7 +1497,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Alibaba Database - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="ai-ml cloud aws">
+                    <div class="card cert-card" data-date="2025-09" data-tags="professional ai-ml cloud aws">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Machine Learning Engineer certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Machine Learning Engineer certificate thumbnail" loading="lazy">
                         </a>
@@ -1276,7 +1512,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Machine Learning Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-engineer cloud aws">
+                    <div class="card cert-card" data-date="2025-08" data-tags="professional data-engineer cloud aws">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Data Engineer certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Data Engineer certificate thumbnail" loading="lazy">
                         </a>
@@ -1291,7 +1527,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Data Engineer - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-visualization bi">
+                    <div class="card cert-card" data-date="2024-12" data-tags="professional data-visualization bi">
                         <a class="cert-thumb" href="assets/documents/certifications/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Tableau Desktop Specialist certificate">
                             <img src="assets/images/certificate-thumbnails/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf.png" alt="Tableau Desktop Specialist certificate thumbnail" loading="lazy">
                         </a>
@@ -1306,7 +1542,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Tableau Desktop Specialist - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="programming python">
+                    <div class="card cert-card" data-date="2024-11" data-tags="course programming python">
                         <a class="cert-thumb" href="assets/documents/certifications/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Python certificate">
                             <img src="assets/images/certificate-thumbnails/Python - Mohamad Ikhsan Nurulloh.pdf.png" alt="Python certificate thumbnail" loading="lazy">
                         </a>
@@ -1321,7 +1557,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Python - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-visualization bi">
+                    <div class="card cert-card" data-date="2024-10" data-tags="course data-visualization bi">
                         <a class="cert-thumb" href="assets/documents/certifications/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Power BI certificate">
                             <img src="assets/images/certificate-thumbnails/Power BI - Mohamad Ikhsan Nurulloh.pdf.png" alt="Power BI certificate thumbnail" loading="lazy">
                         </a>
@@ -1336,7 +1572,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Power BI - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-engineer cloud">
+                    <div class="card cert-card" data-date="2024-09" data-tags="professional data-engineer cloud">
                         <a class="cert-thumb" href="assets/documents/certifications/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Data Engineer certificate">
                             <img src="assets/images/certificate-thumbnails/PDA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Data Engineer certificate thumbnail" loading="lazy">
                         </a>
@@ -1351,7 +1587,7 @@
                             <a class="view-btn" href="assets/documents/certifications/PDA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud architecture">
+                    <div class="card cert-card" data-date="2024-08" data-tags="professional cloud architecture">
                         <a class="cert-thumb" href="assets/documents/certifications/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Professional Cloud Architect certificate">
                             <img src="assets/images/certificate-thumbnails/PCA - Mohamad Ikhsan Nurulloh.pdf.png" alt="Professional Cloud Architect certificate thumbnail" loading="lazy">
                         </a>
@@ -1366,7 +1602,7 @@
                             <a class="view-btn" href="assets/documents/certifications/PCA - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-analytics data-visualization">
+                    <div class="card cert-card" data-date="2024-07" data-tags="course data-analytics data-visualization">
                         <a class="cert-thumb" href="assets/documents/certifications/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Google Data Analytics certificate">
                             <img src="assets/images/certificate-thumbnails/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf.png" alt="Google Data Analytics certificate thumbnail" loading="lazy">
                         </a>
@@ -1381,7 +1617,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Google Data Analytics - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="data-analytics bi">
+                    <div class="card cert-card" data-date="2024-06" data-tags="course data-analytics bi">
                         <a class="cert-thumb" href="assets/documents/certifications/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Data Analyst certificate">
                             <img src="assets/images/certificate-thumbnails/Data Analyst - Mohamad Ikhsan Nurulloh.pdf.png" alt="Data Analyst certificate thumbnail" loading="lazy">
                         </a>
@@ -1396,7 +1632,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Data Analyst - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud aws">
+                    <div class="card cert-card" data-date="2024-05" data-tags="professional cloud aws">
                         <a class="cert-thumb" href="assets/documents/certifications/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Practitioner certificate">
                             <img src="assets/images/certificate-thumbnails/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Practitioner certificate thumbnail" loading="lazy">
                         </a>
@@ -1411,7 +1647,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Cloud Practitioner AWS - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="programming python">
+                    <div class="card cert-card" data-date="2024-04" data-tags="course programming python">
                         <a class="cert-thumb" href="assets/documents/certifications/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Certified Associate in Python Programming certificate">
                             <img src="assets/images/certificate-thumbnails/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf.png" alt="Certified Associate in Python Programming certificate thumbnail" loading="lazy">
                         </a>
@@ -1426,7 +1662,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Certified Associate in Python Programming_Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud strategy">
+                    <div class="card cert-card" data-date="2024-03" data-tags="professional cloud strategy">
                         <a class="cert-thumb" href="assets/documents/certifications/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Cloud Digital Leader certificate">
                             <img src="assets/images/certificate-thumbnails/CDL - Mohamad Ikhsan Nurulloh.pdf.png" alt="Cloud Digital Leader certificate thumbnail" loading="lazy">
                         </a>
@@ -1441,7 +1677,7 @@
                             <a class="view-btn" href="assets/documents/certifications/CDL - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud azure">
+                    <div class="card cert-card" data-date="2024-02" data-tags="professional cloud azure">
                         <a class="cert-thumb" href="assets/documents/certifications/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Azure Fundamentals certificate">
                             <img src="assets/images/certificate-thumbnails/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf.png" alt="Azure Fundamentals certificate thumbnail" loading="lazy">
                         </a>
@@ -1456,7 +1692,7 @@
                             <a class="view-btn" href="assets/documents/certifications/Azure Fundamentals - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud aws">
+                    <div class="card cert-card" data-date="2024-01" data-tags="course cloud aws">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Cloud Foundations certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Cloud Foundations certificate thumbnail" loading="lazy">
                         </a>
@@ -1471,7 +1707,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Cloud Foundations - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud aws">
+                    <div class="card cert-card" data-date="2024-01" data-tags="course cloud aws">
                         <a class="cert-thumb" href="assets/documents/certifications/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View AWS Academy Graduate certificate">
                             <img src="assets/images/certificate-thumbnails/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf.png" alt="AWS Academy Graduate certificate thumbnail" loading="lazy">
                         </a>
@@ -1486,7 +1722,7 @@
                             <a class="view-btn" href="assets/documents/certifications/AWS Academy Graduate - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
                     </div>
-                    <div class="card cert-card" data-tags="cloud operations">
+                    <div class="card cert-card" data-date="2024-01" data-tags="professional cloud operations">
                         <a class="cert-thumb" href="assets/documents/certifications/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank" aria-label="View Associate Cloud Engineer certificate">
                             <img src="assets/images/certificate-thumbnails/ACE - Mohamad Ikhsan Nurulloh.pdf.png" alt="Associate Cloud Engineer certificate thumbnail" loading="lazy">
                         </a>
@@ -1500,6 +1736,22 @@
                             </div>
                             <a class="view-btn" href="assets/documents/certifications/ACE - Mohamad Ikhsan Nurulloh.pdf" target="_blank">View Certificate</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="card contact-cta">
+                    <div>
+                        <h2>Open to BI, analytics, and cloud data opportunities.</h2>
+                        <p>Let us talk about dashboards, data platforms, cloud analytics, training, or consulting work.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a class="view-btn" href="mailto:ikhsannur1996@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i>Email</a>
+                        <a class="view-btn" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+                        <a class="view-btn" href="https://github.com/ikhsannur1996" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i>GitHub</a>
                     </div>
                 </div>
             </div>
@@ -1540,13 +1792,35 @@
                 const cards = Array.from(container.querySelectorAll(cardSelector));
                 cards
                     .sort((a, b) => {
-                        const getYear = (card) => Number(card.querySelector('.date')?.textContent.match(/\d{4}/)?.[0] || 0);
-                        return getYear(b) - getYear(a);
+                        const getDateValue = (card) => {
+                            const value = card.dataset.date || card.querySelector('.date')?.textContent.match(/\d{4}/)?.[0] || '0';
+                            return Number(value.replace(/-/g, ''));
+                        };
+
+                        return getDateValue(b) - getDateValue(a);
                     })
                     .forEach((card) => container.appendChild(card));
             };
 
             sortCardsByDate('#certifications .cert-scroll', '.cert-card');
+
+            const revealTargets = document.querySelectorAll('section, .card');
+            revealTargets.forEach((target) => target.classList.add('reveal'));
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+
+                revealTargets.forEach((target) => observer.observe(target));
+            } else {
+                revealTargets.forEach((target) => target.classList.add('is-visible'));
+            }
 
             const setupFilter = (buttonSelector, cardSelector, dataKey) => {
                 const buttons = document.querySelectorAll(buttonSelector);
