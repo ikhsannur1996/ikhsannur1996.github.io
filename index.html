@@ -109,6 +109,23 @@
         }
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        [id] { scroll-margin-top: 5.5rem; }
+        .skip-link {
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 100;
+            padding: 0.65rem 0.85rem;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            transform: translateY(-140%);
+            transition: transform 0.2s ease;
+        }
+        .skip-link:focus {
+            transform: translateY(0);
+        }
         body {
             margin: 0;
             font-family: Inter, "Segoe UI", Arial, sans-serif;
@@ -128,17 +145,28 @@
             position: sticky;
             top: 0;
             z-index: 20;
+            transition: box-shadow 0.2s ease;
+        }
+        header.is-scrolled {
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
         }
         nav {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             padding: 1rem 0;
+            transition: padding 0.2s ease;
+        }
+        header.is-scrolled nav {
+            padding: 0.75rem 0;
         }
         .brand {
             font-weight: 700;
             letter-spacing: 0.02em;
             font-size: 1rem;
+            line-height: 1.2;
         }
         .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .nav-links a {
@@ -148,8 +176,9 @@
             border-bottom: 2px solid transparent;
             transition: color 0.2s ease, border-color 0.2s ease;
         }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a:focus-visible, .theme-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible {
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a.active { border-color: var(--primary); }
+        .skip-link:focus-visible, .nav-links a:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
             outline: 3px solid var(--focus-ring);
             outline-offset: 3px;
         }
@@ -159,6 +188,62 @@
             gap: 1rem;
             flex-wrap: wrap;
             justify-content: flex-end;
+        }
+        header.is-scrolled .nav-actions {
+            display: none;
+        }
+        header.is-scrolled .menu-toggle {
+            display: inline-flex;
+        }
+        header.is-scrolled.menu-open .nav-actions {
+            display: flex;
+            position: absolute;
+            top: calc(100% + 0.55rem);
+            right: 0;
+            width: min(240px, calc(100vw - 2rem));
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.55rem;
+            padding: 0.7rem;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--header-bg);
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+            backdrop-filter: blur(12px);
+        }
+        header.is-scrolled .nav-links {
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35rem;
+        }
+        header.is-scrolled .nav-links a {
+            width: 100%;
+            padding: 0.38rem 0.2rem;
+        }
+        .header-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .menu-toggle:hover {
+            transform: translateY(-1px);
+            border-color: var(--primary);
+            color: var(--primary);
         }
         .theme-toggle {
             width: 42px;
@@ -182,6 +267,40 @@
         .theme-toggle .fa-sun { display: none; }
         [data-theme="dark"] .theme-toggle .fa-moon { display: none; }
         [data-theme="dark"] .theme-toggle .fa-sun { display: inline-block; }
+        .home-float {
+            position: fixed;
+            right: 1.2rem;
+            bottom: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 16px 34px rgba(15, 111, 255, 0.28);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            z-index: 25;
+        }
+        .home-float.is-visible {
+            opacity: 0.92;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .home-float:hover {
+            background: var(--primary-strong);
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        .home-float:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 3px;
+        }
         .hero {
             padding: 2.4rem 0 1.8rem;
         }
@@ -247,6 +366,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 0.45rem;
             padding: 0.8rem 1rem;
             border-radius: 999px;
             font-weight: 600;
@@ -325,34 +445,40 @@
         .profile-card {
             position: relative;
             justify-self: end;
-            width: min(100%, 320px);
-            padding: 1rem;
-            border-radius: 24px;
-            background: rgba(255,255,255,0.11);
-            border: 1px solid rgba(255,255,255,0.18);
-            box-shadow: 0 22px 42px rgba(2, 8, 23, 0.2);
-            transition: transform 0.25s ease, background 0.25s ease;
+            width: min(100%, 330px);
+            padding: 0.9rem;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.09));
+            border: 1px solid rgba(255,255,255,0.24);
+            box-shadow: 0 24px 52px rgba(2, 8, 23, 0.24);
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
         }
         .profile-card:hover {
             transform: translateY(-5px);
-            background: rgba(255,255,255,0.14);
+            background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.11));
+            border-color: rgba(255,255,255,0.34);
         }
         .profile-photo-link {
+            position: relative;
             display: block;
             overflow: hidden;
-            border-radius: 18px;
+            border-radius: 16px;
         }
         .profile-card img {
             width: 100%;
-            aspect-ratio: 1 / 1;
+            aspect-ratio: 4 / 5;
             object-fit: cover;
-            border-radius: 18px;
-            margin: 0 0 0.9rem;
-            border: 1px solid rgba(255,255,255,0.18);
+            object-position: center 22%;
+            border-radius: 16px;
+            margin: 0;
+            border: 1px solid rgba(255,255,255,0.22);
             display: block;
             transition: transform 0.35s ease;
         }
         .profile-card:hover img { transform: scale(1.035); }
+        .profile-copy {
+            padding: 0.9rem 0.2rem 0.1rem;
+        }
         .profile-card h2 { margin: 0.15rem 0 0.35rem; font-size: 1.15rem; color: white; }
         .profile-card p { margin: 0; color: rgba(255,255,255,0.82); font-size: 0.92rem; }
         .profile-meta {
@@ -447,6 +573,56 @@
             scrollbar-width: thin;
             -webkit-overflow-scrolling: touch;
         }
+        .scroll-shell {
+            position: relative;
+        }
+        .scroll-shell::before,
+        .scroll-shell::after {
+            content: "";
+            position: absolute;
+            top: 0.2rem;
+            bottom: 0.8rem;
+            width: 34px;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .scroll-shell::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg), transparent);
+        }
+        .scroll-shell::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg), transparent);
+        }
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+            transform: translateY(-50%);
+            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+            z-index: 3;
+        }
+        .scroll-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-50%) scale(1.04);
+        }
+        .scroll-btn:disabled {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .scroll-btn.prev { left: -0.35rem; }
+        .scroll-btn.next { right: -0.35rem; }
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
@@ -483,15 +659,22 @@
             flex: 0 0 min(290px, 82vw);
             min-width: min(290px, 82vw);
             scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .portfolio-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 18px 38px rgba(15, 23, 42, 0.10);
         }
-        .portfolio-card.is-hidden, .cert-card.is-hidden { display: none; }
+        .portfolio-card.is-hidden, .cert-card.is-hidden, .cert-card.is-extra-hidden { display: none; }
         .portfolio-card img { height: 160px; width: 100%; object-fit: cover; }
-        .portfolio-card .content { padding: 1rem 1rem 1.1rem; }
+        .portfolio-card .content {
+            padding: 1rem 1rem 1.1rem;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
         .portfolio-card p { color: var(--muted); margin: 0.35rem 0 0.75rem; font-size: 0.95rem; }
         .project-tags {
             display: flex;
@@ -523,6 +706,11 @@
             margin-top: 0.3rem;
             box-shadow: 0 8px 18px rgba(15, 111, 255, 0.2);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .portfolio-card .view-btn,
+        .cert-card .view-btn,
+        .trainer-card .view-btn {
+            margin-top: auto;
         }
         .view-btn:hover {
             transform: translateY(-1px);
@@ -557,7 +745,12 @@
             transition: transform 0.25s ease;
         }
         .cert-card:hover .cert-thumb img { transform: scale(1.04); }
-        .card-body { padding: 1rem 1rem 1.1rem; }
+        .card-body {
+            padding: 1rem 1rem 1.1rem;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
         .card-body .date {
             display: inline-flex;
             margin: 0.2rem 0 0.45rem;
@@ -584,6 +777,8 @@
             flex: 0 0 min(280px, 82vw);
             min-width: min(280px, 82vw);
             scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
         }
         .trainer-scroll {
             display: flex;
@@ -604,6 +799,8 @@
             flex: 0 0 min(300px, 82vw);
             min-width: min(300px, 82vw);
             scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
         }
         .trainer-thumb {
             display: block;
@@ -664,6 +861,27 @@
             gap: 0.7rem;
             justify-content: flex-end;
         }
+        .show-more-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.35rem;
+        }
+        .show-more-btn {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 0.65rem 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+        .show-more-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
         .reveal {
             opacity: 0;
             transform: translateY(16px);
@@ -686,39 +904,140 @@
             .contact-cta { align-items: flex-start; flex-direction: column; }
             .cta-actions { justify-content: flex-start; }
         }
+        @media (max-width: 1020px) {
+            header:not(.is-scrolled) .nav-actions {
+                display: none;
+            }
+            header:not(.is-scrolled) .menu-toggle {
+                display: inline-flex;
+            }
+            header:not(.is-scrolled).menu-open .nav-actions {
+                display: flex;
+                position: absolute;
+                top: calc(100% + 0.55rem);
+                right: 0;
+                width: min(240px, calc(100vw - 2rem));
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.55rem;
+                padding: 0.7rem;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: var(--header-bg);
+                box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+                backdrop-filter: blur(12px);
+            }
+            header:not(.is-scrolled) .nav-links {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.35rem;
+            }
+            header:not(.is-scrolled) .nav-links a {
+                width: 100%;
+                padding: 0.38rem 0.2rem;
+            }
+        }
         @media (max-width: 760px) {
             .hero-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-            .profile-card { order: 2; width: min(100%, 250px); margin: 0; }
+            .profile-card {
+                order: 2;
+                width: 100%;
+                margin: 0;
+                display: grid;
+                grid-template-columns: 92px minmax(0, 1fr);
+                gap: 0.85rem;
+                align-items: center;
+                padding: 0.8rem;
+                border-radius: 18px;
+            }
+            .profile-photo-link { border-radius: 14px; }
+            .profile-card img {
+                aspect-ratio: 1 / 1;
+                border-radius: 14px;
+                object-position: center 18%;
+            }
+            .profile-copy { padding: 0; min-width: 0; }
+            .profile-card h2 { font-size: 1rem; margin-bottom: 0.25rem; }
+            .profile-card p { font-size: 0.84rem; line-height: 1.35; }
+            .profile-meta {
+                gap: 0.32rem;
+                margin-top: 0.55rem;
+                padding-top: 0.55rem;
+            }
+            .profile-meta span { font-size: 0.78rem; }
+            .profile-meta span:nth-child(2) { display: none; }
             .hero-grid > div:first-child { order: 1; }
             .hero-highlights { gap: 0.5rem; }
             .hero-highlight { font-size: 0.84rem; }
             .grid { grid-template-columns: 1fr; }
-            nav { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
-            .nav-actions { width: 100%; justify-content: space-between; align-items: flex-start; }
-            .nav-links { width: 100%; gap: 0.6rem; }
+            nav { align-items: center; gap: 0.7rem; }
+            .menu-toggle { display: inline-flex; }
+            .nav-actions {
+                display: none;
+                position: absolute;
+                top: calc(100% + 0.55rem);
+                right: 0;
+                width: min(240px, calc(100vw - 1.2rem));
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                gap: 0.55rem;
+                padding: 0.7rem;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: var(--header-bg);
+                box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+                backdrop-filter: blur(12px);
+            }
+            header.menu-open .nav-actions { display: flex; }
+            .nav-links { width: 100%; gap: 0.35rem; flex-direction: column; align-items: flex-start; }
+            .nav-links a { width: 100%; padding: 0.38rem 0.2rem; }
             .hero { padding-top: 2rem; }
             .hero-card { padding: 1.4rem; }
+            .filter-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0.1rem 0 0.75rem;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .filter-bar::-webkit-scrollbar { display: none; }
+            .filter-btn { flex: 0 0 auto; }
             .timeline-item { flex-direction: column; gap: 0.6rem; }
             .timeline-icon { margin-top: 0; }
             .portfolio-card, .cert-card, .trainer-card {
                 flex-basis: min(82vw, 290px);
                 min-width: min(82vw, 290px);
             }
+            .scroll-btn { display: none; }
+            .scroll-shell::before,
+            .scroll-shell::after { width: 20px; }
         }
         @media (max-width: 560px) {
             .container { width: min(100%, calc(100% - 1.2rem)); }
             .hero { padding: 1.4rem 0 1.2rem; }
-            .hero-card { padding: 1.2rem; }
+            .hero-card { padding: 1.2rem; border-radius: 22px; }
+            h1 { font-size: clamp(2rem, 10vw, 2.55rem); }
+            .hero-lede { font-size: 1rem; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .btn { width: 100%; }
             .hero-highlights { display: grid; grid-template-columns: 1fr; }
             .impact-grid, .skill-grid { grid-template-columns: 1fr; }
-            .profile-card { width: 100%; }
+            .profile-card { width: 100%; grid-template-columns: 78px minmax(0, 1fr); gap: 0.7rem; }
             .social-links { gap: 0.6rem; }
             .social-links a { width: 38px; height: 38px; }
+            .cta-actions { width: 100%; }
+            .contact-cta .view-btn { width: 100%; }
             section { padding: 1.3rem 0; }
             .card { padding: 1rem; border-radius: 18px; }
             .portfolio-card .content, .card-body { padding: 0.9rem; }
+            .home-float {
+                right: 0.9rem;
+                bottom: 0.9rem;
+                width: 38px;
+                height: 38px;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
@@ -735,6 +1054,8 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#home">Skip to content</a>
+
     <header>
         <div class="container">
             <nav>
@@ -750,9 +1071,14 @@
                         <a href="#certifications">Certifications</a>
                         <a href="#contact">Contact</a>
                     </div>
+                </div>
+                <div class="header-controls">
                     <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                         <i class="fas fa-sun" aria-hidden="true"></i>
+                    </button>
+                    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
             </nav>
@@ -768,14 +1094,15 @@
                         <h1>Business intelligence and cloud analytics portfolio.</h1>
                         <p class="hero-lede">I design dashboards, data pipelines, and cloud analytics workflows that help teams move faster with trusted insights.</p>
                         <div class="hero-actions">
-                            <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
-                            <a class="btn btn-secondary" href="assets/documents/resume/resume.pdf" target="_blank">View Resume</a>
-                            <a class="btn btn-secondary" href="#experience">See Experience</a>
+                            <a class="btn btn-primary" href="#portfolio"><i class="fas fa-layer-group" aria-hidden="true"></i>View Portfolio</a>
+                            <a class="btn btn-secondary" href="assets/documents/resume/resume.pdf" target="_blank"><i class="fas fa-file-lines" aria-hidden="true"></i>View Resume</a>
+                            <a class="btn btn-secondary" href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i>Contact</a>
                         </div>
                         <div class="hero-highlights">
-                            <span class="hero-highlight"><i class="fas fa-briefcase" aria-hidden="true"></i><strong>6+</strong> Years Experience</span>
-                            <span class="hero-highlight"><i class="fas fa-chart-pie" aria-hidden="true"></i>BI Dashboards & Reporting</span>
-                            <span class="hero-highlight"><i class="fas fa-cloud" aria-hidden="true"></i>Cloud Data Solutions</span>
+                            <span class="hero-highlight"><i class="fas fa-briefcase" aria-hidden="true"></i>6+ Years Delivery</span>
+                            <span class="hero-highlight"><i class="fas fa-layer-group" aria-hidden="true"></i>20+ Portfolio Assets</span>
+                            <span class="hero-highlight"><i class="fas fa-cloud" aria-hidden="true"></i>Multi-Cloud Certified</span>
+                            <span class="hero-highlight"><i class="fas fa-chalkboard-user" aria-hidden="true"></i>Trainer Experience</span>
                         </div>
                         <div class="social-links">
                             <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -787,12 +1114,14 @@
                         <a class="profile-photo-link" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" aria-label="View Mohamad Ikhsan Nurulloh on LinkedIn">
                             <img src="assets/images/profile/1727083885420.jpeg" alt="Mohamad Ikhsan Nurulloh" loading="eager" decoding="async">
                         </a>
-                        <h2>Mohamad Ikhsan Nurulloh</h2>
-                        <p>Cloud Engineer | Data Analyst | Business Intelligence Developer</p>
-                        <div class="profile-meta">
-                            <span><i class="fas fa-location-dot" aria-hidden="true"></i>Indonesia based</span>
-                            <span><i class="fas fa-layer-group" aria-hidden="true"></i>BI, data, and cloud delivery</span>
-                            <span><i class="fas fa-certificate" aria-hidden="true"></i>AWS, GCP, Azure certified</span>
+                        <div class="profile-copy">
+                            <h2>Mohamad Ikhsan Nurulloh</h2>
+                            <p>Cloud Engineer | Data Analyst | Business Intelligence Developer</p>
+                            <div class="profile-meta">
+                                <span><i class="fas fa-location-dot" aria-hidden="true"></i>Indonesia based</span>
+                                <span><i class="fas fa-layer-group" aria-hidden="true"></i>BI, data, and cloud delivery</span>
+                                <span><i class="fas fa-certificate" aria-hidden="true"></i>AWS, GCP, Azure certified</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -851,14 +1180,14 @@
         <section id="portfolio">
             <div class="container">
                 <h2 class="section-title">Selected Projects</h2>
-                <div class="filter-bar">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="data-visualization">Data Visualization</button>
-                    <button class="filter-btn" data-filter="data-analyst">Data Analyst</button>
-                    <button class="filter-btn" data-filter="cloud">Cloud</button>
-                    <button class="filter-btn" data-filter="it-infrastructure">IT Infrastructure</button>
-                    <button class="filter-btn" data-filter="data-science">Data Science</button>
-                    <button class="filter-btn" data-filter="data-engineer">Data Engineer</button>
+                <div class="filter-bar" aria-label="Portfolio category filter">
+                    <button class="filter-btn active" type="button" data-filter="all">All</button>
+                    <button class="filter-btn" type="button" data-filter="data-visualization">Data Visualization</button>
+                    <button class="filter-btn" type="button" data-filter="data-analyst">Data Analyst</button>
+                    <button class="filter-btn" type="button" data-filter="cloud">Cloud</button>
+                    <button class="filter-btn" type="button" data-filter="it-infrastructure">IT Infrastructure</button>
+                    <button class="filter-btn" type="button" data-filter="data-science">Data Science</button>
+                    <button class="filter-btn" type="button" data-filter="data-engineer">Data Engineer</button>
                 </div>
                 <div class="portfolio-scroll">
                     <article class="card portfolio-card" data-tags="data-visualization data-analyst">
@@ -1439,16 +1768,16 @@
             <div class="container">
                 <h2 class="section-title">Certifications</h2>
                 <div class="filter-bar cert-filter-bar" aria-label="Certification category filter">
-                    <button class="filter-btn cert-filter-btn active" data-cert-filter="all">All</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="professional">Professional Certifications</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="course">Course Certificates</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="cloud">Cloud</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-analytics">Data Analytics</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-engineer">Data Engineer</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="data-visualization">Data Visualization</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="ai-ml">AI/ML</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="programming">Programming</button>
-                    <button class="filter-btn cert-filter-btn" data-cert-filter="architecture">Architecture</button>
+                    <button class="filter-btn cert-filter-btn active" type="button" data-cert-filter="all">All</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="professional">Professional Certifications</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="course">Course Certificates</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="cloud">Cloud</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="data-analytics">Data Analytics</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="data-engineer">Data Engineer</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="data-visualization">Data Visualization</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="ai-ml">AI/ML</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="programming">Programming</button>
+                    <button class="filter-btn cert-filter-btn" type="button" data-cert-filter="architecture">Architecture</button>
                 </div>
                 <h3 class="cert-group-title">Professional Certifications & Course Certificates</h3>
                 <div class="cert-scroll">
@@ -1752,6 +2081,7 @@
                         <a class="view-btn" href="mailto:ikhsannur1996@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i>Email</a>
                         <a class="view-btn" href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
                         <a class="view-btn" href="https://github.com/ikhsannur1996" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i>GitHub</a>
+                        <a class="view-btn" href="assets/documents/resume/resume.pdf" target="_blank"><i class="fas fa-file-lines" aria-hidden="true"></i>Resume</a>
                     </div>
                 </div>
             </div>
@@ -1765,9 +2095,17 @@
         </div>
     </footer>
 
+    <a class="home-float" href="#home" aria-label="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </a>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            const homeFloat = document.querySelector('.home-float');
+            const menuToggle = document.querySelector('.menu-toggle');
             const themeToggle = document.querySelector('.theme-toggle');
+            const navLinks = document.querySelectorAll('.nav-links a');
             const setTheme = (theme) => {
                 const isDark = theme === 'dark';
                 document.documentElement.dataset.theme = theme;
@@ -1783,6 +2121,61 @@
             themeToggle?.addEventListener('click', () => {
                 const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
                 setTheme(nextTheme);
+            });
+
+            const setMenuOpen = (isOpen) => {
+                header?.classList.toggle('menu-open', isOpen);
+                menuToggle?.setAttribute('aria-expanded', String(isOpen));
+                menuToggle?.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+                const icon = menuToggle?.querySelector('i');
+                icon?.classList.toggle('fa-bars', !isOpen);
+                icon?.classList.toggle('fa-xmark', isOpen);
+            };
+
+            menuToggle?.addEventListener('click', () => {
+                setMenuOpen(!header?.classList.contains('menu-open'));
+            });
+
+            navLinks.forEach((link) => {
+                link.addEventListener('click', () => setMenuOpen(false));
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!header?.classList.contains('menu-open') || header.contains(event.target)) return;
+                setMenuOpen(false);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    setMenuOpen(false);
+                }
+            });
+
+            const setScrolledState = () => {
+                const isScrolled = window.scrollY > 80;
+                header?.classList.toggle('is-scrolled', isScrolled);
+                homeFloat?.classList.toggle('is-visible', isScrolled);
+
+                if (isScrolled) {
+                    setMenuOpen(false);
+                }
+            };
+
+            setScrolledState();
+            window.addEventListener('scroll', setScrolledState, { passive: true });
+
+            document.querySelectorAll('img').forEach((image) => {
+                if (!image.closest('.profile-card')) {
+                    image.loading = image.loading || 'lazy';
+                }
+                image.decoding = image.decoding || 'async';
+            });
+
+            document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+                const relValues = new Set((link.getAttribute('rel') || '').split(' ').filter(Boolean));
+                relValues.add('noopener');
+                relValues.add('noreferrer');
+                link.setAttribute('rel', Array.from(relValues).join(' '));
             });
 
             const sortCardsByDate = (containerSelector, cardSelector) => {
@@ -1804,6 +2197,117 @@
 
             sortCardsByDate('#certifications .cert-scroll', '.cert-card');
 
+            const setupActiveNav = () => {
+                const sectionMap = Array.from(navLinks)
+                    .map((link) => document.querySelector(link.getAttribute('href')))
+                    .filter(Boolean);
+
+                if (!sectionMap.length || !('IntersectionObserver' in window)) return;
+
+                const navObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+
+                        navLinks.forEach((link) => {
+                            const isActive = link.getAttribute('href') === `#${entry.target.id}`;
+                            link.classList.toggle('active', isActive);
+                            if (isActive) {
+                                link.setAttribute('aria-current', 'page');
+                            } else {
+                                link.removeAttribute('aria-current');
+                            }
+                        });
+                    });
+                }, { rootMargin: '-30% 0px -58% 0px', threshold: 0.01 });
+
+                sectionMap.forEach((section) => navObserver.observe(section));
+            };
+
+            setupActiveNav();
+
+            const setupScrollControls = () => {
+                document.querySelectorAll('.portfolio-scroll, .trainer-scroll, .cert-scroll').forEach((scroller) => {
+                    if (scroller.parentElement?.classList.contains('scroll-shell')) return;
+
+                    const shell = document.createElement('div');
+                    shell.className = 'scroll-shell';
+                    scroller.parentNode.insertBefore(shell, scroller);
+                    shell.appendChild(scroller);
+
+                    const prev = document.createElement('button');
+                    const next = document.createElement('button');
+                    prev.className = 'scroll-btn prev';
+                    next.className = 'scroll-btn next';
+                    prev.type = 'button';
+                    next.type = 'button';
+                    prev.setAttribute('aria-label', 'Scroll left');
+                    next.setAttribute('aria-label', 'Scroll right');
+                    prev.innerHTML = '<i class="fas fa-chevron-left" aria-hidden="true"></i>';
+                    next.innerHTML = '<i class="fas fa-chevron-right" aria-hidden="true"></i>';
+                    shell.append(prev, next);
+
+                    const updateButtons = () => {
+                        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+                        prev.disabled = scroller.scrollLeft <= 4;
+                        next.disabled = scroller.scrollLeft >= maxScroll - 4;
+                    };
+
+                    const moveBy = () => scroller.clientWidth * 0.82;
+                    prev.addEventListener('click', () => scroller.scrollBy({ left: -moveBy(), behavior: 'smooth' }));
+                    next.addEventListener('click', () => scroller.scrollBy({ left: moveBy(), behavior: 'smooth' }));
+                    scroller.addEventListener('scroll', updateButtons, { passive: true });
+                    window.addEventListener('resize', updateButtons);
+                    updateButtons();
+                });
+            };
+
+            setupScrollControls();
+
+            const setupCertificateToggle = () => {
+                const certSection = document.querySelector('#certifications');
+                const certScroller = certSection?.querySelector('.cert-scroll');
+                if (!certSection || !certScroller) return null;
+
+                let expanded = false;
+                const limit = 8;
+                const wrap = document.createElement('div');
+                const button = document.createElement('button');
+                wrap.className = 'show-more-wrap';
+                button.className = 'show-more-btn';
+                button.type = 'button';
+                wrap.appendChild(button);
+                certScroller.parentElement.insertAdjacentElement('afterend', wrap);
+
+                const update = () => {
+                    const filteredCards = Array.from(certScroller.querySelectorAll('.cert-card:not(.is-hidden)'));
+                    filteredCards.forEach((card, index) => {
+                        card.classList.toggle('is-extra-hidden', !expanded && index >= limit);
+                    });
+
+                    const needsToggle = filteredCards.length > limit;
+                    wrap.hidden = !needsToggle;
+                    button.textContent = expanded ? 'Show Less Certificates' : `View All Certificates (${filteredCards.length})`;
+                    button.setAttribute('aria-expanded', String(expanded));
+                    window.dispatchEvent(new Event('resize'));
+                };
+
+                button.addEventListener('click', () => {
+                    expanded = !expanded;
+                    update();
+                    certScroller.scrollTo({ left: 0, behavior: 'smooth' });
+                });
+
+                return {
+                    reset() {
+                        expanded = false;
+                        update();
+                    },
+                    update
+                };
+            };
+
+            const certificateToggle = setupCertificateToggle();
+
             const revealTargets = document.querySelectorAll('section, .card');
             revealTargets.forEach((target) => target.classList.add('reveal'));
 
@@ -1822,27 +2326,38 @@
                 revealTargets.forEach((target) => target.classList.add('is-visible'));
             }
 
-            const setupFilter = (buttonSelector, cardSelector, dataKey) => {
+            const setupFilter = (buttonSelector, cardSelector, dataKey, afterFilter) => {
                 const buttons = document.querySelectorAll(buttonSelector);
                 const cards = document.querySelectorAll(cardSelector);
+                buttons.forEach((button) => {
+                    button.setAttribute('aria-pressed', String(button.classList.contains('active')));
+                });
 
                 buttons.forEach((button) => {
                     button.addEventListener('click', () => {
                         const selectedTag = button.dataset[dataKey];
 
-                        buttons.forEach((btn) => btn.classList.toggle('active', btn === button));
+                        buttons.forEach((btn) => {
+                            const isActive = btn === button;
+                            btn.classList.toggle('active', isActive);
+                            btn.setAttribute('aria-pressed', String(isActive));
+                        });
 
                         cards.forEach((card) => {
                             const tags = card.dataset.tags ? card.dataset.tags.split(' ') : [];
                             const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
                             card.classList.toggle('is-hidden', !shouldShow);
                         });
+
+                        afterFilter?.();
+                        window.dispatchEvent(new Event('resize'));
                     });
                 });
             };
 
             setupFilter('#portfolio .filter-btn', '.portfolio-card', 'filter');
-            setupFilter('#certifications .cert-filter-btn', '#certifications .cert-card', 'certFilter');
+            setupFilter('#certifications .cert-filter-btn', '#certifications .cert-card', 'certFilter', () => certificateToggle?.reset());
+            certificateToggle?.update();
         });
     </script>
 </body>
