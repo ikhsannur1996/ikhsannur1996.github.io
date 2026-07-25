@@ -86,7 +86,7 @@
 
         .resume.is-exporting {
             width: 210mm;
-            min-height: 297mm;
+            min-height: 0;
             margin: 0;
             box-shadow: none;
         }
@@ -527,7 +527,7 @@
                             orientation: 'portrait'
                         },
                         pagebreak: {
-                            mode: ['css', 'legacy'],
+                            mode: 'css',
                             avoid: ['.role', '.education-item']
                         }
                     }).from(resume).save();
