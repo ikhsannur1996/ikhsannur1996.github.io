@@ -39,6 +39,7 @@
             z-index: 10;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 0.75rem;
             padding: 0.8rem;
             background: rgba(237, 241, 247, 0.94);
@@ -73,6 +74,26 @@
             align-self: center;
             color: var(--muted);
             font-size: 8.5pt;
+        }
+
+        .zoom-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .zoom-controls button {
+            min-width: 2.45rem;
+            padding-inline: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .zoom-level {
+            min-width: 3.4rem;
+            color: var(--muted);
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-align: center;
         }
 
         .resume {
@@ -286,6 +307,11 @@
 <body>
     <nav class="toolbar" aria-label="Resume actions">
         <a href="index.html">Back to Portfolio</a>
+        <div class="zoom-controls" role="group" aria-label="Resume preview zoom controls">
+            <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+            <span class="zoom-level" id="zoom-level" aria-live="polite">100%</span>
+            <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
         <button class="primary" id="download-pdf" type="button">Save as PDF</button>
         <span class="download-status" id="download-status" role="status" aria-live="polite"></span>
     </nav>
@@ -542,6 +568,31 @@
             };
 
             paginateResume();
+
+            const zoomOutButton = document.querySelector('#zoom-out');
+            const zoomInButton = document.querySelector('#zoom-in');
+            const zoomLevel = document.querySelector('#zoom-level');
+            let previewZoom = 1;
+            const minZoom = 0.4;
+            const maxZoom = 1.5;
+            const zoomStep = 0.1;
+            const updatePreviewZoom = () => {
+                const pages = document.querySelector('.resume-pages');
+                pages.style.zoom = previewZoom;
+                zoomLevel.textContent = `${Math.round(previewZoom * 100)}%`;
+                zoomOutButton.disabled = previewZoom <= minZoom;
+                zoomInButton.disabled = previewZoom >= maxZoom;
+            };
+
+            zoomOutButton.addEventListener('click', () => {
+                previewZoom = Math.max(minZoom, Number((previewZoom - zoomStep).toFixed(1)));
+                updatePreviewZoom();
+            });
+            zoomInButton.addEventListener('click', () => {
+                previewZoom = Math.min(maxZoom, Number((previewZoom + zoomStep).toFixed(1)));
+                updatePreviewZoom();
+            });
+            updatePreviewZoom();
 
             const downloadButton = document.querySelector('#download-pdf');
             const downloadStatus = document.querySelector('#download-status');
