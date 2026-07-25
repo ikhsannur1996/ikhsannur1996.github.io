@@ -85,7 +85,7 @@
         }
 
         .resume.is-exporting {
-            width: 210mm;
+            width: 190mm;
             min-height: 0;
             margin: 0;
             box-shadow: none;
@@ -476,7 +476,7 @@
             const downloadStatus = document.querySelector('#download-status');
 
             downloadButton.addEventListener('click', async () => {
-                if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
+                if (typeof html2pdf === 'undefined') {
                     downloadStatus.textContent = 'PDF download is unavailable. Check your internet connection.';
                     return;
                 }
@@ -488,37 +488,25 @@
                 resume.classList.add('is-exporting');
 
                 try {
-                    const canvas = await html2canvas(resume, {
-                        scale: 2,
-                        useCORS: true,
-                        backgroundColor: '#ffffff'
-                    });
-                    const pdf = new jspdf.jsPDF({
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait'
-                    });
-                    const pageWidth = pdf.internal.pageSize.getWidth();
-                    const pageHeight = pdf.internal.pageSize.getHeight();
-                    const imageRatio = canvas.width / canvas.height;
-                    let imageWidth = pageWidth;
-                    let imageHeight = imageWidth / imageRatio;
-
-                    if (imageHeight > pageHeight) {
-                        imageHeight = pageHeight;
-                        imageWidth = imageHeight * imageRatio;
-                    }
-
-                    const imageX = (pageWidth - imageWidth) / 2;
-                    pdf.addImage(
-                        canvas.toDataURL('image/jpeg', 0.98),
-                        'JPEG',
-                        imageX,
-                        0,
-                        imageWidth,
-                        imageHeight
-                    );
-                    pdf.save('Mohamad-Ikhsan-Nurulloh-Resume.pdf');
+                    await html2pdf().set({
+                        margin: [8, 10, 8, 10],
+                        filename: 'Mohamad-Ikhsan-Nurulloh-Resume.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: {
+                            scale: 2,
+                            useCORS: true,
+                            backgroundColor: '#ffffff'
+                        },
+                        jsPDF: {
+                            unit: 'mm',
+                            format: 'a4',
+                            orientation: 'portrait'
+                        },
+                        pagebreak: {
+                            mode: 'css',
+                            avoid: ['.role', '.education-item']
+                        }
+                    }).from(resume).save();
                     downloadStatus.textContent = 'PDF downloaded.';
                 } catch (error) {
                     console.error('PDF generation failed:', error);
