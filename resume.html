@@ -76,7 +76,7 @@
         }
 
         .resume {
-            width: min(210mm, calc(100% - 2rem));
+            width: 210mm;
             min-height: 297mm;
             margin: 1.5rem auto;
             padding: 9mm 11mm;
@@ -95,9 +95,12 @@
             display: grid;
             gap: 1.5rem;
             margin: 1.5rem 0;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
         }
 
         .resume-page {
+            width: 210mm;
             height: 297mm;
             min-height: 297mm;
             margin: 0 auto;
@@ -236,41 +239,6 @@
         }
 
         .skills-list li { margin-top: 0.12rem; }
-
-        @media (max-width: 700px) {
-            .resume-pages {
-                display: grid;
-                gap: 1rem;
-                margin: 1rem 0;
-            }
-            .resume-page {
-                width: calc(100% - 1rem);
-                height: calc((100vw - 1rem) * 1.4142857);
-                min-height: 0;
-                margin: 0 auto;
-                padding: 4.3vw 5.2vw;
-                font-size: 1.6vw;
-                line-height: 1.3;
-            }
-            .resume-page h1 { font-size: 3.4vw; }
-            .resume-page h2 { font-size: 1.75vw; }
-            .resume-page .location { font-size: 1.45vw; }
-            .resume-page .contact,
-            .resume-page .role-meta,
-            .resume-page .education-details {
-                font-size: 1.4vw;
-            }
-            .resume-page .role-heading h3,
-            .resume-page .education-heading h3 {
-                font-size: 1.55vw;
-            }
-            .resume-source.is-paginated.is-exporting {
-                width: 190mm;
-                padding: 9mm 11mm;
-                font-size: 9.75pt;
-                line-height: 1.33;
-            }
-        }
 
         @page {
             size: A4;
