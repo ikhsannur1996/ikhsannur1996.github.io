@@ -613,7 +613,8 @@
             const zoomInButton = document.querySelector('#zoom-in');
             const zoomLevel = document.querySelector('#zoom-level');
             let previewZoom = 1;
-            const minZoom = 0.4;
+            let zoomManuallyAdjusted = false;
+            const minZoom = 0.25;
             const maxZoom = 1.5;
             const zoomStep = 0.1;
             const updatePreviewZoom = () => {
@@ -623,16 +624,28 @@
                 zoomOutButton.disabled = previewZoom <= minZoom;
                 zoomInButton.disabled = previewZoom >= maxZoom;
             };
+            const fitPreviewToDevice = () => {
+                if (zoomManuallyAdjusted) return;
+
+                const firstPage = document.querySelector('.resume-page');
+                const availableWidth = document.documentElement.clientWidth - 32;
+                const fittedZoom = availableWidth / firstPage.offsetWidth;
+                previewZoom = Math.max(minZoom, Math.min(1, fittedZoom));
+                updatePreviewZoom();
+            };
 
             zoomOutButton.addEventListener('click', () => {
+                zoomManuallyAdjusted = true;
                 previewZoom = Math.max(minZoom, Number((previewZoom - zoomStep).toFixed(1)));
                 updatePreviewZoom();
             });
             zoomInButton.addEventListener('click', () => {
+                zoomManuallyAdjusted = true;
                 previewZoom = Math.min(maxZoom, Number((previewZoom + zoomStep).toFixed(1)));
                 updatePreviewZoom();
             });
-            updatePreviewZoom();
+            window.addEventListener('resize', fitPreviewToDevice);
+            fitPreviewToDevice();
 
             const downloadButton = document.querySelector('#download-pdf');
             const downloadStatus = document.querySelector('#download-status');
