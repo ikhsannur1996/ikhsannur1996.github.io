@@ -91,6 +91,30 @@
             box-shadow: none;
         }
 
+        .resume-pages {
+            display: grid;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .resume-page {
+            height: 297mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .resume-source.is-paginated {
+            display: none;
+        }
+
+        .resume-source.is-paginated.is-exporting {
+            position: fixed;
+            top: 0;
+            left: -10000px;
+            display: block;
+        }
+
         .resume-header {
             text-align: center;
             border-bottom: 1px solid var(--line);
@@ -215,6 +239,8 @@
 
         @media (max-width: 700px) {
             body { font-size: 9.75pt; }
+            .resume-pages { display: none; }
+            .resume-source.is-paginated { display: block; }
             .resume {
                 width: 100%;
                 min-height: 0;
@@ -285,7 +311,7 @@
         <span class="download-status" id="download-status" role="status" aria-live="polite"></span>
     </nav>
 
-    <main class="resume">
+    <main class="resume resume-source" id="resume-content">
         <header class="resume-header">
             <h1>MOHAMAD IKHSAN NURULLOH</h1>
             <p class="location">South Jakarta, Jakarta, Indonesia 12310</p>
@@ -472,6 +498,72 @@
                 element.textContent = duration;
             });
 
+            const resume = document.querySelector('#resume-content');
+            const paginateResume = () => {
+                const existingPages = document.querySelector('.resume-pages');
+                existingPages?.remove();
+
+                const pages = document.createElement('div');
+                pages.className = 'resume-pages';
+                resume.insertAdjacentElement('afterend', pages);
+
+                const createPage = () => {
+                    const page = document.createElement('div');
+                    page.className = 'resume resume-page';
+                    pages.appendChild(page);
+                    return page;
+                };
+                const isOverflowing = (page) => page.scrollHeight > page.clientHeight + 2;
+                const createSection = (heading, continued = false) => {
+                    const section = document.createElement('section');
+                    const sectionHeading = heading.cloneNode(true);
+                    if (continued) sectionHeading.textContent += ' (continued)';
+                    section.appendChild(sectionHeading);
+                    return section;
+                };
+                let page = createPage();
+
+                Array.from(resume.children).forEach((sourceBlock) => {
+                    const block = sourceBlock.cloneNode(true);
+                    page.appendChild(block);
+
+                    if (!isOverflowing(page)) return;
+                    block.remove();
+
+                    if (page.children.length) {
+                        page = createPage();
+                        page.appendChild(block);
+                        if (!isOverflowing(page)) return;
+                        block.remove();
+                    }
+
+                    if (sourceBlock.tagName !== 'SECTION') {
+                        page.appendChild(block);
+                        return;
+                    }
+
+                    const [heading, ...sectionItems] = Array.from(sourceBlock.children);
+                    let section = createSection(heading);
+                    page.appendChild(section);
+
+                    sectionItems.forEach((sourceItem) => {
+                        const item = sourceItem.cloneNode(true);
+                        section.appendChild(item);
+
+                        if (!isOverflowing(page)) return;
+                        item.remove();
+                        page = createPage();
+                        section = createSection(heading, true);
+                        page.appendChild(section);
+                        section.appendChild(item);
+                    });
+                });
+
+                resume.classList.add('is-paginated');
+            };
+
+            paginateResume();
+
             const downloadButton = document.querySelector('#download-pdf');
             const downloadStatus = document.querySelector('#download-status');
 
@@ -484,7 +576,6 @@
                 downloadButton.disabled = true;
                 downloadButton.textContent = 'Preparing PDF...';
                 downloadStatus.textContent = '';
-                const resume = document.querySelector('.resume');
                 resume.classList.add('is-exporting');
 
                 try {
