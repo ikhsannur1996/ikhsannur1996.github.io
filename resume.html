@@ -175,9 +175,7 @@
         }
 
         .resume-source.is-paginated.is-exporting {
-            position: fixed;
-            top: 0;
-            left: -10000px;
+            position: static;
             display: block;
         }
 
@@ -648,9 +646,14 @@
                 downloadButton.disabled = true;
                 downloadButton.textContent = 'Preparing PDF...';
                 downloadStatus.textContent = '';
+                const previewPages = document.querySelector('.resume-pages');
+                previewPages.style.display = 'none';
                 resume.classList.add('is-exporting');
 
                 try {
+                    await new Promise((resolve) => {
+                        requestAnimationFrame(() => requestAnimationFrame(resolve));
+                    });
                     await html2pdf().set({
                         margin: 0,
                         filename: 'Mohamad-Ikhsan-Nurulloh-Resume.pdf',
@@ -676,6 +679,7 @@
                     downloadStatus.textContent = 'Could not create the PDF. Please try again.';
                 } finally {
                     resume.classList.remove('is-exporting');
+                    previewPages.style.display = '';
                     downloadButton.disabled = false;
                     downloadButton.textContent = 'Save as PDF';
                 }
