@@ -322,12 +322,26 @@
 
             <article class="role">
                 <div class="role-heading">
+                    <h3>PT Bank Tabungan Negara (Persero) Tbk <a href="https://www.btn.co.id/" target="_blank" rel="noopener noreferrer">[Banking]</a></h3>
+                    <strong>Jakarta</strong>
+                </div>
+                <div class="role-meta">
+                    <span>Data Scientist</span>
+                    <span class="date experience-date" data-start="2026-09" data-upcoming="Starts September 2026">September 2026 - Present</span>
+                </div>
+                <ul>
+                    <li>Turning Numbers into Actions.</li>
+                </ul>
+            </article>
+
+            <article class="role">
+                <div class="role-heading">
                     <h3>Accord Innovations <a href="https://www.accordinnovations.com/" target="_blank" rel="noopener noreferrer">[IT Consultant]</a></h3>
                     <strong>Jakarta</strong>
                 </div>
                 <div class="role-meta">
                     <span>Senior Business Intelligence</span>
-                    <span class="date experience-date" data-start="2023-11">November 2023 - Present</span>
+                    <span class="date experience-date" data-start="2023-11" data-end="2026-08">November 2023 - August 2026</span>
                 </div>
                 <ul>
                     <li>Lead end-to-end BI, Data Science, Analytics, and Machine Learning initiatives by architecting scalable data platforms, developing robust ETL pipelines, and delivering cloud-based analytics, predictive modeling, and visualization solutions aligned with business objectives.</li>
@@ -431,12 +445,23 @@
         (() => {
             const currentDate = new Date();
             const currentYearMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
+            const [currentYear, currentMonth] = currentYearMonth.split('-').map(Number);
+            const currentMonthIndex = (currentYear * 12) + currentMonth;
             const employmentPeriods = [];
 
             document.querySelectorAll('.experience-date').forEach((dateElement) => {
                 const [startYear, startMonth] = dateElement.dataset.start.split('-').map(Number);
                 const [endYear, endMonth] = (dateElement.dataset.end || currentYearMonth).split('-').map(Number);
-                const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth + 1;
+                const startMonthIndex = (startYear * 12) + startMonth;
+                const declaredEndMonthIndex = (endYear * 12) + endMonth;
+
+                if (startMonthIndex > currentMonthIndex) {
+                    dateElement.textContent = dateElement.dataset.upcoming || dateElement.textContent;
+                    return;
+                }
+
+                const effectiveEndMonthIndex = Math.min(declaredEndMonthIndex, currentMonthIndex);
+                const totalMonths = effectiveEndMonthIndex - startMonthIndex + 1;
                 const years = Math.floor(totalMonths / 12);
                 const months = totalMonths % 12;
                 const parts = [
@@ -446,8 +471,8 @@
 
                 dateElement.textContent += ` | ${parts.join(' ')}`;
                 employmentPeriods.push({
-                    start: (startYear * 12) + startMonth,
-                    end: (endYear * 12) + endMonth
+                    start: startMonthIndex,
+                    end: effectiveEndMonthIndex
                 });
             });
 
