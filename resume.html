@@ -148,7 +148,7 @@
         }
 
         .resume.is-exporting {
-            width: 190mm;
+            width: 210mm;
             min-height: 0;
             margin: 0;
             box-shadow: none;
@@ -652,7 +652,7 @@
 
                 try {
                     await html2pdf().set({
-                        margin: [8, 10, 8, 10],
+                        margin: 0,
                         filename: 'Mohamad-Ikhsan-Nurulloh-Resume.pdf',
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: {
