@@ -327,7 +327,7 @@
                 </div>
                 <div class="role-meta">
                     <span>Data Scientist</span>
-                    <span class="date experience-date" data-start="2026-09" data-upcoming="Starts September 2026">September 2026 - Present</span>
+                    <span class="date experience-date" data-start="2026-09">September 2026 - Present</span>
                 </div>
                 <ul>
                     <li>Turning Numbers into Actions.</li>
@@ -456,7 +456,6 @@
                 const declaredEndMonthIndex = (endYear * 12) + endMonth;
 
                 if (startMonthIndex > currentMonthIndex) {
-                    dateElement.textContent = dateElement.dataset.upcoming || dateElement.textContent;
                     return;
                 }
 
