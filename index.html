@@ -549,6 +549,17 @@
             color: var(--primary);
             flex-shrink: 0;
             margin-top: 0.2rem;
+            border: 1px solid transparent;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        a.timeline-icon:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 18px var(--focus-ring);
+        }
+        a.timeline-icon:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 3px;
         }
         .timeline-logo {
             width: 34px;
@@ -1596,7 +1607,7 @@
                 <h2 class="section-title">Experience</h2>
                 <div class="timeline">
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/accord-logo.png" alt="Accord Innovations logo"></div>
+                        <a class="timeline-icon" href="https://accordinnovations.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Accord Innovations website"><img class="timeline-logo logo-wide" src="assets/images/company-logos/accord-logo.png" alt="Accord Innovations logo"></a>
                         <div class="timeline-body">
                             <span class="date experience-date" data-start="2023-11">Nov 2023 – Present</span>
                             <h3>Senior Business Intelligence</h3>
@@ -1607,7 +1618,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/dibimbing-logo.jpg" alt="dibimbing.id logo"></div>
+                        <a class="timeline-icon" href="https://dibimbing.id/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official dibimbing.id website"><img class="timeline-logo logo-wide" src="assets/images/company-logos/dibimbing-logo.jpg" alt="dibimbing.id logo"></a>
                         <div class="timeline-body">
                             <span class="date experience-date" data-start="2023-07" data-end="2023-11">Jul 2023 – Nov 2023</span>
                             <h3>Business Intelligence Mentor</h3>
@@ -1619,7 +1630,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/company-logos/cybertrend-logo.png" alt="PT. Cybertrend Intrabuana logo"></div>
+                        <a class="timeline-icon" href="https://cybertrend-intra.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official PT. Cybertrend Intrabuana website"><img class="timeline-logo" src="assets/images/company-logos/cybertrend-logo.png" alt="PT. Cybertrend Intrabuana logo"></a>
                         <div class="timeline-body">
                             <span class="date experience-date" data-start="2022-03" data-end="2023-11">Mar 2022 – Nov 2023</span>
                             <h3>Business Intelligence Developer</h3>
@@ -1631,7 +1642,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo logo-wide" src="assets/images/company-logos/schoters-logo.png" alt="Schoters logo"></div>
+                        <a class="timeline-icon" href="https://www.schoters.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Schoters website"><img class="timeline-logo logo-wide" src="assets/images/company-logos/schoters-logo.png" alt="Schoters logo"></a>
                         <div class="timeline-body">
                             <span class="date experience-date" data-start="2019-08" data-end="2021-08">Aug 2019 – Aug 2021</span>
                             <h3>Data Analyst</h3>
@@ -1643,7 +1654,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/company-logos/eijkman-logo.png" alt="Eijkman Institute for Molecular Biology logo"></div>
+                        <a class="timeline-icon" href="https://brin.go.id/ork/pusat-riset-biologi-molekuler-eijkman/page/dashboard-prbme" target="_blank" rel="noopener noreferrer" aria-label="Visit the official BRIN Eijkman Molecular Biology Research Center website"><img class="timeline-logo" src="assets/images/company-logos/eijkman-logo.png" alt="Eijkman Institute for Molecular Biology logo"></a>
                         <div class="timeline-body">
                             <span class="date experience-date" data-start="2017-10" data-end="2019-02">Oct 2017 – Feb 2019</span>
                             <h3>Bioinformatics Data Analyst</h3>
@@ -1663,7 +1674,7 @@
                 <h2 class="section-title">Education</h2>
                 <div class="timeline">
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/education-logos/idu-logo.png" alt="The Republic of Indonesia Defense University logo"></div>
+                        <a class="timeline-icon" href="https://www.idu.ac.id/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official Republic of Indonesia Defense University website"><img class="timeline-logo" src="assets/images/education-logos/idu-logo.png" alt="The Republic of Indonesia Defense University logo"></a>
                         <div class="timeline-body">
                             <span class="date">Aug 2020 – Mar 2022</span>
                             <h3>M.Han Defense Industry (Equivalent to Industrial Engineering)</h3>
@@ -1671,7 +1682,7 @@
                         </div>
                     </div>
                     <div class="card timeline-item">
-                        <div class="timeline-icon"><img class="timeline-logo" src="assets/images/education-logos/unnes-logo.jpg" alt="State University of Semarang logo"></div>
+                        <a class="timeline-icon" href="https://unnes.ac.id/" target="_blank" rel="noopener noreferrer" aria-label="Visit the official State University of Semarang website"><img class="timeline-logo" src="assets/images/education-logos/unnes-logo.jpg" alt="State University of Semarang logo"></a>
                         <div class="timeline-body">
                             <span class="date">Aug 2014 – May 2019</span>
                             <h3>BSc. Biology</h3>
