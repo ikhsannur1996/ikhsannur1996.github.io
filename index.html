@@ -179,17 +179,31 @@
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
         .nav-links a.active { border-color: var(--primary); }
         .nav-links a i {
-            display: none;
+            display: inline-block;
             width: 1.1rem;
-            color: var(--primary);
+            color: var(--muted);
             text-align: center;
+            opacity: 0.78;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+        .nav-links a:hover i, .nav-links a.active i {
+            color: var(--primary);
+            opacity: 1;
         }
         header.is-scrolled .nav-links a {
             display: inline-flex;
             align-items: center;
             gap: 0.55rem;
         }
-        header.is-scrolled .nav-links a i { display: inline-block; }
+        header.is-scrolled .nav-links a i {
+            color: var(--primary);
+            opacity: 1;
+        }
         .skip-link:focus-visible, .nav-links a:focus-visible, .share-toggle:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
             outline: 3px solid var(--focus-ring);
             outline-offset: 3px;
@@ -941,13 +955,16 @@
             .profile-card { justify-self: start; width: min(100%, 280px); }
             .impact-grid, .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
-        @media (max-width: 1020px) {
+        @media (max-width: 1180px) {
             .nav-links a {
                 display: inline-flex;
                 align-items: center;
                 gap: 0.55rem;
             }
-            .nav-links a i { display: inline-block; }
+            .nav-links a i {
+                color: var(--primary);
+                opacity: 1;
+            }
             header:not(.is-scrolled) .nav-actions {
                 display: none;
             }
