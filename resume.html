@@ -6,6 +6,7 @@
     <title>Resume | Mohamad Ikhsan Nurulloh</title>
     <meta name="description" content="Resume of Mohamad Ikhsan Nurulloh, a Business Intelligence, Data Analytics, Machine Learning, and Cloud Engineering professional.">
     <link rel="canonical" href="https://ikhsannur1996.github.io/resume.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             color-scheme: light;
@@ -38,7 +39,7 @@
             top: 0;
             z-index: 10;
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
             gap: 0.75rem;
             padding: 0.8rem;
@@ -47,11 +48,67 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .toolbar > a { justify-self: end; }
-        .toolbar > .primary { justify-self: start; }
+        .toolbar > a { justify-self: start; }
+        .toolbar > .toolbar-actions { justify-self: end; }
+
+        .toolbar-actions {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-actions-menu {
+            position: relative;
+        }
+
+        .resume-actions-list {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            z-index: 20;
+            display: none;
+            width: max-content;
+            min-width: 12rem;
+            padding: 0.4rem;
+            border: 1px solid #c9d3e3;
+            border-radius: 0.85rem;
+            background: var(--paper);
+            box-shadow: 0 14px 34px rgba(29, 43, 68, 0.18);
+        }
+
+        .resume-actions-menu.is-open .resume-actions-list {
+            display: grid;
+            gap: 0.2rem;
+        }
+
+        .toolbar .resume-actions-list a,
+        .toolbar .resume-actions-list button {
+            width: 100%;
+            justify-content: flex-start;
+            border: 0;
+            border-radius: 0.55rem;
+            padding: 0.65rem 0.75rem;
+            background: transparent;
+            box-shadow: none;
+            text-align: left;
+        }
+
+        .toolbar .resume-actions-list a:hover,
+        .toolbar .resume-actions-list button:hover {
+            background: #eef4ff;
+            color: var(--accent);
+            text-decoration: none;
+        }
 
         .toolbar a,
         .toolbar button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            min-height: 42px;
             border: 1px solid #c9d3e3;
             border-radius: 999px;
             padding: 0.6rem 1rem;
@@ -60,6 +117,7 @@
             font: inherit;
             font-weight: 700;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .toolbar .primary {
@@ -73,6 +131,18 @@
             opacity: 0.72;
         }
 
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .download-status {
             grid-column: 1 / -1;
             justify-self: center;
@@ -82,6 +152,10 @@
         }
 
         .zoom-controls {
+            position: fixed;
+            right: calc(0.9rem + env(safe-area-inset-right));
+            bottom: calc(0.9rem + env(safe-area-inset-bottom));
+            z-index: 30;
             display: inline-flex;
             align-items: center;
             gap: 0;
@@ -89,20 +163,54 @@
             border: 1px solid #c9d3e3;
             border-radius: 999px;
             background: var(--paper);
-            box-shadow: 0 6px 16px rgba(29, 43, 68, 0.08);
+            box-shadow: 0 12px 30px rgba(29, 43, 68, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
         }
 
-        .toolbar .zoom-controls button {
+        .zoom-controls.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        .zoom-toggle {
+            display: inline-flex !important;
+            width: 42px;
+            height: 42px;
+            padding: 0 !important;
+        }
+
+        .zoom-controls:not(.is-open) #zoom-out,
+        .zoom-controls:not(.is-open) #zoom-in,
+        .zoom-controls:not(.is-open) .zoom-level {
+            display: none;
+        }
+
+        .zoom-controls button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             min-width: 2.45rem;
+            min-height: 42px;
             padding: 0.6rem 0.75rem;
             border: 0;
             border-radius: 0;
             background: transparent;
+            color: var(--ink);
             box-shadow: none;
+            font: inherit;
+            font-weight: 700;
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        .toolbar .zoom-controls button:hover:not(:disabled) {
+        .zoom-controls button:hover:not(:disabled) {
             background: #eef4ff;
             color: var(--accent);
         }
@@ -122,19 +230,68 @@
             text-align: center;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
             .toolbar {
                 grid-template-columns: 1fr 1fr;
             }
-            .toolbar > a { justify-self: end; }
-            .toolbar > .primary { justify-self: start; }
-            .zoom-controls {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                justify-self: center;
+            .toolbar > a {
+                grid-column: 1;
+                grid-row: 1;
+                justify-self: start;
+            }
+            .toolbar > .toolbar-actions {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
             }
             .download-status {
-                grid-row: 3;
+                grid-row: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .toolbar {
+                grid-template-columns: auto 1fr;
+                gap: 0.6rem;
+                padding: 0.65rem;
+            }
+            .toolbar > a {
+                grid-column: 1;
+                grid-row: 1;
+                justify-self: start;
+            }
+            .toolbar > .toolbar-actions {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
+                flex-wrap: nowrap;
+            }
+            .download-status {
+                grid-column: 1 / -1;
+                grid-row: 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toolbar > a,
+            .toolbar-actions > .primary,
+            #resume-actions-toggle {
+                width: 42px;
+                min-width: 42px;
+                height: 42px;
+                padding: 0;
+            }
+            .toolbar > a .action-label,
+            .toolbar-actions > .primary .action-label,
+            #resume-actions-toggle .action-label {
+                display: none;
+            }
+            .toolbar-actions {
+                gap: 0.4rem;
+            }
+            .resume-actions-list {
+                right: 0;
+                max-width: calc(100vw - 1.3rem);
             }
         }
 
@@ -315,7 +472,8 @@
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
             }
-            .toolbar { display: none; }
+            .toolbar,
+            .zoom-controls { display: none; }
             .resume {
                 width: auto;
                 min-height: auto;
@@ -346,15 +504,33 @@
 </head>
 <body>
     <nav class="toolbar" aria-label="Resume actions">
-        <a href="index.html">Back to Portfolio</a>
-        <div class="zoom-controls" role="group" aria-label="Resume preview zoom controls">
-            <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
-            <span class="zoom-level" id="zoom-level" aria-live="polite">100%</span>
-            <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+        <a href="index.html" aria-label="Portfolio" title="Portfolio"><i class="fas fa-arrow-left" aria-hidden="true"></i><span class="action-label">Portfolio</span></a>
+        <div class="toolbar-actions">
+            <button class="primary" id="download-pdf" type="button" aria-label="Save as PDF" title="Save as PDF"><i class="fas fa-file-arrow-down" aria-hidden="true"></i><span class="action-label">Save as PDF</span></button>
+            <div class="resume-actions-menu">
+                <button id="resume-actions-toggle" type="button" aria-label="Open contact and sharing options" aria-expanded="false" aria-haspopup="menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="action-label">Menu</span>
+                </button>
+                <div class="resume-actions-list" role="menu" aria-labelledby="resume-actions-toggle">
+                    <a href="mailto:ikhsannur1996@gmail.com?subject=Opportunity%20for%20Mohamad%20Ikhsan%20Nurulloh" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i>Contact Me</a>
+                    <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" role="menuitem"><i class="fab fa-linkedin" aria-hidden="true"></i>View LinkedIn</a>
+                    <button id="share-resume" type="button" role="menuitem" aria-label="Share résumé" title="Share résumé"><i class="fas fa-share-nodes" aria-hidden="true"></i><span>Share</span></button>
+                </div>
+            </div>
         </div>
-        <button class="primary" id="download-pdf" type="button">Save as PDF</button>
         <span class="download-status" id="download-status" role="status" aria-live="polite"></span>
+        <span class="visually-hidden" id="share-status" role="status" aria-live="polite"></span>
     </nav>
+
+    <div class="zoom-controls" role="group" aria-label="Resume preview zoom controls">
+        <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+        <span class="zoom-level" id="zoom-level" aria-live="polite">100%</span>
+        <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+        <button class="zoom-toggle" id="zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false">
+            <i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i>
+        </button>
+    </div>
 
     <main class="resume resume-source" id="resume-content">
         <header class="resume-header">
@@ -612,6 +788,9 @@
             const zoomOutButton = document.querySelector('#zoom-out');
             const zoomInButton = document.querySelector('#zoom-in');
             const zoomLevel = document.querySelector('#zoom-level');
+            const zoomControls = document.querySelector('.zoom-controls');
+            const zoomToggle = document.querySelector('#zoom-toggle');
+            let zoomControlsHideTimer;
             let previewZoom = 1;
             let zoomManuallyAdjusted = false;
             const minZoom = 0.25;
@@ -634,20 +813,152 @@
                 updatePreviewZoom();
             };
 
+            const hideZoomControls = () => {
+                window.clearTimeout(zoomControlsHideTimer);
+                zoomControls.classList.remove('is-visible', 'is-open');
+                zoomToggle.setAttribute('aria-expanded', 'false');
+                zoomToggle.setAttribute('aria-label', 'Open zoom controls');
+            };
+            const scheduleZoomControlsHide = () => {
+                window.clearTimeout(zoomControlsHideTimer);
+                zoomControlsHideTimer = window.setTimeout(hideZoomControls, 3000);
+            };
+            const revealZoomControls = () => {
+                zoomControls.classList.add('is-visible');
+                if (zoomControls.matches(':hover') || zoomControls.contains(document.activeElement)) {
+                    window.clearTimeout(zoomControlsHideTimer);
+                } else {
+                    scheduleZoomControlsHide();
+                }
+            };
+            const setZoomControlsOpen = (isOpen) => {
+                zoomControls.classList.toggle('is-open', isOpen);
+                zoomToggle.setAttribute('aria-expanded', String(isOpen));
+                zoomToggle.setAttribute('aria-label', isOpen ? 'Close zoom controls' : 'Open zoom controls');
+                zoomControls.classList.add('is-visible');
+                scheduleZoomControlsHide();
+            };
+
             zoomOutButton.addEventListener('click', () => {
                 zoomManuallyAdjusted = true;
                 previewZoom = Math.max(minZoom, Number((previewZoom - zoomStep).toFixed(1)));
                 updatePreviewZoom();
+                revealZoomControls();
             });
             zoomInButton.addEventListener('click', () => {
                 zoomManuallyAdjusted = true;
                 previewZoom = Math.min(maxZoom, Number((previewZoom + zoomStep).toFixed(1)));
                 updatePreviewZoom();
+                revealZoomControls();
+            });
+            zoomToggle.addEventListener('click', () => {
+                setZoomControlsOpen(!zoomControls.classList.contains('is-open'));
+            });
+            document.addEventListener('click', (event) => {
+                if (!zoomControls.contains(event.target)) {
+                    zoomControls.classList.remove('is-open');
+                    zoomToggle.setAttribute('aria-expanded', 'false');
+                    zoomToggle.setAttribute('aria-label', 'Open zoom controls');
+                }
+            });
+            ['scroll', 'pointermove', 'pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+                window.addEventListener(eventName, revealZoomControls, { passive: true });
+            });
+            zoomControls.addEventListener('mouseenter', () => window.clearTimeout(zoomControlsHideTimer));
+            zoomControls.addEventListener('mouseleave', scheduleZoomControlsHide);
+            zoomControls.addEventListener('focusin', () => window.clearTimeout(zoomControlsHideTimer));
+            zoomControls.addEventListener('focusout', (event) => {
+                if (!zoomControls.contains(event.relatedTarget)) scheduleZoomControlsHide();
             });
             window.addEventListener('resize', fitPreviewToDevice);
             fitPreviewToDevice();
+            revealZoomControls();
+
+            const resumeActionsMenu = document.querySelector('.resume-actions-menu');
+            const resumeActionsToggle = document.querySelector('#resume-actions-toggle');
+            const setResumeActionsOpen = (isOpen) => {
+                resumeActionsMenu.classList.toggle('is-open', isOpen);
+                resumeActionsToggle.setAttribute('aria-expanded', String(isOpen));
+                resumeActionsToggle.setAttribute(
+                    'aria-label',
+                    isOpen ? 'Close contact and sharing options' : 'Open contact and sharing options'
+                );
+            };
+
+            resumeActionsToggle.addEventListener('click', () => {
+                setResumeActionsOpen(!resumeActionsMenu.classList.contains('is-open'));
+            });
+            resumeActionsMenu.addEventListener('click', (event) => {
+                if (event.target.closest('.resume-actions-list a')) setResumeActionsOpen(false);
+            });
+            document.addEventListener('click', (event) => {
+                if (!resumeActionsMenu.contains(event.target)) setResumeActionsOpen(false);
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape' || !resumeActionsMenu.classList.contains('is-open')) return;
+                setResumeActionsOpen(false);
+                resumeActionsToggle.focus();
+            });
+
+            const shareButton = document.querySelector('#share-resume');
+            const shareButtonLabel = shareButton.querySelector('span');
+            const shareStatus = document.querySelector('#share-status');
+            const copyResumeLink = async (url) => {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(url);
+                    return;
+                }
+
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                const copied = document.execCommand('copy');
+                textArea.remove();
+                if (!copied) throw new Error('Clipboard copy failed');
+            };
+            const showShareFeedback = (message) => {
+                shareStatus.textContent = message;
+                shareButtonLabel.textContent = message;
+                window.setTimeout(() => {
+                    shareButtonLabel.textContent = 'Share';
+                    shareStatus.textContent = '';
+                }, 2000);
+            };
+
+            shareButton.addEventListener('click', async () => {
+                setResumeActionsOpen(false);
+                const shareUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+                const shareData = {
+                    title: document.title,
+                    text: 'View Mohamad Ikhsan Nurulloh’s résumé for experience in business intelligence, data analytics, and cloud engineering.',
+                    url: shareUrl
+                };
+
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        showShareFeedback('Shared');
+                    } else {
+                        await copyResumeLink(shareUrl);
+                        showShareFeedback('Link copied');
+                    }
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        try {
+                            await copyResumeLink(shareUrl);
+                            showShareFeedback('Link copied');
+                        } catch {
+                            showShareFeedback('Unable to share');
+                        }
+                    }
+                }
+            });
 
             const downloadButton = document.querySelector('#download-pdf');
+            const downloadButtonLabel = downloadButton.querySelector('span');
             const downloadStatus = document.querySelector('#download-status');
 
             downloadButton.addEventListener('click', async () => {
@@ -657,7 +968,7 @@
                 }
 
                 downloadButton.disabled = true;
-                downloadButton.textContent = 'Preparing PDF...';
+                downloadButtonLabel.textContent = 'Preparing PDF...';
                 downloadStatus.textContent = '';
                 const previewPages = document.querySelector('.resume-pages');
                 previewPages.style.display = 'none';
@@ -694,7 +1005,7 @@
                     resume.classList.remove('is-exporting');
                     previewPages.style.display = '';
                     downloadButton.disabled = false;
-                    downloadButton.textContent = 'Save as PDF';
+                    downloadButtonLabel.textContent = 'Save as PDF';
                 }
             });
         })();

@@ -178,9 +178,32 @@
         }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
         .nav-links a.active { border-color: var(--primary); }
-        .skip-link:focus-visible, .nav-links a:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
+        .nav-links a i {
+            display: none;
+            width: 1.1rem;
+            color: var(--primary);
+            text-align: center;
+        }
+        header.is-scrolled .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+        header.is-scrolled .nav-links a i { display: inline-block; }
+        .skip-link:focus-visible, .nav-links a:focus-visible, .share-toggle:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
             outline: 3px solid var(--focus-ring);
             outline-offset: 3px;
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
         .nav-actions {
             display: flex;
@@ -245,7 +268,7 @@
             border-color: var(--primary);
             color: var(--primary);
         }
-        .theme-toggle {
+        .share-toggle, .theme-toggle {
             width: 42px;
             height: 42px;
             border-radius: 50%;
@@ -259,7 +282,7 @@
             box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
             transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
-        .theme-toggle:hover {
+        .share-toggle:hover, .theme-toggle:hover {
             transform: translateY(-1px);
             border-color: var(--primary);
             color: var(--primary);
@@ -269,8 +292,8 @@
         [data-theme="dark"] .theme-toggle .fa-sun { display: inline-block; }
         .home-float {
             position: fixed;
-            right: 1.2rem;
-            bottom: 1.2rem;
+            right: calc(1.2rem + env(safe-area-inset-right));
+            bottom: calc(1.2rem + env(safe-area-inset-bottom));
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -282,15 +305,18 @@
             font-size: 0.9rem;
             box-shadow: 0 16px 34px rgba(15, 111, 255, 0.28);
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
             transform: translateY(12px);
-            transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, visibility 0s linear 0.2s;
             z-index: 25;
         }
         .home-float.is-visible {
             opacity: 0.92;
+            visibility: visible;
             pointer-events: auto;
             transform: translateY(0);
+            transition-delay: 0s;
         }
         .home-float:hover {
             background: var(--primary-strong);
@@ -916,6 +942,12 @@
             .impact-grid, .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 1020px) {
+            .nav-links a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.55rem;
+            }
+            .nav-links a i { display: inline-block; }
             header:not(.is-scrolled) .nav-actions {
                 display: none;
             }
@@ -1059,8 +1091,8 @@
             .card { padding: 1rem; border-radius: 18px; }
             .portfolio-card .content, .card-body { padding: 0.9rem; }
             .home-float {
-                right: 0.9rem;
-                bottom: 0.9rem;
+                right: calc(0.9rem + env(safe-area-inset-right));
+                bottom: calc(0.9rem + env(safe-area-inset-bottom));
                 width: 38px;
                 height: 38px;
             }
@@ -1088,17 +1120,20 @@
                 <a class="brand" href="#home">Mohamad Ikhsan Nurulloh</a>
                 <div class="nav-actions">
                     <div class="nav-links">
-                        <a href="#about">About</a>
-                        <a href="#portfolio">Portfolio</a>
-                        <a href="#experience">Experience</a>
-                        <a href="#education">Education</a>
-                        <a href="#skills">Skills</a>
-                        <a href="#awards">Awards</a>
-                        <a href="#certifications">Certifications</a>
-                        <a href="#contact">Contact</a>
+                        <a href="#about"><i class="fas fa-user" aria-hidden="true"></i>About</a>
+                        <a href="#portfolio"><i class="fas fa-layer-group" aria-hidden="true"></i>Portfolio</a>
+                        <a href="#experience"><i class="fas fa-briefcase" aria-hidden="true"></i>Experience</a>
+                        <a href="#education"><i class="fas fa-graduation-cap" aria-hidden="true"></i>Education</a>
+                        <a href="#skills"><i class="fas fa-code" aria-hidden="true"></i>Skills</a>
+                        <a href="#awards"><i class="fas fa-trophy" aria-hidden="true"></i>Awards</a>
+                        <a href="#certifications"><i class="fas fa-certificate" aria-hidden="true"></i>Certifications</a>
+                        <a href="#contact"><i class="fas fa-envelope" aria-hidden="true"></i>Contact</a>
                     </div>
                 </div>
                 <div class="header-controls">
+                    <button class="share-toggle" type="button" aria-label="Share portfolio" title="Share portfolio">
+                        <i class="fas fa-share-nodes" aria-hidden="true"></i>
+                    </button>
                     <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                         <i class="fas fa-sun" aria-hidden="true"></i>
@@ -1107,6 +1142,7 @@
                         <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
+                <span class="visually-hidden" id="share-status" role="status" aria-live="polite"></span>
             </nav>
         </div>
     </header>
@@ -2130,7 +2166,13 @@
             const homeFloat = document.querySelector('.home-float');
             const menuToggle = document.querySelector('.menu-toggle');
             const themeToggle = document.querySelector('.theme-toggle');
+            const shareToggle = document.querySelector('.share-toggle');
+            const shareStatus = document.querySelector('#share-status');
             const navLinks = document.querySelectorAll('.nav-links a');
+            let homeFloatHideTimer;
+            let lastScrollY = window.scrollY;
+            const homeFloatHideDelay = 3000;
+            const homeFloatScrollThreshold = 320;
             const formatExperienceDurations = () => {
                 const currentDate = new Date();
                 const currentYearMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`;
@@ -2202,6 +2244,63 @@
                 setTheme(nextTheme);
             });
 
+            const copyPortfolioLink = async (url) => {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(url);
+                    return;
+                }
+
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                textArea.remove();
+            };
+
+            const showShareFeedback = (message) => {
+                if (shareStatus) shareStatus.textContent = message;
+                if (!shareToggle) return;
+
+                shareToggle.setAttribute('aria-label', message);
+                shareToggle.setAttribute('title', message);
+                window.setTimeout(() => {
+                    shareToggle.setAttribute('aria-label', 'Share portfolio');
+                    shareToggle.setAttribute('title', 'Share portfolio');
+                    if (shareStatus) shareStatus.textContent = '';
+                }, 2000);
+            };
+
+            shareToggle?.addEventListener('click', async () => {
+                const shareUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+                const shareData = {
+                    title: document.title,
+                    text: 'Explore Mohamad Ikhsan Nurulloh’s business intelligence, data analytics, and cloud engineering portfolio.',
+                    url: shareUrl
+                };
+
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        showShareFeedback('Portfolio shared');
+                    } else {
+                        await copyPortfolioLink(shareUrl);
+                        showShareFeedback('Portfolio link copied');
+                    }
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        try {
+                            await copyPortfolioLink(shareUrl);
+                            showShareFeedback('Portfolio link copied');
+                        } catch {
+                            showShareFeedback('Unable to share portfolio');
+                        }
+                    }
+                }
+            });
+
             const setMenuOpen = (isOpen) => {
                 header?.classList.toggle('menu-open', isOpen);
                 menuToggle?.setAttribute('aria-expanded', String(isOpen));
@@ -2233,15 +2332,54 @@
             const setScrolledState = () => {
                 const isScrolled = window.scrollY > 80;
                 header?.classList.toggle('is-scrolled', isScrolled);
-                homeFloat?.classList.toggle('is-visible', isScrolled);
+
+                if (!isScrolled) hideHomeFloat();
 
                 if (isScrolled) {
                     setMenuOpen(false);
                 }
             };
 
+            const hideHomeFloat = () => {
+                window.clearTimeout(homeFloatHideTimer);
+                homeFloat?.classList.remove('is-visible');
+                homeFloat?.setAttribute('aria-hidden', 'true');
+                homeFloat?.setAttribute('tabindex', '-1');
+            };
+
+            const scheduleHomeFloatHide = () => {
+                window.clearTimeout(homeFloatHideTimer);
+                homeFloatHideTimer = window.setTimeout(hideHomeFloat, homeFloatHideDelay);
+            };
+
+            const revealHomeFloat = () => {
+                if (!homeFloat || window.scrollY <= homeFloatScrollThreshold) return;
+
+                homeFloat.classList.add('is-visible');
+                homeFloat.setAttribute('aria-hidden', 'false');
+                homeFloat.removeAttribute('tabindex');
+                scheduleHomeFloatHide();
+            };
+
+            hideHomeFloat();
             setScrolledState();
-            window.addEventListener('scroll', setScrolledState, { passive: true });
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                setScrolledState();
+
+                if (currentScrollY < lastScrollY) {
+                    revealHomeFloat();
+                } else if (currentScrollY <= homeFloatScrollThreshold) {
+                    hideHomeFloat();
+                }
+
+                lastScrollY = currentScrollY;
+            }, { passive: true });
+            homeFloat?.addEventListener('mouseenter', () => window.clearTimeout(homeFloatHideTimer));
+            homeFloat?.addEventListener('mouseleave', scheduleHomeFloatHide);
+            homeFloat?.addEventListener('focus', () => window.clearTimeout(homeFloatHideTimer));
+            homeFloat?.addEventListener('blur', scheduleHomeFloatHide);
+            homeFloat?.addEventListener('click', hideHomeFloat);
 
             document.querySelectorAll('img').forEach((image) => {
                 if (!image.closest('.profile-card')) {
