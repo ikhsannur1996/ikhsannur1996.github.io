@@ -150,6 +150,12 @@
         header.is-scrolled {
             box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
         }
+        header.is-scrolled .brand {
+            display: inline-block;
+        }
+        header.is-scrolled nav {
+            justify-content: space-between;
+        }
         nav {
             position: relative;
             display: flex;
@@ -163,6 +169,7 @@
             padding: 0.75rem 0;
         }
         .brand {
+            display: none;
             font-weight: 700;
             letter-spacing: 0.02em;
             font-size: 1rem;
@@ -956,6 +963,12 @@
             .impact-grid, .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         @media (max-width: 1180px) {
+            .brand {
+                display: inline-block;
+            }
+            nav {
+                justify-content: space-between;
+            }
             .nav-links a {
                 display: inline-flex;
                 align-items: center;
