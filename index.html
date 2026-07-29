@@ -211,20 +211,9 @@
             color: var(--primary);
             opacity: 1;
         }
-        .skip-link:focus-visible, .nav-links a:focus-visible, .share-toggle:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
+        .skip-link:focus-visible, .nav-links a:focus-visible, .theme-toggle:focus-visible, .menu-toggle:focus-visible, .btn:focus-visible, .view-btn:focus-visible, .filter-btn:focus-visible, .scroll-btn:focus-visible, .show-more-btn:focus-visible {
             outline: 3px solid var(--focus-ring);
             outline-offset: 3px;
-        }
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
         }
         .nav-actions {
             display: flex;
@@ -289,7 +278,7 @@
             border-color: var(--primary);
             color: var(--primary);
         }
-        .share-toggle, .theme-toggle {
+        .theme-toggle {
             width: 42px;
             height: 42px;
             border-radius: 50%;
@@ -303,7 +292,7 @@
             box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
             transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
-        .share-toggle:hover, .theme-toggle:hover {
+        .theme-toggle:hover {
             transform: translateY(-1px);
             border-color: var(--primary);
             color: var(--primary);
@@ -1161,9 +1150,6 @@
                     </div>
                 </div>
                 <div class="header-controls">
-                    <button class="share-toggle" type="button" aria-label="Share portfolio" title="Share portfolio">
-                        <i class="fas fa-share-nodes" aria-hidden="true"></i>
-                    </button>
                     <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                         <i class="fas fa-sun" aria-hidden="true"></i>
@@ -1172,7 +1158,6 @@
                         <i class="fas fa-bars" aria-hidden="true"></i>
                     </button>
                 </div>
-                <span class="visually-hidden" id="share-status" role="status" aria-live="polite"></span>
             </nav>
         </div>
     </header>
@@ -2196,8 +2181,6 @@
             const homeFloat = document.querySelector('.home-float');
             const menuToggle = document.querySelector('.menu-toggle');
             const themeToggle = document.querySelector('.theme-toggle');
-            const shareToggle = document.querySelector('.share-toggle');
-            const shareStatus = document.querySelector('#share-status');
             const navLinks = document.querySelectorAll('.nav-links a');
             let homeFloatHideTimer;
             let lastScrollY = window.scrollY;
@@ -2272,63 +2255,6 @@
             themeToggle?.addEventListener('click', () => {
                 const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
                 setTheme(nextTheme);
-            });
-
-            const copyPortfolioLink = async (url) => {
-                if (navigator.clipboard?.writeText) {
-                    await navigator.clipboard.writeText(url);
-                    return;
-                }
-
-                const textArea = document.createElement('textarea');
-                textArea.value = url;
-                textArea.style.position = 'fixed';
-                textArea.style.opacity = '0';
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                textArea.remove();
-            };
-
-            const showShareFeedback = (message) => {
-                if (shareStatus) shareStatus.textContent = message;
-                if (!shareToggle) return;
-
-                shareToggle.setAttribute('aria-label', message);
-                shareToggle.setAttribute('title', message);
-                window.setTimeout(() => {
-                    shareToggle.setAttribute('aria-label', 'Share portfolio');
-                    shareToggle.setAttribute('title', 'Share portfolio');
-                    if (shareStatus) shareStatus.textContent = '';
-                }, 2000);
-            };
-
-            shareToggle?.addEventListener('click', async () => {
-                const shareUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
-                const shareData = {
-                    title: document.title,
-                    text: 'Explore Mohamad Ikhsan Nurulloh’s business intelligence, data analytics, and cloud engineering portfolio.',
-                    url: shareUrl
-                };
-
-                try {
-                    if (navigator.share) {
-                        await navigator.share(shareData);
-                        showShareFeedback('Portfolio shared');
-                    } else {
-                        await copyPortfolioLink(shareUrl);
-                        showShareFeedback('Portfolio link copied');
-                    }
-                } catch (error) {
-                    if (error.name !== 'AbortError') {
-                        try {
-                            await copyPortfolioLink(shareUrl);
-                            showShareFeedback('Portfolio link copied');
-                        } catch {
-                            showShareFeedback('Unable to share portfolio');
-                        }
-                    }
-                }
             });
 
             const setMenuOpen = (isOpen) => {
