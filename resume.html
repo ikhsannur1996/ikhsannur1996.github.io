@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <title>Resume | Mohamad Ikhsan Nurulloh</title>
     <meta name="description" content="Resume of Mohamad Ikhsan Nurulloh, a Business Intelligence, Data Analytics, Machine Learning, and Cloud Engineering professional.">
     <link rel="canonical" href="https://ikhsannur1996.github.io/resume.html">
@@ -688,8 +689,8 @@
                 const years = Math.floor(totalMonths / 12);
                 const months = totalMonths % 12;
                 const parts = [
-                    years && `${years} ${years === 1 ? 'yr' : 'yrs'}`,
-                    months && `${months} ${months === 1 ? 'mo' : 'mos'}`
+                    years && `${years} yrs`,
+                    months && `${months} mos`
                 ].filter(Boolean);
 
                 dateElement.textContent += ` | ${parts.join(' ')}`;
