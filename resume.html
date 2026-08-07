@@ -8,6 +8,20 @@
     <meta name="description" content="Resume of Mohamad Ikhsan Nurulloh, a Business Intelligence, Data Analytics, Machine Learning, and Cloud Engineering professional.">
     <link rel="canonical" href="https://ikhsannur1996.github.io/resume.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        (function () {
+            try {
+                const requested = new URLSearchParams(window.location.search).get('style');
+                const stored = localStorage.getItem('resume-style');
+                document.documentElement.dataset.resumeStyle =
+                    requested === 'modern' || requested === 'ats'
+                        ? requested
+                        : stored === 'modern' ? 'modern' : 'ats';
+            } catch (error) {
+                document.documentElement.dataset.resumeStyle = 'ats';
+            }
+        })();
+    </script>
     <style>
         :root {
             color-scheme: light;
@@ -40,7 +54,7 @@
             top: 0;
             z-index: 10;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: auto 1fr auto;
             align-items: center;
             gap: 0.75rem;
             padding: 0.8rem;
@@ -49,8 +63,9 @@
             border-bottom: 1px solid var(--line);
         }
 
-        .toolbar > a { justify-self: start; }
-        .toolbar > .toolbar-actions { justify-self: end; }
+        .toolbar > a { grid-column: 1; justify-self: start; }
+        .toolbar > .style-controls { grid-column: 2; justify-self: center; }
+        .toolbar > .toolbar-actions { grid-column: 3; justify-self: end; }
 
         .toolbar-actions {
             display: inline-flex;
@@ -233,15 +248,20 @@
 
         @media (max-width: 900px) {
             .toolbar {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: auto 1fr auto;
             }
             .toolbar > a {
                 grid-column: 1;
                 grid-row: 1;
                 justify-self: start;
             }
-            .toolbar > .toolbar-actions {
+            .toolbar > .style-controls {
                 grid-column: 2;
+                grid-row: 1;
+                justify-self: center;
+            }
+            .toolbar > .toolbar-actions {
+                grid-column: 3;
                 grid-row: 1;
                 justify-self: end;
             }
@@ -252,7 +272,7 @@
 
         @media (max-width: 600px) {
             .toolbar {
-                grid-template-columns: auto 1fr;
+                grid-template-columns: auto 1fr auto;
                 gap: 0.6rem;
                 padding: 0.65rem;
             }
@@ -261,8 +281,13 @@
                 grid-row: 1;
                 justify-self: start;
             }
-            .toolbar > .toolbar-actions {
+            .toolbar > .style-controls {
                 grid-column: 2;
+                grid-row: 1;
+                justify-self: center;
+            }
+            .toolbar > .toolbar-actions {
+                grid-column: 3;
                 grid-row: 1;
                 justify-self: end;
                 flex-wrap: nowrap;
@@ -289,6 +314,10 @@
             }
             .toolbar-actions {
                 gap: 0.4rem;
+            }
+            .style-controls button {
+                padding: 0.6rem 0.65rem;
+                font-size: 8.5pt;
             }
             .resume-actions-list {
                 right: 0;
@@ -459,6 +488,176 @@
 
         .skills-list li { margin-top: 0.12rem; }
 
+        .style-controls {
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #c9d3e3;
+            border-radius: 999px;
+            background: var(--paper);
+            box-shadow: 0 4px 14px rgba(29, 43, 68, 0.08);
+        }
+
+        .style-controls button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            min-height: 42px;
+            padding: 0.6rem 0.95rem;
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            font: inherit;
+            font-weight: 700;
+            font-size: 9pt;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .style-controls button + button { border-left: 1px solid #dbe3ef; }
+        .style-controls button:hover:not(.is-active) { background: #eef4ff; color: var(--accent); }
+        .style-controls button.is-active { background: var(--accent); color: #fff; }
+
+        .resume-source,
+        .resume-pages { transition: opacity 0.18s ease; }
+
+        .resume-source.is-fading,
+        .resume-pages.is-fading { opacity: 0; }
+
+        [data-resume-style="modern"] .zoom-controls { display: none; }
+
+        [data-resume-style="modern"] { background: #f4f7fb; }
+
+        [data-resume-style="modern"] body {
+            background: radial-gradient(circle at top left, #ffffff 0%, #f7faff 45%, #f4f7fb 100%);
+            color: #0f172a;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.55;
+        }
+
+        [data-resume-style="modern"] .resume {
+            width: auto;
+            max-width: 880px;
+            min-height: 0;
+            margin: 2rem auto;
+            padding: 0 0 1.4rem;
+            border: 1px solid #e8eef6;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        [data-resume-style="modern"] .resume.is-exporting {
+            width: 210mm;
+            max-width: none;
+            min-height: 0;
+            margin: 0;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        [data-resume-style="modern"] .resume.is-exporting .resume-header { border-radius: 0; }
+
+        [data-resume-style="modern"] .resume-header {
+            padding: 2.2rem 2rem 1.6rem;
+            border-bottom: 0;
+            border-radius: 18px 18px 0 0;
+            background: linear-gradient(135deg, #071426 0%, #133866 58%, #165f7a 100%);
+            color: #f8fafc;
+        }
+
+        [data-resume-style="modern"] h1 {
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            font-size: 22pt;
+            letter-spacing: 0.03em;
+        }
+
+        [data-resume-style="modern"] .location { color: #9fb8d4; }
+
+        [data-resume-style="modern"] .contact {
+            gap: 0.45rem;
+            margin-top: 0.7rem;
+        }
+
+        [data-resume-style="modern"] .contact span { display: none; }
+
+        [data-resume-style="modern"] .contact a {
+            border: 1px solid rgba(234, 243, 255, 0.35);
+            border-radius: 999px;
+            padding: 0.2rem 0.75rem;
+            color: #eaf3ff;
+        }
+
+        [data-resume-style="modern"] .contact a:hover {
+            background: rgba(234, 243, 255, 0.12);
+            text-decoration: none;
+        }
+
+        [data-resume-style="modern"] section {
+            margin-top: 0;
+            padding: 0.9rem 2rem 0;
+        }
+
+        [data-resume-style="modern"] h2 {
+            margin: 0 0 0.55rem;
+            padding-bottom: 0.35rem;
+            border-bottom: 2px solid #eaf3ff;
+            color: #0f172a;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            font-size: 11pt;
+            letter-spacing: 0.08em;
+        }
+
+        [data-resume-style="modern"] a { color: #0f6fff; }
+
+        [data-resume-style="modern"] .summary { text-align: left; }
+
+        [data-resume-style="modern"] .competencies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        [data-resume-style="modern"] .competencies li {
+            margin: 0;
+            padding: 0.22rem 0.8rem;
+            border-radius: 999px;
+            background: #eaf3ff;
+            color: #334155;
+            font-size: 8.5pt;
+        }
+
+        [data-resume-style="modern"] .role-heading h3,
+        [data-resume-style="modern"] .education-heading h3 {
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            font-size: 10.5pt;
+            letter-spacing: 0.01em;
+            text-transform: none;
+        }
+
+        [data-resume-style="modern"] .role-heading strong,
+        [data-resume-style="modern"] .education-heading strong {
+            color: #5f6b7a;
+            font-size: 8.6pt;
+        }
+
+        [data-resume-style="modern"] .role-meta,
+        [data-resume-style="modern"] .education-details { color: #5f6b7a; }
+
+        [data-resume-style="modern"] .date {
+            color: #2257d5;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        [data-resume-style="modern"] .role li::marker,
+        [data-resume-style="modern"] .skills-list li::marker { color: #0f6fff; }
+
         @page {
             size: A4;
             margin: 8mm 9mm;
@@ -474,7 +673,8 @@
                 -webkit-print-color-adjust: exact;
             }
             .toolbar,
-            .zoom-controls { display: none; }
+            .zoom-controls,
+            .style-controls { display: none; }
             .resume {
                 width: auto;
                 min-height: auto;
@@ -506,6 +706,10 @@
 <body>
     <nav class="toolbar" aria-label="Resume actions">
         <a href="index.html" aria-label="Portfolio" title="Portfolio"><i class="fas fa-arrow-left" aria-hidden="true"></i><span class="action-label">Portfolio</span></a>
+        <div class="style-controls" role="radiogroup" aria-label="Resume style">
+            <button id="style-ats" class="is-active" type="button" role="radio" aria-checked="true" title="ATS-friendly layout for recruiters and applicant tracking systems"><i class="fas fa-file-lines" aria-hidden="true"></i>ATS</button>
+            <button id="style-modern" type="button" role="radio" aria-checked="false" tabindex="-1" title="Modern visual layout matching the portfolio"><i class="fas fa-palette" aria-hidden="true"></i>Modern</button>
+        </div>
         <div class="toolbar-actions">
             <button class="primary" id="download-pdf" type="button" aria-label="Save as PDF" title="Save as PDF"><i class="fas fa-file-arrow-down" aria-hidden="true"></i><span class="action-label">Save as PDF</span></button>
             <div class="resume-actions-menu">
@@ -514,6 +718,8 @@
                     <span class="action-label">Menu</span>
                 </button>
                 <div class="resume-actions-list" role="menu" aria-labelledby="resume-actions-toggle">
+                    <button id="download-ats-pdf" type="button" role="menuitem" aria-label="Save ATS resume as PDF"><i class="fas fa-file-arrow-down" aria-hidden="true"></i><span>Save ATS PDF</span></button>
+                    <button id="download-modern-pdf" type="button" role="menuitem" aria-label="Save modern resume as PDF"><i class="fas fa-file-arrow-down" aria-hidden="true"></i><span>Save Modern PDF</span></button>
                     <a href="mailto:ikhsannur1996@gmail.com?subject=Opportunity%20for%20Mohamad%20Ikhsan%20Nurulloh" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i>Contact Me</a>
                     <a href="https://linkedin.com/in/mohamad-ikhsan-nurulloh/" target="_blank" rel="noopener noreferrer" role="menuitem"><i class="fab fa-linkedin" aria-hidden="true"></i>View LinkedIn</a>
                     <a href="https://github.com/ikhsannur1996" target="_blank" rel="noopener noreferrer" role="menuitem"><i class="fab fa-github" aria-hidden="true"></i>View GitHub</a>
@@ -785,7 +991,72 @@
                 resume.classList.add('is-paginated');
             };
 
-            paginateResume();
+            const styleControls = document.querySelector('.style-controls');
+            const styleAtsButton = document.querySelector('#style-ats');
+            const styleModernButton = document.querySelector('#style-modern');
+            let currentStyle = document.documentElement.dataset.resumeStyle === 'modern' ? 'modern' : 'ats';
+
+            if (new URLSearchParams(window.location.search).has('style')) {
+                try { localStorage.setItem('resume-style', currentStyle); } catch (error) {}
+            }
+
+            if (currentStyle === 'ats') paginateResume();
+
+            const syncStyleButtons = () => {
+                const isAts = currentStyle === 'ats';
+                styleAtsButton.classList.toggle('is-active', isAts);
+                styleModernButton.classList.toggle('is-active', !isAts);
+                styleAtsButton.setAttribute('aria-checked', String(isAts));
+                styleModernButton.setAttribute('aria-checked', String(!isAts));
+                styleAtsButton.tabIndex = isAts ? 0 : -1;
+                styleModernButton.tabIndex = isAts ? -1 : 0;
+            };
+            syncStyleButtons();
+
+            const setResumeStyle = (style, animate = true) => {
+                try { localStorage.setItem('resume-style', style); } catch (error) {}
+
+                const apply = () => {
+                    currentStyle = style;
+                    document.documentElement.dataset.resumeStyle = style;
+                    syncStyleButtons();
+
+                    if (style === 'modern') {
+                        document.querySelector('.resume-pages')?.remove();
+                        resume.classList.remove('is-paginated');
+                    } else {
+                        if (!document.querySelector('.resume-pages')) paginateResume();
+                        updatePreviewZoom();
+                        fitPreviewToDevice();
+                    }
+
+                    const visibleResume = document.querySelector('.resume-pages') || resume;
+                    visibleResume.classList.add('is-fading');
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => visibleResume.classList.remove('is-fading'));
+                    });
+                };
+
+                if (animate) {
+                    const visibleResume = document.querySelector('.resume-pages') || resume;
+                    visibleResume.classList.add('is-fading');
+                    window.setTimeout(apply, 180);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    apply();
+                }
+            };
+
+            styleAtsButton.addEventListener('click', () => setResumeStyle('ats'));
+            styleModernButton.addEventListener('click', () => setResumeStyle('modern'));
+            styleControls.addEventListener('keydown', (event) => {
+                const arrowKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+                if (!arrowKeys.includes(event.key)) return;
+                event.preventDefault();
+                const nextStyle = currentStyle === 'ats' ? 'modern' : 'ats';
+                (nextStyle === 'ats' ? styleAtsButton : styleModernButton).focus();
+                setResumeStyle(nextStyle);
+            });
 
             const zoomOutButton = document.querySelector('#zoom-out');
             const zoomInButton = document.querySelector('#zoom-in');
@@ -800,15 +1071,17 @@
             const zoomStep = 0.1;
             const updatePreviewZoom = () => {
                 const pages = document.querySelector('.resume-pages');
+                if (!pages) return;
                 pages.style.zoom = previewZoom;
                 zoomLevel.textContent = `${Math.round(previewZoom * 100)}%`;
                 zoomOutButton.disabled = previewZoom <= minZoom;
                 zoomInButton.disabled = previewZoom >= maxZoom;
             };
             const fitPreviewToDevice = () => {
-                if (zoomManuallyAdjusted) return;
+                if (zoomManuallyAdjusted || currentStyle === 'modern') return;
 
                 const firstPage = document.querySelector('.resume-page');
+                if (!firstPage) return;
                 const availableWidth = document.documentElement.clientWidth - 32;
                 const fittedZoom = availableWidth / firstPage.offsetWidth;
                 previewZoom = Math.max(minZoom, Math.min(1, fittedZoom));
@@ -826,6 +1099,7 @@
                 zoomControlsHideTimer = window.setTimeout(hideZoomControls, 3000);
             };
             const revealZoomControls = () => {
+                if (currentStyle === 'modern') return;
                 zoomControls.classList.add('is-visible');
                 if (zoomControls.matches(':hover') || zoomControls.contains(document.activeElement)) {
                     window.clearTimeout(zoomControlsHideTimer);
@@ -962,8 +1236,10 @@
             const downloadButton = document.querySelector('#download-pdf');
             const downloadButtonLabel = downloadButton.querySelector('span');
             const downloadStatus = document.querySelector('#download-status');
+            const downloadAtsButton = document.querySelector('#download-ats-pdf');
+            const downloadModernButton = document.querySelector('#download-modern-pdf');
 
-            downloadButton.addEventListener('click', async () => {
+            const exportResumePdf = async (style) => {
                 if (typeof html2pdf === 'undefined') {
                     downloadStatus.textContent = 'PDF download is unavailable. Check your internet connection.';
                     return;
@@ -973,7 +1249,9 @@
                 downloadButtonLabel.textContent = 'Preparing PDF...';
                 downloadStatus.textContent = '';
                 const previewPages = document.querySelector('.resume-pages');
-                previewPages.style.display = 'none';
+                const viewStyle = currentStyle;
+                if (previewPages) previewPages.style.display = 'none';
+                if (style !== viewStyle) document.documentElement.dataset.resumeStyle = style;
                 resume.classList.add('is-exporting');
 
                 try {
@@ -982,7 +1260,9 @@
                     });
                     await html2pdf().set({
                         margin: 0,
-                        filename: 'Mohamad-Ikhsan-Nurulloh-Resume.pdf',
+                        filename: style === 'modern'
+                            ? 'Mohamad-Ikhsan-Nurulloh-Resume-Modern.pdf'
+                            : 'Mohamad-Ikhsan-Nurulloh-Resume.pdf',
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: {
                             scale: 2,
@@ -1005,10 +1285,21 @@
                     downloadStatus.textContent = 'Could not create the PDF. Please try again.';
                 } finally {
                     resume.classList.remove('is-exporting');
-                    previewPages.style.display = '';
+                    document.documentElement.dataset.resumeStyle = viewStyle;
+                    if (previewPages) previewPages.style.display = '';
                     downloadButton.disabled = false;
                     downloadButtonLabel.textContent = 'Save as PDF';
                 }
+            };
+
+            downloadButton.addEventListener('click', () => exportResumePdf(currentStyle));
+            downloadAtsButton.addEventListener('click', () => {
+                setResumeActionsOpen(false);
+                exportResumePdf('ats');
+            });
+            downloadModernButton.addEventListener('click', () => {
+                setResumeActionsOpen(false);
+                exportResumePdf('modern');
             });
         })();
     </script>
