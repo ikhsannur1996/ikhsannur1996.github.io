@@ -2135,15 +2135,15 @@
                 document.querySelectorAll('.experience-date').forEach((dateElement) => {
                     const [startYear, startMonth] = dateElement.dataset.start.split('-').map(Number);
                     const [endYear, endMonth] = (dateElement.dataset.end || currentYearMonth).split('-').map(Number);
-                    const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth + 1;
+                    const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth;
                     const years = Math.floor(totalMonths / 12);
                     const months = totalMonths % 12;
                     const durationParts = [];
 
-                    if (years) durationParts.push(`${years} yrs`);
-                    if (months) durationParts.push(`${months} mos`);
+                    if (years) durationParts.push(`${years} yr${years === 1 ? '' : 's'}`);
+                    if (months) durationParts.push(`${months} mo${months === 1 ? '' : 's'}`);
 
-                    dateElement.textContent += ` · ${durationParts.join(' ')}`;
+                    dateElement.textContent += ` · ${durationParts.join(' ') || '1 mo'}`;
                     employmentPeriods.push({
                         start: (startYear * 12) + startMonth,
                         end: (endYear * 12) + endMonth
@@ -2163,7 +2163,7 @@
                     return periods;
                 }, []);
                 const totalExperienceMonths = mergedPeriods.reduce(
-                    (total, period) => total + period.end - period.start + 1,
+                    (total, period) => total + period.end - period.start,
                     0
                 );
                 const totalYears = Math.floor(totalExperienceMonths / 12);
