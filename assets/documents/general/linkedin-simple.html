@@ -33,10 +33,50 @@
         ul { margin: 6px 0; padding-left: 22px; }
         li { margin-bottom: 3px; }
         a { color: #333; text-decoration: underline; }
+
+        .mode-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 10;
+            display: inline-flex;
+            border: 1px solid #ccc;
+            border-radius: 999px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        .mode-toggle button {
+            border: 0;
+            background: transparent;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .mode-toggle button + button { border-left: 1px solid #ccc; }
+        .mode-toggle button.active { background: #222; color: #fff; }
+
+        .content-simple { display: none; }
+        body[data-mode="simple"] .content-detailed { display: none; }
+        body[data-mode="simple"] .content-simple { display: block; }
+        body[data-mode="simple"] .summary-detailed { display: none; }
+        body[data-mode="simple"] .summary-simple { display: block; }
+        .summary-simple { display: none; }
+
+        @media (max-width: 600px) {
+            .mode-toggle { position: static; margin-bottom: 20px; }
+        }
     </style>
 </head>
-<body>
+<body data-mode="detailed">
     <div class="page">
+
+        <div class="mode-toggle" role="group" aria-label="Profile view mode">
+            <button type="button" data-mode-btn="detailed" class="active">Detailed</button>
+            <button type="button" data-mode-btn="simple">Simple</button>
+        </div>
 
         <h1>Mohamad Ikhsan Nurulloh</h1>
         <p class="headline">Data Engineer | Business Intelligence | Data Scientist | Machine Learning | Cloud Engineer | Data Analyst | Tableau | Power BI | GCP | Azure | AWS | Alibaba Cloud</p>
@@ -48,72 +88,108 @@
         </p>
 
         <h2>Summary</h2>
-        <p>Data professional with <span data-experience-total>seven years</span> of experience across Business Intelligence, Data Science, Analytics, Machine Learning, and Cloud Engineering. Builds scalable data solutions, develops user-friendly dashboards, and ensures data quality through strong expertise in SQL, ETL processes, and data warehousing. Delivers actionable insights and predictive solutions to support informed decision-making. Experienced in using GCP, AWS, and Azure to implement efficient and scalable cloud-based data platforms.</p>
+        <p class="summary-detailed">Data professional with <span data-experience-total>seven years</span> of experience across Business Intelligence, Data Science, Analytics, Machine Learning, and Cloud Engineering. Builds scalable data solutions, develops user-friendly dashboards, and ensures data quality through strong expertise in SQL, ETL processes, and data warehousing. Delivers actionable insights and predictive solutions to support informed decision-making. Experienced in using GCP, AWS, and Azure to implement efficient and scalable cloud-based data platforms.</p>
+        <p class="summary-simple">Data professional with <span data-experience-total>seven years</span> of experience helping organizations make better use of their data to support decision-making and business growth. Proven track record of delivering practical solutions, collaborating across teams, and communicating insights clearly to stakeholders in various industries.</p>
 
         <h2>Experience</h2>
 
         <div class="role">
             <h3>Data Scientist — PT Bank Tabungan Negara (Persero) Tbk</h3>
             <p class="meta"><span class="experience-date" data-start="2026-09">September 2026 - Present</span> &middot; Jakarta, Indonesia</p>
-            <p>Developing and deploying machine learning models and data science solutions to drive business value across banking operations, risk management, and customer analytics.</p>
+            <div class="content-detailed">
+                <p>Developing and deploying machine learning models and data science solutions to drive business value across banking operations, risk management, and customer analytics.</p>
+            </div>
+            <div class="content-simple">
+                <p>Working with data to support business objectives and improve decision-making.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Senior Business Intelligence — Accord Innovations</h3>
             <p class="meta"><span class="experience-date" data-start="2023-11" data-end="2026-08">November 2023 - August 2026</span> &middot; Jakarta, Indonesia</p>
-            <p>Leading end-to-end BI, Data Science, Analytics, and Machine Learning initiatives by architecting scalable data platforms, developing robust ETL pipelines, and delivering cloud-based analytics, predictive modeling, and visualization solutions aligned with business objectives.</p>
+            <div class="content-detailed">
+                <p>Leading end-to-end BI, Data Science, Analytics, and Machine Learning initiatives by architecting scalable data platforms, developing robust ETL pipelines, and delivering cloud-based analytics, predictive modeling, and visualization solutions aligned with business objectives.</p>
+            </div>
+            <div class="content-simple">
+                <p>Leading data initiatives that deliver practical solutions and insights to support business goals.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Product Manager Mentor — dibimbing.id</h3>
             <p class="meta"><span class="experience-date" data-start="2023-11" data-end="2023-11">November 2023</span> &middot; Jakarta Metropolitan Area</p>
-            <ul>
-                <li>Strategic expertise in product analytics: cohort analysis, retention, churn, funnel optimization.</li>
-                <li>Proficient in data visualization tools for impactful insights.</li>
-            </ul>
+            <div class="content-detailed">
+                <ul>
+                    <li>Strategic expertise in product analytics: cohort analysis, retention, churn, funnel optimization.</li>
+                    <li>Proficient in data visualization tools for impactful insights.</li>
+                </ul>
+            </div>
+            <div class="content-simple">
+                <p>Guiding product teams with practical insights and a focus on user value.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Business Intelligence Mentor — dibimbing.id</h3>
             <p class="meta"><span class="experience-date" data-start="2023-07" data-end="2023-11">July 2023 - November 2023</span> &middot; Jakarta Metropolitan Area</p>
-            <ul>
-                <li>Introducing students to BI concepts for making data-driven decisions.</li>
-                <li>Instructing students on creating effective business documents.</li>
-                <li>Providing hands-on experience with various BI tools and their applications.</li>
-                <li>Teaching effective data warehousing for making business decisions.</li>
-                <li>Practical ETL Process for Data Preparation.</li>
-            </ul>
+            <div class="content-detailed">
+                <ul>
+                    <li>Introducing students to BI concepts for making data-driven decisions.</li>
+                    <li>Instructing students on creating effective business documents.</li>
+                    <li>Providing hands-on experience with various BI tools and their applications.</li>
+                    <li>Teaching effective data warehousing for making business decisions.</li>
+                    <li>Practical ETL Process for Data Preparation.</li>
+                </ul>
+            </div>
+            <div class="content-simple">
+                <p>Teaching students how to make better decisions using data.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Business Intelligence Developer — PT. CYBERTREND INTRABUANA</h3>
             <p class="meta"><span class="experience-date" data-start="2022-03" data-end="2023-11">March 2022 - November 2023</span> &middot; Jakarta Selatan, Indonesia</p>
-            <p>Created engaging dashboards using Tableau and Power BI, and leveraged SQL and ETL expertise to ensure high data quality and seamless integration. Designed robust and scalable business intelligence infrastructure and architecture, aligning BI with strategic goals.</p>
-            <ul>
-                <li>Projects: Tugu Insurance, CIMB Niaga Finance, PT Bukit Asam Tbk (Team Lead), PT Timah Tbk, MIND ID, Kemenkeu, PT Indo Tambangraya Megah Tbk.</li>
-                <li>Facilitator: KEMENPANRB (Tableau Prep), DTO Kemenkes (Google Data Studio), BKKBN (Tableau), BNN (Tableau), PT Vale Indonesia Tbk (Power BI), PT Bukit Asam Tbk (Tableau).</li>
-            </ul>
+            <div class="content-detailed">
+                <p>Created engaging dashboards using Tableau and Power BI, and leveraged SQL and ETL expertise to ensure high data quality and seamless integration. Designed robust and scalable business intelligence infrastructure and architecture, aligning BI with strategic goals.</p>
+                <ul>
+                    <li>Projects: Tugu Insurance, CIMB Niaga Finance, PT Bukit Asam Tbk (Team Lead), PT Timah Tbk, MIND ID, Kemenkeu, PT Indo Tambangraya Megah Tbk.</li>
+                    <li>Facilitator: KEMENPANRB (Tableau Prep), DTO Kemenkes (Google Data Studio), BKKBN (Tableau), BNN (Tableau), PT Vale Indonesia Tbk (Power BI), PT Bukit Asam Tbk (Tableau).</li>
+                </ul>
+            </div>
+            <div class="content-simple">
+                <p>Developed reports and dashboards to help business teams track performance and make informed decisions. Facilitated training sessions for various public and private organizations.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Data Analyst — Schoters</h3>
             <p class="meta"><span class="experience-date" data-start="2019-08" data-end="2021-08">August 2019 - August 2021</span> &middot; Jakarta Selatan, Indonesia</p>
-            <ul>
-                <li>Utilized data analytics tools to optimize business processes, reducing time waste, and improving data quality.</li>
-                <li>Created compelling visualizations by consolidating and analyzing data from various sources.</li>
-                <li>Led online and blended learning curriculum development for 1,000+ users.</li>
-                <li>Proactively managed projects through data-backed recommendations.</li>
-            </ul>
+            <div class="content-detailed">
+                <ul>
+                    <li>Utilized data analytics tools to optimize business processes, reducing time waste, and improving data quality.</li>
+                    <li>Created compelling visualizations by consolidating and analyzing data from various sources.</li>
+                    <li>Led online and blended learning curriculum development for 1,000+ users.</li>
+                    <li>Proactively managed projects through data-backed recommendations.</li>
+                </ul>
+            </div>
+            <div class="content-simple">
+                <p>Analyzed business processes and created reports to support decision-making. Contributed to improving operations and learning programs.</p>
+            </div>
         </div>
 
         <div class="role">
             <h3>Bioinformatics Data Analyst — Eijkman Institute</h3>
             <p class="meta"><span class="experience-date" data-start="2017-10" data-end="2019-02">October 2017 - February 2019</span> &middot; Jakarta, Indonesia</p>
-            <ul>
-                <li>Analyzed genetic data using Python and R.</li>
-                <li>Employed data-driven methodologies in Malaria and Single Nucleotide Polymorphisms research.</li>
-                <li>Extracted meaningful patterns and correlations contributing to discoveries in genetics.</li>
-            </ul>
+            <div class="content-detailed">
+                <ul>
+                    <li>Analyzed genetic data using Python and R.</li>
+                    <li>Employed data-driven methodologies in Malaria and Single Nucleotide Polymorphisms research.</li>
+                    <li>Extracted meaningful patterns and correlations contributing to discoveries in genetics.</li>
+                </ul>
+            </div>
+            <div class="content-simple">
+                <p>Performed data analysis to support scientific research in genetics and molecular biology.</p>
+            </div>
         </div>
 
         <h2>Education</h2>
@@ -135,7 +211,8 @@
         </div>
 
         <h2>Top Skills</h2>
-        <p>AWS Machine Learning &middot; Apache Airflow &middot; Alibaba Cloud</p>
+        <p class="content-detailed">AWS Machine Learning &middot; Apache Airflow &middot; Alibaba Cloud</p>
+        <p class="content-simple">Data Analysis &middot; Data Visualization &middot; Cloud Platforms</p>
 
         <h2>Certifications</h2>
         <ul>
@@ -145,7 +222,7 @@
             <li>Introduction to Data Transmission Service</li>
         </ul>
 
-        <h2>Honors &amp; Awards</h2>
+        <h2>Honors & Awards</h2>
         <ul>
             <li>BIDIKMISI Scholarship</li>
             <li>Master Scholarship</li>
@@ -206,6 +283,30 @@
 
             document.querySelectorAll('[data-experience-total]').forEach((element) => {
                 element.textContent = duration;
+            });
+
+            const storedMode = (() => {
+                try { return localStorage.getItem('linkedin-view-mode'); } catch (error) { return null; }
+            })();
+            const mode = storedMode === 'simple' ? 'simple' : 'detailed';
+            document.body.dataset.mode = mode;
+            document.querySelectorAll('[data-mode-btn]').forEach((button) => {
+                const isActive = button.dataset.modeBtn === mode;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+
+            document.querySelectorAll('[data-mode-btn]').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const nextMode = button.dataset.modeBtn;
+                    document.body.dataset.mode = nextMode;
+                    try { localStorage.setItem('linkedin-view-mode', nextMode); } catch (error) {}
+                    document.querySelectorAll('[data-mode-btn]').forEach((btn) => {
+                        const isActive = btn.dataset.modeBtn === nextMode;
+                        btn.classList.toggle('active', isActive);
+                        btn.setAttribute('aria-pressed', String(isActive));
+                    });
+                });
             });
         })();
     </script>
