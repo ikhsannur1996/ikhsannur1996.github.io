@@ -2148,7 +2148,7 @@
                 document.querySelectorAll('.experience-date').forEach((dateElement) => {
                     const [startYear, startMonth] = dateElement.dataset.start.split('-').map(Number);
                     const [endYear, endMonth] = (dateElement.dataset.end || currentYearMonth).split('-').map(Number);
-                    const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth;
+                    const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth + 1;
                     const years = Math.floor(totalMonths / 12);
                     const months = totalMonths % 12;
                     const durationParts = [];
@@ -2159,7 +2159,7 @@
                     dateElement.textContent += ` · ${durationParts.join(' ') || '1 mo'}`;
                     employmentPeriods.push({
                         start: (startYear * 12) + startMonth,
-                        end: (endYear * 12) + endMonth
+                        end: (endYear * 12) + endMonth + 1
                     });
                 });
 
