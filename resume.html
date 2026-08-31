@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <title>Resume | Mohamad Ikhsan Nurulloh</title>
-    <meta name="description" content="Resume of Mohamad Ikhsan Nurulloh, a Business Intelligence, Data Analytics, Machine Learning, and Cloud Engineering professional.">
+    <meta name="description" content="Resume of Mohamad Ikhsan Nurulloh, a Data Scientist, Business Intelligence, Data Analytics, Machine Learning, and Cloud Engineering professional.">
     <link rel="canonical" href="https://ikhsannur1996.github.io/resume.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -765,7 +765,7 @@
 
         <section>
             <h2>Professional Summary</h2>
-            <p class="summary"><strong>Mohamad Ikhsan Nurulloh</strong> is a data professional with <strong data-experience-total>extensive experience</strong> across Business Intelligence, Data Science, Analytics, Machine Learning, and Cloud Engineering. He builds scalable data solutions, develops user-friendly dashboards, and ensures data quality through strong expertise in SQL, ETL processes, and data warehousing. With a solid understanding of business strategy, he delivers actionable insights and predictive solutions that support informed decision-making. He has worked with GCP, AWS, Azure, and Alibaba Cloud to implement efficient, scalable cloud-based data platforms.</p>
+            <p class="summary"><strong>Mohamad Ikhsan Nurulloh</strong> has been working with data for <span data-experience-total>over 7 years</span>, across data science, BI, and cloud engineering. He helps businesses make better decisions through analysis, models, or making sure the data systems work.</p>
         </section>
 
         <section>
@@ -787,12 +787,26 @@
 
             <article class="role">
                 <div class="role-heading">
+                    <h3>PT Bank Tabungan Negara (Persero) Tbk <a href="https://www.btn.co.id/" target="_blank" rel="noopener noreferrer">[Banking]</a></h3>
+                    <strong>Jakarta</strong>
+                </div>
+                <div class="role-meta">
+                    <span>Data Scientist</span>
+                    <span class="date experience-date" data-start="2026-09">September 2026 - Present</span>
+                </div>
+                <ul>
+                    <li>Turning numbers into actionable business decisions.</li>
+                </ul>
+            </article>
+
+            <article class="role">
+                <div class="role-heading">
                     <h3>Accord Innovations <a href="https://www.accordinnovations.com/" target="_blank" rel="noopener noreferrer">[IT Consultant]</a></h3>
                     <strong>Jakarta</strong>
                 </div>
                 <div class="role-meta">
                     <span>Senior Business Intelligence</span>
-                    <span class="date experience-date" data-start="2023-11">November 2023 - Present</span>
+                    <span class="date experience-date" data-start="2023-11" data-end="2026-08">November 2023 - August 2026</span>
                 </div>
                 <ul>
                     <li>Lead end-to-end BI, Data Science, Analytics, and Machine Learning initiatives by architecting scalable data platforms, developing robust ETL pipelines, and delivering cloud-based analytics, predictive modeling, and visualization solutions aligned with business objectives.</li>
@@ -901,7 +915,7 @@
             document.querySelectorAll('.experience-date').forEach((dateElement) => {
                 const [startYear, startMonth] = dateElement.dataset.start.split('-').map(Number);
                 const [endYear, endMonth] = (dateElement.dataset.end || currentYearMonth).split('-').map(Number);
-                const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth;
+                const totalMonths = ((endYear - startYear) * 12) + endMonth - startMonth + 1;
                 const years = Math.floor(totalMonths / 12);
                 const months = totalMonths % 12;
                 const parts = [
@@ -912,7 +926,7 @@
                 dateElement.textContent += ` | ${parts.join(' ') || '1 mo'}`;
                 employmentPeriods.push({
                     start: (startYear * 12) + startMonth,
-                    end: (endYear * 12) + endMonth
+                    end: (endYear * 12) + endMonth + 1
                 });
             });
 
@@ -1219,7 +1233,7 @@
                 const shareUrl = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
                 const shareData = {
                     title: document.title,
-                    text: 'View Mohamad Ikhsan Nurulloh’s resume for experience in business intelligence, data analytics, and cloud engineering.',
+                    text: 'View Mohamad Ikhsan Nurulloh’s resume for experience in data science, business intelligence, and analytics.',
                     url: shareUrl
                 };
 
