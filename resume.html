@@ -1272,10 +1272,10 @@
                 downloadButton.disabled = true;
                 downloadButtonLabel.textContent = 'Preparing PDF...';
                 downloadStatus.textContent = '';
-                const previewPages = document.querySelector('.resume-pages');
                 const viewStyle = currentStyle;
+                if (style !== viewStyle) setResumeStyle(style, false);
+                const previewPages = document.querySelector('.resume-pages');
                 if (previewPages) previewPages.style.display = 'none';
-                if (style !== viewStyle) document.documentElement.dataset.resumeStyle = style;
                 resume.classList.add('is-exporting');
 
                 try {
@@ -1309,8 +1309,11 @@
                     downloadStatus.textContent = 'Could not create the PDF. Please try again.';
                 } finally {
                     resume.classList.remove('is-exporting');
-                    document.documentElement.dataset.resumeStyle = viewStyle;
-                    if (previewPages) previewPages.style.display = '';
+                    if (style !== viewStyle) {
+                        setResumeStyle(viewStyle, false);
+                    } else if (previewPages) {
+                        previewPages.style.display = '';
+                    }
                     downloadButton.disabled = false;
                     downloadButtonLabel.textContent = 'Save as PDF';
                 }
